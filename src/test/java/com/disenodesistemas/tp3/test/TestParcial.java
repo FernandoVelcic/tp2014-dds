@@ -13,80 +13,80 @@ import com.disenodesistemas.tp3.criterios.*;
 
 public class TestParcial{
 	
-	NPuntos np;
-	Regla3Simple r3s;
-	ConversionPorPuntos cpp;
+	NPuntos nPuntos;
+	Regla3Simple regla3Simple;
+	ConversionPorPuntos conversionPorPuntos;
 	
-	Parcial p;
+	Parcial parcial;
 		
-
+	//Seteamos el parcial con sumaPreguntasCorrectas igual a 10 y sumaPreguntasTotales igual a 12 
 	@Before
 	public void setUp() throws Exception {
 		
-		p = mock(Parcial.class);
+		parcial = mock(Parcial.class);
 		
-		when(p.sumaPreguntasCorrectas()).thenReturn(10);
-		when(p.sumaPreguntasTotales()).thenReturn(12);
+		when(parcial.sumaPreguntasCorrectas()).thenReturn(10);
+		when(parcial.sumaPreguntasTotales()).thenReturn(12);
 	}
 	
-	//Con N Puntos
+	// Tests con criterio N Puntos
 	@Test
-	public void testNPuntosCon2() {
-		np = new NPuntos(2);
-		Assert.assertEquals((double) 10 - 2, np.calcularNota(p),0.1);
+	public void testParcialNPuntosCon10PreguntasCorrectasY12PreguntasTotalesConNigualA2Es8() {
+		nPuntos = new NPuntos(2);
+		Assert.assertEquals((double) 10 - 2, nPuntos.calcularNota(parcial),0.1);
 	}
 	@Test
-	public void testNPuntosCon0() {
-		np = new NPuntos(0);
-		Assert.assertEquals((double) 10 - 0, np.calcularNota(p),0.1);
+	public void testParcialNPuntosCon10PreguntasCorrectasY12PreguntasTotalesConNigualA0Es10() {
+		nPuntos = new NPuntos(0);
+		Assert.assertEquals((double) 10 - 0, nPuntos.calcularNota(parcial),0.1);
 	}
 	@Test
-	public void testNPuntosCon11() {
-		np = new NPuntos(11);
-		Assert.assertEquals((double) 10 - 11, np.calcularNota(p),0.1);
-	}
-	
-	//Regla de 3 simple
-	@Test
-	public void testRegla3SimpleCorr10Tot12() {
-		r3s = new Regla3Simple();
-		Assert.assertEquals(8.33, r3s.calcularNota(p), 0.1);
-	}
-	@Test
-	public void testRegla3SimpleCorr0Tot10() {
-		r3s = new Regla3Simple();
-		when(p.sumaPreguntasCorrectas()).thenReturn(0);
-		when(p.sumaPreguntasTotales()).thenReturn(10);
-		Assert.assertEquals(0, r3s.calcularNota(p), 0.1);
-	}
-	@Test
-	public void testRegla3SimpleCorr0Tot0() {
-		r3s = new Regla3Simple();
-		when(p.sumaPreguntasCorrectas()).thenReturn(0);
-		when(p.sumaPreguntasTotales()).thenReturn(0);
-		Assert.assertEquals(0, r3s.calcularNota(p), 0.1);
+	public void testParcialNPuntosCon10PreguntasCorrectasY12PreguntasTotalesConNigualA11EsMenos1() {
+		nPuntos = new NPuntos(11);
+		Assert.assertEquals((double) 10 - 11, nPuntos.calcularNota(parcial),0.1);
 	}
 	
-	//Conversion por puntos
+	//Tests con criterio Regla de 3 simple
 	@Test
-	public void testConversionPorPuntos0(){
+	public void testRegla3SimpleCon10PreguntasCorrectasY12PreguntasTotalesEs8coma33() {
+		regla3Simple = new Regla3Simple();
+		Assert.assertEquals(8.33, regla3Simple.calcularNota(parcial), 0.1);
+	}
+	@Test
+	public void testRegla3SimpleCon0PreguntasCorrectasY10PreguntasTotalesEs0() {
+		regla3Simple = new Regla3Simple();
+		when(parcial.sumaPreguntasCorrectas()).thenReturn(0);
+		when(parcial.sumaPreguntasTotales()).thenReturn(10);
+		Assert.assertEquals(0, regla3Simple.calcularNota(parcial), 0.1);
+	}
+	@Test
+	public void testRegla3SimpleCon0PreguntasCorrectasY0PreguntasTotalesEs0() {
+		regla3Simple = new Regla3Simple();
+		when(parcial.sumaPreguntasCorrectas()).thenReturn(0);
+		when(parcial.sumaPreguntasTotales()).thenReturn(0);
+		Assert.assertEquals(0, regla3Simple.calcularNota(parcial), 0.1);
+	}
+	
+	//Tests con criterio Conversion por puntos
+	@Test
+	public void testConversionPorPuntosCon0PregutnasCorrectasEs0(){
 		cpp = new ConversionPorPuntos();
-		when(p.sumaPreguntasCorrectas()).thenReturn(0);
-		Assert.assertEquals(0, cpp.calcularNota(p),0.1);
-		
-	}
-	@Test
-	public void testConversionPorPuntos15(){
-		cpp = new ConversionPorPuntos();
-		when(p.sumaPreguntasCorrectas()).thenReturn(15);
-		Assert.assertEquals(10, cpp.calcularNota(p),0.1);
+		when(parcial.sumaPreguntasCorrectas()).thenReturn(0);
+		Assert.assertEquals(0, cpp.calcularNota(parcial),0.1);
 		
 	}
 	@Test
-	public void testConversionPorPuntos5(){
+	public void testConversionPorPuntosCon15PreguntasCorrectasEs10(){
 		cpp = new ConversionPorPuntos();
-		when(p.sumaPreguntasCorrectas()).thenReturn(5);
-		Assert.assertEquals(2, cpp.calcularNota(p),0.1);
+		when(parcial.sumaPreguntasCorrectas()).thenReturn(15);
+		Assert.assertEquals(10, cpp.calcularNota(parcial),0.1);
+		
+	}
+	@Test
+	public void testConversionPorPuntosCon5PreguntasCorrectasEs5(){
+		cpp = new ConversionPorPuntos();
+		when(parcial.sumaPreguntasCorrectas()).thenReturn(5);
+		Assert.assertEquals(2, cpp.calcularNota(parcial),0.1);
 		
 	}
 	

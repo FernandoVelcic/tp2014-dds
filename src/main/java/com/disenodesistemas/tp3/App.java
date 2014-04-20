@@ -60,10 +60,10 @@ public class App
         parcialNotaAlta.agregarPregunta(pregunta5);
         parcialPromedio.agregarPregunta(pregunta5);
         
-        System.out.println("La nota para parcialNPuntos es: " + parcialNPuntos.nota());
-        System.out.println("La nota para parcialRegla3Simple es: " + parcialRegla3Simple.nota());
-        System.out.println("La nota para parcialConvPuntos es: " + parcialConvPuntos.nota());
-        System.out.println("La nota para parcialNotaAlta es: " + parcialNotaAlta.nota());
-        System.out.println("La nota para parcialPromedio es: " + parcialPromedio.nota());
+        System.out.println("La nota para parcialNPuntos es: " + parcialNPuntos.getNota());
+        System.out.println("La nota para parcialRegla3Simple es: " + parcialRegla3Simple.getNota());
+        System.out.println("La nota para parcialConvPuntos es: " + parcialConvPuntos.getNota());
+        System.out.println("La nota para parcialNotaAlta es: " + parcialNotaAlta.getNota());
+        System.out.println("La nota para parcialPromedio es: " + parcialPromedio.getNota());
     }
 }

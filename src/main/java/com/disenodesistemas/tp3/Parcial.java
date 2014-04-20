@@ -45,7 +45,7 @@ public class Parcial {
 		return suma;
 	}
 	
-	public float nota()
+	public float getNota()
 	{
 		return tipoCorreccion.calcularNota(this);
 	}
