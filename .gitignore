@@ -1,0 +1,11 @@
+#Ignorar carpeta settings
+.settings
+
+#Ignorar carpeta target
+target
+
+#Ignorar archivo .classpath
+.classpath
+
+#Ignorar archivo .project
+.project
