@@ -5,6 +5,7 @@ import java.util.List;
 public class Condicional extends Inscripciones{
 	public int cantidadMaximaJugadores;
 
+	//Esta variable tendria que usarla en reemplazo de la variable de clase de partido. Para quitar los warnings
 	public Condicional(int cantidad)
 	{
 		cantidadMaximaJugadores = cantidad;
