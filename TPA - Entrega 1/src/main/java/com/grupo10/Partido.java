@@ -1,4 +1,4 @@
-package EntregaUno;
+package com.grupo10;
 
 import java.util.ArrayList;
 import java.util.List;

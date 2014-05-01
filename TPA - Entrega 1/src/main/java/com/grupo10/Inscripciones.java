@@ -1,9 +1,9 @@
-package EntregaUno;
+package com.grupo10;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-//TENGO QUE CREAR UN METODO PARA FILTRAR LAS LISTAS ASI NO REPITO TANTO EL CÓDIGO.
+//TENGO QUE CREAR UN METODO PARA FILTRAR LAS LISTAS ASI NO REPITO TANTO EL Cï¿½DIGO.
 
 public abstract class Inscripciones {
 	public List<Jugadores> listaEstandar;
