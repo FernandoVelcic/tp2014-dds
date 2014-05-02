@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
+import Modalidades.*;
+
 public class Partido {
 	private List<Participante> participantes = new ArrayList<Participante>();
 	private Date diaYhora;
@@ -18,16 +20,13 @@ public class Partido {
 		this.diaYhora = diaYhora;
 	}
 
-	public boolean inscribirJugadorEstandar(Jugador jugador) {
-		return inscribirJugador(jugador, 1);
-	}
+	public boolean inscribirJugador(Jugador jugador, Modalidad modalidad) {
+		if (calcularConfirmados() > 10)
+			return false;
 
-	public boolean inscribirJugadorCondicional(Jugador jugador) {
-		return inscribirJugador(jugador, 2);
-	}
+		participantes.add(new Participante(jugador, modalidad));
 
-	public boolean inscribirJugadorSolidario(Jugador jugador) {
-		return inscribirJugador(jugador, 3);
+		return true;
 	}
 
 	public void GenerarEquipos() {
@@ -42,18 +41,9 @@ public class Partido {
 	public void ConfirmarEquipos() {
 		// TODO Auto-generated method stub
 	}
-	
-	private boolean inscribirJugador(Jugador jugador, int prioridadModalidad) {
-		if (calcularConfirmados() > 10)
-			return false;
-
-		participantes.add(new Participante(jugador, prioridadModalidad));
-
-		return true;
-	}
 
 	private Stream<Participante> obtenerConfirmados() {
-		return participantes.stream().filter(p -> p.prioridadModalidad == 1);
+		return participantes.stream().filter(p -> p.getPrioridadModalidad() == 0);
 	}
 
 	private int calcularConfirmados() {

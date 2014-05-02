@@ -1,15 +1,17 @@
 package com.grupo10;
 
+import Modalidades.*;
+
 public class Participante {
 	Jugador jugador;
-	int prioridadModalidad;
+	Modalidad modalidad;
 	
-	public Participante(Jugador jugador, int prioridadModalidad) {
+	public Participante(Jugador jugador, Modalidad modalidad) {
 		this.jugador = jugador;
-		this.prioridadModalidad = prioridadModalidad;
+		this.modalidad = modalidad;
 	}
 
 	public int getPrioridadModalidad() {
-		return prioridadModalidad;
+		return modalidad.getPrioridad();
 	}
 }
