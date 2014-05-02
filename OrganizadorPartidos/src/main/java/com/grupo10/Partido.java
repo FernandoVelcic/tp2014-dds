@@ -41,13 +41,13 @@ public class Partido {
 	public void ConfirmarEquipos() {
 		// TODO Auto-generated method stub
 	}
+	
+	public int calcularConfirmados() {
+		return (int) obtenerConfirmados().count();
+	}
 
 	private Stream<Participante> obtenerConfirmados() {
 		return participantes.stream().filter(p -> p.getPrioridadModalidad() == 0);
-	}
-
-	private int calcularConfirmados() {
-		return (int) obtenerConfirmados().count();
 	}
 	
 	private void ordenarPorModalidad()
