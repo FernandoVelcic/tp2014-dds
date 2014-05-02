@@ -1,4 +1,5 @@
 package com.grupo10;
+package test.java.com.grupo10;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

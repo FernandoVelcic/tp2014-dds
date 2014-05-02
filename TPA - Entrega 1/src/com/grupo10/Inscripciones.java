@@ -17,17 +17,17 @@ public abstract class Inscripciones {
 	
 	public int cantidadDeJugadoresEstandaresEn(Partido unPartido)
 	{
-		return (int)filtrarJugadoresEnPartido(listaEstandar,unPartido).count();
+		return (int)filtrarJugadoresEnPartido(listaEstandar,unPartido).stream().count();
 	}
 	
 	public int cantidadDeJugadoresSolidariosEn(Partido unPartido)
 	{
-		return (int)filtrarJugadoresEnPartido(listaSolidaria,unPartido).count();
+		return (int)filtrarJugadoresEnPartido(listaSolidaria,unPartido).stream().count();
 	}
 	
 	public int cantidadDeJugadoresCondicionalesEn(Partido unPartido)
 	{
-		return (int)filtrarJugadoresEnPartido(listaCondicionales,unPartido).count();
+		return (int)filtrarJugadoresEnPartido(listaCondicionales,unPartido).stream().count();
 	}
 	
 	public List<Jugadores> getListaEstandarDe(Partido unPartido)
@@ -47,7 +47,8 @@ public abstract class Inscripciones {
 	
 	public List<Jugadores> filtrarJugadoresEnPartido(List<Jugadores> lista, Partido unPartido)
 	{
-		return (List<Jugadores>) Stream<Jugadores> jugadoresEnPartido = lista.stream().filter(jugador -> jugador.compararPartidos(unPartido));
+		Stream<Jugadores> jugadoresEnPartido = lista.stream().filter(jugador -> jugador.compararPartidos(unPartido));
+		return (List<Jugadores>) jugadoresEnPartido;
 	}
 	
 

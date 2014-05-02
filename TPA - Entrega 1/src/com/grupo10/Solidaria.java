@@ -1,7 +1,5 @@
 package com.grupo10;
 
-import java.util.List;
-
 public class Solidaria extends Inscripciones {
 	public int cantidadMaximaJugadores;	
 	
@@ -14,7 +12,8 @@ public class Solidaria extends Inscripciones {
 	public void agregarAlista(Jugadores unJugador, Partido unPartido)
 	{
 		if(laSumaEntreListaJugadoresYlistaSolidariaEsIgual(unPartido)){
-				//Me fijo quien entro primero en la lista de solidarios y lo saco.
+			listaSolidaria.remove(0);
+			listaSolidaria.add(unJugador);
 		}else{
 			listaSolidaria.add(unJugador);
 		}	
@@ -25,10 +24,5 @@ public class Solidaria extends Inscripciones {
 		if(cantidadDeJugadoresEstandaresEn(unPartido)+cantidadDeJugadoresSolidariosEn(unPartido) == unPartido.cantidadJugadoresXpartido)
 			return true;
 		return false;			
-	}
-	
-	public List<Jugadores> getLista()
-	{
-		return listaSolidaria;
 	}
 }

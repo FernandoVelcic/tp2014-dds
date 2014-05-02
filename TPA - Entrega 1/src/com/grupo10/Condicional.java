@@ -1,7 +1,5 @@
 package com.grupo10;
 
-import java.util.List;
-
 public class Condicional extends Inscripciones{
 	public int cantidadMaximaJugadores;
 
@@ -14,7 +12,8 @@ public class Condicional extends Inscripciones{
 	public void agregarAlista(Jugadores unJugador, Partido unPartido)
 	{
 		if(laSumaEntreListaEstandarJugadoresYlistaCondicionalesEsIgual(unPartido)){
-			//me fijo quien entro primero de los condicionales y lo saco
+			listaCondicionales.remove(0);
+			listaCondicionales.add(unJugador);
 		}else{
 			listaCondicionales.add(unJugador);
 		}
@@ -25,10 +24,5 @@ public class Condicional extends Inscripciones{
 		if(cantidadDeJugadoresEstandaresEn(unPartido)+cantidadDeJugadoresCondicionalesEn(unPartido) == unPartido.cantidadJugadoresXpartido)
 			return true;
 		return false;
-	}
-	
-	public List<Jugadores> getLista()
-	{
-		return listaCondicionales;
 	}
 }

@@ -1,7 +1,5 @@
 package com.grupo10;
 
-import java.util.List;
-
 public class Estandar extends Inscripciones {
 	public int cantidadMaximaJugadores;
 	
@@ -23,15 +21,17 @@ public class Estandar extends Inscripciones {
 		{
 			listaEstandar.add(unJugador);
 		}else{
-			//Tomar la menor prioridad de la lista y compararla con el que llega.
-			//Si el que llega tiene mayor prioridad! Lo incluyo!! y saco al de menor prioridad.
+			compararPriodidades(unPartido);
 		}
+			
 	}
 	
-	public List<Jugadores> getLista()
+	public void compararPriodidades(Partido unPartido)
 	{
-		return listaEstandar;
+		//Aca tendria que el jugador con menor prioridad que esta anotado en ese partido, la comparo con la prioridad del jugador
+		//que esta entrando, y si esta ultima es mayor saco al jugador que estaba en la lista. Y agrego al que esta por entrar.
+		
+		//getListaEstandarDe(unPartido).sort((j1,j2) -> j1.prioridad >= j2.prioridad);
+				
 	}
-	
-
 }
