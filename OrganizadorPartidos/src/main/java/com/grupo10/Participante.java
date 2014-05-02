@@ -8,4 +8,8 @@ public class Participante {
 		this.jugador = jugador;
 		this.prioridadModalidad = prioridadModalidad;
 	}
+
+	public int getPrioridadModalidad() {
+		return prioridadModalidad;
+	}
 }

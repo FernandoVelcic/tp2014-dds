@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Partido {
-	List<Participante> participantes = new ArrayList<Participante>();
-	Date diaYhora;
+	private List<Participante> participantes = new ArrayList<Participante>();
+	private Date diaYhora;
 
-	Equipo equipo1;
-	Equipo equipo2;
+	private Equipo equipo1;
+	private Equipo equipo2;
 
 	public Partido(Date diaYhora) {
 		this.diaYhora = diaYhora;
@@ -66,7 +66,7 @@ public class Partido {
 	        @Override
 	        public int compare(Participante participante1, Participante participante2)
 	        {
-	            return participante1.prioridadModalidad - participante2.prioridadModalidad;
+	            return participante1.getPrioridadModalidad() - participante2.getPrioridadModalidad();
 	        }}
 		);
 	}
