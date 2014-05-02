@@ -14,27 +14,31 @@ public class Partido {
 	}
 
 	public boolean inscribirJugadorEstandar(Jugador jugador) {
-		participantes.add(new Participante(jugador, 1));
-		return true;
+		return inscribirJugador(jugador, 1);
 	}
 
 	public boolean inscribirJugadorCondicional(Jugador jugador) {
-		participantes.add(new Participante(jugador, 2));
-		return true;
+		return inscribirJugador(jugador, 2);
 	}
 	
 	public boolean inscribirJugadorSolidario(Jugador jugador) {
-		participantes.add(new Participante(jugador, 3));
+		return inscribirJugador(jugador, 3);
+	}
+	
+	public boolean inscribirJugador(Jugador jugador, int prioridadModalidad) {
+		if(calcularConfirmados() > 10)
+			return false;
+	
+		participantes.add(new Participante(jugador, prioridadModalidad));
+		
 		return true;
 	}
 	
-	/*
 	public Stream<Participante> obtenerConfirmados() {
-		return participantes.stream().filter(p -> p.isConfirmado());
+		return participantes.stream().filter(p -> p.prioridadModalidad == 1);
 	}
 
 	public int calcularConfirmados() {
 		return (int) obtenerConfirmados().count();
-	}*/
-
+	}
 }
