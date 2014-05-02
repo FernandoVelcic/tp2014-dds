@@ -41,4 +41,12 @@ public class Partido {
 	public int calcularConfirmados() {
 		return (int) obtenerConfirmados().count();
 	}
+
+	public void GenerarEquipos() {
+		// TODO Auto-generated method stub
+	}
+
+	public void ConfirmarEquipos() {
+		// TODO Auto-generated method stub
+	}
 }
