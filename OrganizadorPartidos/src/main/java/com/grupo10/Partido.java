@@ -9,6 +9,9 @@ public class Partido {
 	List<Participante> participantes = new ArrayList<Participante>();
 	Date diaYhora;
 	
+	Equipo equipo1;
+	Equipo equipo2;
+	
 	public Partido(Date diaYhora) {
 		this.diaYhora = diaYhora;
 	}
