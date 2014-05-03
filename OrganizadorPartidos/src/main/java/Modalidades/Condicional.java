@@ -5,7 +5,7 @@ import com.grupo10.Partido;
 public class Condicional implements Modalidad {
 	@Override
 	public int getPrioridad() {
-		return 1;
+		return 2;
 	}
 	
 	@Override

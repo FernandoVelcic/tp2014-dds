@@ -5,7 +5,7 @@ import com.grupo10.Partido;
 public class Solidario implements Modalidad {
 	@Override
 	public int getPrioridad() {
-		return 2;
+		return 1;
 	}
 
 	@Override
