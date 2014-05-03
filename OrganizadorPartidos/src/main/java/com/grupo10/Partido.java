@@ -21,7 +21,7 @@ public class Partido {
 	}
 
 	public boolean inscribirJugador(Jugador jugador, Modalidad modalidad) {
-		if (calcularConfirmados() > 10)
+		if (calcularConfirmados() >= 10)
 			return false;
 
 		participantes.add(new Participante(jugador, modalidad));
