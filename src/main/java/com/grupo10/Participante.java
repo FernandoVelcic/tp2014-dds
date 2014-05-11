@@ -14,4 +14,8 @@ public class Participante {
 	public int getPrioridadModalidad() {
 		return modalidad.getPrioridad();
 	}
+	
+	public boolean getPuedeJugar(Partido partido) {
+		return modalidad.isPuedeJugar(partido);
+	}
 }
