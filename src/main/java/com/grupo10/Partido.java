@@ -42,22 +42,16 @@ public class Partido {
 		// TODO Auto-generated method stub
 	}
 	
-	public int calcularConfirmados() {
+	public Integer calcularConfirmados() {
 		return (int) obtenerConfirmados().count();
 	}
 
 	private Stream<Participante> obtenerConfirmados() {
-		return participantes.stream().filter(p -> p.getPrioridadModalidad() == 0);
+		return participantes.stream().filter(p -> p.getPrioridadModalidad() == Prioridad.ESTANDAR.ordinal());
 	}
 	
 	private void ordenarPorModalidad()
 	{
-		Collections.sort(participantes, new Comparator<Participante>() {
-	        @Override
-	        public int compare(Participante participante1, Participante participante2)
-	        {
-	            return participante1.getPrioridadModalidad() - participante2.getPrioridadModalidad();
-	        }}
-		);
+		participantes.stream().sorted((p1,p2) -> Integer.compare(p1.getPrioridadModalidad(), p2.getPrioridadModalidad()));
 	}
 }

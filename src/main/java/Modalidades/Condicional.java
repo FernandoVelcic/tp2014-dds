@@ -4,8 +4,8 @@ import com.grupo10.Partido;
 
 public class Condicional implements Modalidad {
 	@Override
-	public int getPrioridad() {
-		return 2;
+	public Integer getPrioridad() {
+		return Prioridad.CONDICIONAL.ordinal();
 	}
 	
 	@Override
