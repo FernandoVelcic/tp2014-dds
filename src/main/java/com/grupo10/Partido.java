@@ -28,6 +28,15 @@ public class Partido {
 
 		return true;
 	}
+	
+	public void darBajaJugador(Jugador jugador) {
+		jugadores.remove(jugador);
+	}
+	
+	public void darBajaJugador(Jugador jugador, Jugador reemplazo) {
+		darBajaJugador(jugador);
+		jugadores.add(new Participante(reemplazo, new Estandar()));
+	}
 
 	public void GenerarJugadores() {
 		ordenarPorModalidad();
