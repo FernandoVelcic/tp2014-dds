@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
+import com.grupo10.Administrador;
 import com.grupo10.Jugador;
 import com.grupo10.Partido;
 
@@ -16,6 +17,7 @@ public class TestPartido
     extends TestCase
 {
 	Partido partido;
+	Administrador alberto;
 	Jugador martin;
 	Jugador carlos;
 	Jugador susana;
@@ -24,10 +26,11 @@ public class TestPartido
 	
 	@Before
 	public void setUp() throws Exception {
+		alberto = new Administrador();
 		martin = new Jugador();
 		carlos = new Jugador();
 		susana = new Jugador();
-		partido = new Partido(new Date());
+		partido = new Partido(new Date(), alberto);
 		estandar = new Estandar();
 		
 	}

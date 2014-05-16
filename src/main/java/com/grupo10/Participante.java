@@ -18,4 +18,9 @@ public class Participante {
 	public boolean getPuedeJugar(Partido partido) {
 		return modalidad.isPuedeJugar(partido);
 	}
+	
+	public Jugador getJugador()
+	{
+		return jugador;
+	}
 }

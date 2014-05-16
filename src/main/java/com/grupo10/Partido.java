@@ -15,14 +15,18 @@ public class Partido {
 	private List<Participante> participantes = new ArrayList<Participante>();
 	private List<Participante> jugadores = new ArrayList<Participante>();
 	private Date diaYhora;
+	private Administrador admin;
 
-	public Partido(Date diaYhora) {
+	public Partido(Date diaYhora, Administrador admin) {
 		this.diaYhora = diaYhora;
+		this.admin = admin;
 	}
 
 	public boolean inscribirJugador(Jugador jugador, Modalidad modalidad) {
-		if (calcularConfirmados() >= 10)
+		if (calcularConfirmados() >= 10) {
+			admin.notificarPartidoConfirmado();
 			return false;
+		}
 
 		participantes.add(new Participante(jugador, modalidad));
 
@@ -30,11 +34,13 @@ public class Partido {
 	}
 	
 	public void darBajaJugador(Jugador jugador) {
-		jugadores.remove(jugador);
+		jugadores.removeIf(p -> p.getJugador() == jugador);
+		jugador.hacerInfraccion("Por no asistir al partido ni proponer un reemplazo");
+		admin.notificarFaltanJugadores();
 	}
 	
 	public void darBajaJugador(Jugador jugador, Jugador reemplazo) {
-		darBajaJugador(jugador);
+		jugadores.removeIf(p -> p.getJugador() == jugador);
 		jugadores.add(new Participante(reemplazo, new Estandar()));
 	}
 
@@ -51,6 +57,8 @@ public class Partido {
 			for(int i = jugadores.size(); i <= 10 && obtenerSolidarios().count() > 0; i++)
 				jugadores.add(obtenerSolidarios().findFirst().get());
 		}
+		
+		admin.notificarPartidoConfirmado();
 	}
 
 	private Stream<Participante> quienesPueden() {
