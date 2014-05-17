@@ -14,22 +14,23 @@ import Modalidades.*;
 public class Partido {
 	private List<Participante> participantes = new ArrayList<Participante>();
 	private List<Participante> jugadores = new ArrayList<Participante>();
+	private List<Observador> observadores = new ArrayList<Observador>();
 	private Date diaYhora;
-	private Administrador admin;
 
 	public Partido(Date diaYhora, Administrador admin) {
 		this.diaYhora = diaYhora;
-		this.admin = admin;
+		observadores.add(admin);
 	}
 
 	public boolean inscribirJugador(Jugador jugador, Modalidad modalidad) {
 		if (calcularConfirmados() >= 10) {
-			admin.notificarPartidoConfirmado();
+			observadores.forEach(o -> o.notificarPartidoConfirmado());
 			return false;
 		}
 
 		participantes.add(new Participante(jugador, modalidad));
-
+		jugador.notificarAamigos();
+		
 		return true;
 	}
 	
@@ -41,7 +42,7 @@ public class Partido {
 	public void darBajaJugador(Jugador jugador) {
 		removeJugador(jugador);
 		jugador.hacerInfraccion("Por no asistir al partido ni proponer un reemplazo");
-		admin.notificarFaltanJugadores();
+		observadores.forEach(o -> o.notificarFaltanJugadores());
 	}
 	
 	public void darBajaJugadorYreemplazar(Jugador jugador, Jugador reemplazo) {
@@ -57,7 +58,7 @@ public class Partido {
 			.collect(Collectors.toList());
 		
 		if( jugadores.size() == 10 )
-			admin.notificarPartidoConfirmado();
+			observadores.forEach(o -> o.notificarPartidoConfirmado());
 	}
 	
 	public Integer calcularConfirmados() {
@@ -66,5 +67,10 @@ public class Partido {
 
 	private Stream<Participante> obtenerConfirmados() {
 		return participantes.stream().filter(p -> p.getPrioridadModalidad() == Prioridad.ESTANDAR.ordinal());
+	}
+	
+	public void addObservador(Observador obs)
+	{
+		observadores.add(obs);
 	}
 }

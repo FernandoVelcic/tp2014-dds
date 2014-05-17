@@ -4,20 +4,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Administrador {
+public class Administrador implements Observador {
 	Notificaciones emails = new Notificaciones();
 	
-	public Partido CrearPartido(Date datetime) {
-		return new Partido(datetime, this);
-	}
-	
+	@Override
 	public void notificarPartidoConfirmado()
 	{
 		emails.notificar("Partido confirmado");
 	}
 	
+	@Override
 	public void notificarFaltanJugadores()
 	{
 		emails.notificar("Faltan jugadores");
+	}
+
+	@Override
+	public void notificarJuegaAmigo() {
+		
 	}
 }
