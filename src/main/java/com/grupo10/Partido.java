@@ -33,36 +33,31 @@ public class Partido {
 		return true;
 	}
 	
-	public void darBajaJugador(Jugador jugador) {
+	private void removeJugador(Jugador jugador)
+	{
 		jugadores.removeIf(p -> p.getJugador() == jugador);
+	}
+	
+	public void darBajaJugador(Jugador jugador) {
+		removeJugador(jugador);
 		jugador.hacerInfraccion("Por no asistir al partido ni proponer un reemplazo");
 		admin.notificarFaltanJugadores();
 	}
 	
-	public void darBajaJugador(Jugador jugador, Jugador reemplazo) {
-		jugadores.removeIf(p -> p.getJugador() == jugador);
+	public void darBajaJugadorYreemplazar(Jugador jugador, Jugador reemplazo) {
+		removeJugador(jugador);
 		jugadores.add(new Participante(reemplazo, new Estandar()));
 	}
 
-	public void GenerarJugadores() {
-		ordenarPorModalidad();
+	public void generarJugadores() {
+		jugadores = participantes.stream()
+			.filter(p -> p.getPuedeJugar(this))
+			.sorted((p1,p2) -> Integer.compare(p1.getPrioridadModalidad(), p2.getPrioridadModalidad()))
+			.limit(10)
+			.collect(Collectors.toList());
 		
-		jugadores = quienesPueden().collect(Collectors.toList());
-		
-		if(jugadores.size() >= 10) {
-			jugadores = participantes.subList(0, 10);
-		} else {
-			jugadores = participantes.subList(0, jugadores.size());
-			
-			for(int i = jugadores.size(); i <= 10 && obtenerSolidarios().count() > 0; i++)
-				jugadores.add(obtenerSolidarios().findFirst().get());
-		}
-		
-		admin.notificarPartidoConfirmado();
-	}
-
-	private Stream<Participante> quienesPueden() {
-		return participantes.stream().filter(p -> p.getPuedeJugar(this));
+		if( jugadores.size() == 10 )
+			admin.notificarPartidoConfirmado();
 	}
 	
 	public Integer calcularConfirmados() {
@@ -71,14 +66,5 @@ public class Partido {
 
 	private Stream<Participante> obtenerConfirmados() {
 		return participantes.stream().filter(p -> p.getPrioridadModalidad() == Prioridad.ESTANDAR.ordinal());
-	}
-	
-	private Stream<Participante> obtenerSolidarios() {
-		return participantes.stream().filter(p -> p.getPrioridadModalidad() == Prioridad.SOLIDARIO.ordinal());
-	}
-	
-	private void ordenarPorModalidad()
-	{
-		participantes = participantes.stream().sorted((p1,p2) -> Integer.compare(p1.getPrioridadModalidad(), p2.getPrioridadModalidad())).collect(Collectors.toList());
 	}
 }

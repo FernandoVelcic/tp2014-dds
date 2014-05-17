@@ -10,7 +10,7 @@ public class Solidario implements Modalidad {
 
 	@Override
 	public boolean isPuedeJugar(Partido partido) {
-		return false;
+		return true;
 	}
 
 }
