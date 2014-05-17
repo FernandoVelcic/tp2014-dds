@@ -19,14 +19,12 @@ public class Partido {
 
 	public Partido(Date diaYhora, Administrador admin) {
 		this.diaYhora = diaYhora;
-		observadores.add(admin);
+		addObservador(admin);
 	}
 
 	public boolean inscribirJugador(Jugador jugador, Modalidad modalidad) {
-		if (calcularConfirmados() >= 10) {
-			observadores.forEach(o -> o.notificarPartidoConfirmado());
+		if( isPartidoConfirmadoYnotificar() )
 			return false;
-		}
 
 		participantes.add(new Participante(jugador, modalidad));
 		jugador.notificarAamigos();
@@ -57,8 +55,17 @@ public class Partido {
 			.limit(10)
 			.collect(Collectors.toList());
 		
-		if( jugadores.size() == 10 )
-			observadores.forEach(o -> o.notificarPartidoConfirmado());
+		isPartidoConfirmadoYnotificar();
+	}
+	
+	public boolean isPartidoConfirmadoYnotificar()
+	{
+		if( jugadores.size() != 10 )
+			return false;
+		
+		observadores.forEach(o -> o.notificarPartidoConfirmado());
+		
+		return true;
 	}
 	
 	public Integer calcularConfirmados() {
