@@ -23,6 +23,7 @@ public class TestPartido
 	Jugador susana;
 	Modalidad estandar;
 	Modalidad condicional;
+	Modalidad solidario;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -32,20 +33,31 @@ public class TestPartido
 		susana = new Jugador();
 		partido = new Partido(new Date(), alberto);
 		estandar = new Estandar();
-		
+		condicional = new Condicional();
+		solidario = new Solidario();
 	}
 	@Test
 	public void testCarlosNoPuedeInscribirseDadoQueYaHay10JugadoresEnLaLista(){
 		for (int i = 0 ; i < 10; i++){
-			susana.inscribirmeAPartido(partido, estandar);
+			partido.inscribirJugador(susana, estandar);
 		}
-		assertFalse(carlos.inscribirmeAPartido(partido, condicional));
+		assertFalse(partido.inscribirJugador(carlos, condicional));
 	}
 	@Test
 	public void testSusanaEsCondicionalYSePuedeInscribirALaListaPorqueHay9Jugadores(){
 		for (int i = 0 ; i < 9; i++){
-			martin.inscribirmeAPartido(partido, estandar);
+			partido.inscribirJugador(martin, estandar);
 		}
-		assertTrue(susana.inscribirmeAPartido(partido, condicional));
+		assertTrue(partido.inscribirJugador(susana, condicional));
+	}
+	
+	@Test
+	public void testElJugadorEstandarTieneMayorPrioridadQueElCondicional(){
+		assertTrue(estandar.getPrioridad() < condicional.getPrioridad());
+	}
+	
+	@Test
+	public void testElJugadorEstandarTieneMayorPrioridadQueElSolidario(){
+		assertTrue(estandar.getPrioridad() < solidario.getPrioridad());
 	}
 }
