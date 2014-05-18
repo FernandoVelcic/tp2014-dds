@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 import Modalidades.*;
 
 public class Partido {
-	private List<Participante> participantes = new ArrayList<Participante>();
-	private List<Participante> jugadores = new ArrayList<Participante>();
+	public List<Participante> participantes = new ArrayList<Participante>();
+	public List<Participante> jugadores = new ArrayList<Participante>();
 	private List<Observador> observadores = new ArrayList<Observador>();
 	private Date diaYhora;
 
@@ -55,7 +55,7 @@ public class Partido {
 			.limit(10)
 			.collect(Collectors.toList());
 		
-		isPartidoConfirmadoYnotificar();
+		//isPartidoConfirmadoYnotificar();
 	}
 	
 	public boolean isPartidoConfirmadoYnotificar()
