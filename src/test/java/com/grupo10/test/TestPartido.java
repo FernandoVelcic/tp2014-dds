@@ -14,7 +14,6 @@ import Modalidades.Solidario;
 
 import com.grupo10.Administrador;
 import com.grupo10.Jugador;
-import com.grupo10.Participante;
 import com.grupo10.Partido;
 
 public class TestPartido {
@@ -23,10 +22,7 @@ public class TestPartido {
 	Administrador admin;
 	Jugador martinJ;
 	Jugador carlosJ;
-	Participante martinP;
-	Participante carlosP;
 	Jugador tomasJ;
-	Participante tomasP;
 	Modalidad estandar;
 	Modalidad condicional;
 	Modalidad solidario;
