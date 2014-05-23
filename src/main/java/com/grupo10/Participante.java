@@ -9,7 +9,6 @@ public class Participante {
 	public Participante(Jugador jugador, Modalidad modalidad) {
 		this.jugador = jugador;
 		this.modalidad = modalidad;
-		jugador.participante = this;
 	}
 
 	public int getPrioridadModalidad() {

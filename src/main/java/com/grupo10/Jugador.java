@@ -9,7 +9,6 @@ public class Jugador implements Observador {
 	private List<Jugador> amigos = new ArrayList<Jugador>();
 	private List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	private Notificaciones emails = new Notificaciones();
-	public Participante participante;
 	
 	public void hacerInfraccion(String motivo)
 	{

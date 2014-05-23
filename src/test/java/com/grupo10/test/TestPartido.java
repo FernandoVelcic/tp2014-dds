@@ -29,6 +29,7 @@ public class TestPartido {
 	
 	@Before
 	public void setUp() throws Exception {
+		admin = new Administrador();
 		martinJ = new Jugador();
 		carlosJ = new Jugador();
 		tomasJ = new Jugador();
@@ -52,7 +53,7 @@ public class TestPartido {
 	public void testMartinEsEstandarYSeInscribeAPartido() {
 		partido.inscribirJugador(martinJ, estandar);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martinJ.participante));
+		assertTrue(partido.jugadores.stream().anyMatch(j -> j.getJugador() == martinJ));
 	}
 	
 	@Test
@@ -64,7 +65,7 @@ public class TestPartido {
 	    	}
 		});
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martinJ.participante));
+		assertTrue(partido.jugadores.stream().anyMatch(j -> j.getJugador() == martinJ));
 	}
 	
 	@Test
@@ -79,7 +80,7 @@ public class TestPartido {
 	    	}
 		});
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martinJ.participante));
+		assertTrue(partido.jugadores.stream().anyMatch(j -> j.getJugador() == martinJ));
 	}
 	
 	@Test
@@ -94,7 +95,7 @@ public class TestPartido {
 	    	}
 		});
 		partido.generarJugadores();
-		assertFalse(partido.jugadores.contains(martinJ.participante));
+		assertFalse(partido.jugadores.stream().anyMatch(j -> j.getJugador() == martinJ));
 	}
 	
 	@Test
@@ -103,11 +104,11 @@ public class TestPartido {
 		partido.inscribirJugador(martinJ, new Condicional() {
 			@Override
 			public boolean isPuedeJugar(Partido partido) {
-	    		return partido.jugadores.contains(carlosJ.participante);
+	    		return partido.jugadores.stream().anyMatch(j -> j.getJugador() == carlosJ);
 	    	}
 		});
 		partido.generarJugadores();
-		assertFalse(partido.jugadores.contains(martinJ.participante));
+		assertFalse(partido.jugadores.stream().anyMatch(j -> j.getJugador() == martinJ));
 	}
 	
 	@Test
@@ -118,18 +119,18 @@ public class TestPartido {
 		partido.inscribirJugador(martinJ, new Condicional() {
 			@Override
 			public boolean isPuedeJugar(Partido partido) {
-	    		return partido.jugadores.contains(carlosJ.participante);
+				return partido.jugadores.stream().anyMatch(j -> j.getJugador() == carlosJ);
 	    	}
 		});
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martinJ.participante));
+		assertTrue(partido.jugadores.stream().anyMatch(j -> j.getJugador() == martinJ));
 	}
 	
 	@Test
 	public void testMartinEsSolidarioYSeInscribeAPartido() {
 		partido.inscribirJugador(martinJ, solidario);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martinJ.participante));
+		assertTrue(partido.jugadores.stream().anyMatch(j -> j.getJugador() == martinJ));
 	}
 	
 	@Test
@@ -139,7 +140,7 @@ public class TestPartido {
 		}
 		partido.inscribirJugador(carlosJ, condicional);
 		partido.generarJugadores();
-		assertFalse(partido.jugadores.contains(carlosJ.participante));
+		assertFalse(partido.jugadores.stream().anyMatch(j -> j.getJugador() == carlosJ));
 	}
 	
 	@Test
@@ -149,7 +150,7 @@ public class TestPartido {
 		}
 		partido.inscribirJugador(carlosJ, estandar);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(carlosJ.participante));
+		assertTrue(partido.jugadores.stream().anyMatch(j -> j.getJugador() == carlosJ));
 	}
 	
 	@Test
@@ -159,6 +160,6 @@ public class TestPartido {
 		}
 		partido.inscribirJugador(carlosJ, solidario);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(carlosJ.participante));
+		assertTrue(partido.jugadores.stream().anyMatch(j -> j.getJugador() == carlosJ));
 	}
 }

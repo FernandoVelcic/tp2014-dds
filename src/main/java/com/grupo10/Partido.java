@@ -55,7 +55,7 @@ public class Partido {
 			.limit(10)
 			.collect(Collectors.toList());
 		
-		//isPartidoConfirmadoYnotificar();
+		isPartidoConfirmadoYnotificar();
 	}
 	
 	public boolean isPartidoConfirmadoYnotificar()
