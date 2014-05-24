@@ -14,8 +14,6 @@ import Modalidades.*;
 public class Partido {
 	public List<Participante> participantes = new ArrayList<Participante>();
 	public List<Participante> jugadores = new ArrayList<Participante>();
-	public List<Participante> propuestas = new ArrayList<Participante>();
-	public List<Rechazo> propuestasRechazadas = new ArrayList<Rechazo>();
 	
 	private List<Observador> observadores = new ArrayList<Observador>();
 	private Date diaYhora;
@@ -23,6 +21,7 @@ public class Partido {
 	public Partido(Date diaYhora, Administrador admin) {
 		this.diaYhora = diaYhora;
 		addObservador(admin);
+		admin.setPartido(this);
 	}
 
 	public boolean inscribirJugador(Participante participante) {
@@ -33,30 +32,6 @@ public class Partido {
 		participante.notificarAamigos();
 		
 		return true;
-	}
-	
-	public void proponerJugador(Participante participante)
-	{
-		propuestas.add(participante);
-	}
-	
-	public Participante analizarPropuesta()
-	{
-		Participante participante = propuestas.iterator().next();
-		propuestas.remove(participante);
-		
-		return participante;
-	}
-	
-	public void rechazarPropuesta(Participante participante, String motivo)
-	{
-		propuestasRechazadas.add(new Rechazo(participante, motivo));
-		participante.notificarRechazo();
-	}
-	
-	public void aceptarPropuesta(Participante participante)
-	{
-		inscribirJugador(participante);
 	}
 	
 	private void removeJugador(Participante participante)

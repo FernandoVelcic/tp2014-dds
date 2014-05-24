@@ -5,7 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 public class Administrador implements Observador {
+	public List<Participante> propuestas = new ArrayList<Participante>();
+	public List<Rechazo> propuestasRechazadas = new ArrayList<Rechazo>();
+	
 	Notificaciones emails = new Notificaciones();
+	private Partido partido;
 	
 	@Override
 	public void notificarPartidoConfirmado()
@@ -27,5 +31,33 @@ public class Administrador implements Observador {
 	@Override
 	public void notificarRechazo() {
 
+	}
+
+	public void setPartido(Partido partido) {
+		this.partido = partido;
+	}
+	
+	public void proponerJugador(Participante participante)
+	{
+		propuestas.add(participante);
+	}
+	
+	public Participante analizarPropuesta()
+	{
+		Participante participante = propuestas.iterator().next();
+		propuestas.remove(participante);
+		
+		return participante;
+	}
+	
+	public void rechazarPropuesta(Participante participante, String motivo)
+	{
+		propuestasRechazadas.add(new Rechazo(participante, motivo));
+		participante.notificarRechazo();
+	}
+	
+	public void aceptarPropuesta(Participante participante)
+	{
+		partido.inscribirJugador(participante);
 	}
 }
