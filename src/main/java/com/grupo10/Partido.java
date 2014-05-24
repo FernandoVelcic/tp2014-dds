@@ -15,6 +15,7 @@ public class Partido {
 	public List<Participante> participantes = new ArrayList<Participante>();
 	public List<Participante> jugadores = new ArrayList<Participante>();
 	public List<Participante> propuestas = new ArrayList<Participante>();
+	public List<Rechazo> propuestasRechazadas = new ArrayList<Rechazo>();
 	
 	private List<Observador> observadores = new ArrayList<Observador>();
 	private Date diaYhora;
@@ -47,8 +48,9 @@ public class Partido {
 		return participante;
 	}
 	
-	public void rechazarPropuesta(Participante participante)
+	public void rechazarPropuesta(Participante participante, String motivo)
 	{
+		propuestasRechazadas.add(new Rechazo(participante, motivo));
 		participante.notificarRechazo();
 	}
 	
