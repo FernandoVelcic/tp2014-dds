@@ -22,30 +22,30 @@ public class Partido {
 		addObservador(admin);
 	}
 
-	public boolean inscribirJugador(Jugador jugador, Modalidad modalidad) {
+	public boolean inscribirJugador(Participante jugador) {
 		if( isPartidoConfirmadoYnotificar() )
 			return false;
 
-		participantes.add(new Participante(jugador, modalidad));
+		participantes.add(jugador);
 		jugador.notificarAamigos();
 		
 		return true;
 	}
 	
-	private void removeJugador(Jugador jugador)
+	private void removeJugador(Participante jugador)
 	{
-		jugadores.removeIf(p -> p.getJugador() == jugador);
+		jugadores.removeIf(p -> p == jugador);
 	}
 	
-	public void darBajaJugador(Jugador jugador) {
+	public void darBajaJugador(Participante jugador) {
 		removeJugador(jugador);
 		jugador.hacerInfraccion("Por no asistir al partido ni proponer un reemplazo");
 		observadores.forEach(o -> o.notificarFaltanJugadores());
 	}
 	
-	public void darBajaJugadorYreemplazar(Jugador jugador, Jugador reemplazo) {
+	public void darBajaJugadorYreemplazar(Participante jugador, Participante reemplazo) {
 		removeJugador(jugador);
-		jugadores.add(new Participante(reemplazo, new Estandar()));
+		jugadores.add(reemplazo);
 	}
 
 	public void generarJugadores() {
