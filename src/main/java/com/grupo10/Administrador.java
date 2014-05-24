@@ -23,4 +23,9 @@ public class Administrador implements Observador {
 	public void notificarJuegaAmigo() {
 		
 	}
+
+	@Override
+	public void notificarRechazo() {
+
+	}
 }

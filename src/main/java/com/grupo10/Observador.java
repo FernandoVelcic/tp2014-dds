@@ -5,4 +5,5 @@ public interface Observador {
 	public void notificarFaltanJugadores();
 	
 	public void notificarJuegaAmigo();
+	public void notificarRechazo();
 }

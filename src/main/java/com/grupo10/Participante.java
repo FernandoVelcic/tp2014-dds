@@ -10,6 +10,7 @@ public class Participante implements Observador {
 	private List<Participante> amigos = new ArrayList<Participante>();
 	private List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	private Notificaciones emails = new Notificaciones();
+	
 	String nombre;
 	Date fechaNacimiento;
 	Modalidad modalidad;
@@ -49,6 +50,11 @@ public class Participante implements Observador {
 
 	@Override
 	public void notificarFaltanJugadores() {
+		
+	}
+	
+	@Override
+	public void notificarRechazo() {
 		
 	}
 }

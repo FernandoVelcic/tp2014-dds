@@ -14,6 +14,8 @@ import Modalidades.*;
 public class Partido {
 	public List<Participante> participantes = new ArrayList<Participante>();
 	public List<Participante> jugadores = new ArrayList<Participante>();
+	public List<Participante> propuestas = new ArrayList<Participante>();
+	
 	private List<Observador> observadores = new ArrayList<Observador>();
 	private Date diaYhora;
 
@@ -22,30 +24,53 @@ public class Partido {
 		addObservador(admin);
 	}
 
-	public boolean inscribirJugador(Participante jugador) {
+	public boolean inscribirJugador(Participante participante) {
 		if( isPartidoConfirmadoYnotificar() )
 			return false;
 
-		participantes.add(jugador);
-		jugador.notificarAamigos();
+		participantes.add(participante);
+		participante.notificarAamigos();
 		
 		return true;
 	}
 	
-	private void removeJugador(Participante jugador)
+	public void proponerJugador(Participante participante)
 	{
-		jugadores.removeIf(p -> p == jugador);
+		propuestas.add(participante);
 	}
 	
-	public void darBajaJugador(Participante jugador) {
-		removeJugador(jugador);
-		jugador.hacerInfraccion("Por no asistir al partido ni proponer un reemplazo");
+	public Participante analizarPropuesta()
+	{
+		Participante participante = propuestas.iterator().next();
+		propuestas.remove(participante);
+		
+		return participante;
+	}
+	
+	public void rechazarPropuesta(Participante participante)
+	{
+		participante.notificarRechazo();
+	}
+	
+	public void aceptarPropuesta(Participante participante)
+	{
+		inscribirJugador(participante);
+	}
+	
+	private void removeJugador(Participante participante)
+	{
+		jugadores.remove(participante);
+	}
+	
+	public void darBajaJugador(Participante participante) {
+		removeJugador(participante);
+		participante.hacerInfraccion("Por no asistir al partido ni proponer un reemplazo");
 		observadores.forEach(o -> o.notificarFaltanJugadores());
 	}
 	
-	public void darBajaJugadorYreemplazar(Participante jugador, Participante reemplazo) {
-		removeJugador(jugador);
-		reemplazo.setModalidad(jugador.modalidad);
+	public void darBajaJugadorYreemplazar(Participante participante, Participante reemplazo) {
+		removeJugador(participante);
+		reemplazo.setModalidad(participante.modalidad);
 		jugadores.add(reemplazo);
 	}
 
