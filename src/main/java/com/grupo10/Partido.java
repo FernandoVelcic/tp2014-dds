@@ -45,6 +45,7 @@ public class Partido {
 	
 	public void darBajaJugadorYreemplazar(Participante jugador, Participante reemplazo) {
 		removeJugador(jugador);
+		reemplazo.setModalidad(jugador.modalidad);
 		jugadores.add(reemplazo);
 	}
 
