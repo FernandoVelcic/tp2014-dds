@@ -7,10 +7,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import Modalidades.Condicional;
-import Modalidades.Estandar;
-import Modalidades.Modalidad;
-import Modalidades.Solidario;
+import Modalidades.*;
 
 import com.grupo10.Administrador;
 import com.grupo10.Participante;
@@ -37,6 +34,13 @@ public class TestPartido {
 		estandar = new Estandar();
 		condicional = new Condicional();
 		solidario = new Solidario();
+		martin.setModalidad(estandar);
+		tomas.setModalidad(solidario);
+		carlos.setModalidad(condicional);
+	}
+	
+	public boolean estaInscripto (Participante jugador){
+		return partido.jugadores.contains(jugador);
 	}
 	
 	@Test
@@ -51,136 +55,120 @@ public class TestPartido {
 	
 	@Test
 	public void testMartinEsEstandarYSeInscribeAPartido() {
-		martin.setModalidad(estandar);
 		partido.inscribirJugador(martin);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martin));
+		assertTrue(estaInscripto(martin));
 	}
 	
 	@Test
-	public void testMartinEsCondicionalYSeInscribeAPartido() {
-		martin.setModalidad(new Condicional() {
+	public void testCarlosEsCondicionalYSeInscribeAPartido() {
+		carlos.setModalidad(new Condicional() {
 			@Override
 			public boolean isPuedeJugar(Partido partido) {
 	    		return true;
 	    	}
 		}); 
-		partido.inscribirJugador(martin);
+		partido.inscribirJugador(carlos);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martin));
+		assertTrue(estaInscripto(carlos));
 	}
 	
 	@Test
-	public void testMartinJuegaPorqueHay9JugadoresConfirmados() {
+	public void testCarlosJuegaPorqueHay9JugadoresConfirmados() {
 		for (int i = 0 ; i < 9; i++){
-			carlos.setModalidad(estandar);
-			partido.inscribirJugador(carlos);
+			partido.inscribirJugador(martin);
 		}
-		martin.setModalidad(new Condicional() {
+		carlos.setModalidad(new Condicional() {
 			@Override
 			public boolean isPuedeJugar(Partido partido) {
 	    		return partido.calcularConfirmados() == 9;
 	    	}
 		});
-		partido.inscribirJugador(martin);
+		partido.inscribirJugador(carlos);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martin));
+		assertTrue(estaInscripto(carlos));
 	}
 	
 	@Test
-	public void testMartinNoJuegaPorqueNoHay9JugadoresConfirmados() {
+	public void testCarlosNoJuegaPorqueNoHay9JugadoresConfirmados() {
 		for (int i = 0 ; i < 8; i++){
-			carlos.setModalidad(estandar);
-			partido.inscribirJugador(carlos);
+			partido.inscribirJugador(martin);
 		}
-		martin.setModalidad(new Condicional() {
+		carlos.setModalidad(new Condicional() {
 			@Override
 			public boolean isPuedeJugar(Partido partido) {
 	    		return partido.calcularConfirmados() == 9;
 	    	}
 		});
-		partido.inscribirJugador(martin);
-		partido.generarJugadores();
-		assertFalse(partido.jugadores.contains(martin));
-	}
-	
-	@Test
-	public void testMartinNoJuegaPorqueNoSeInscribioCarlos() {
-		tomas.setModalidad(estandar);
-		partido.inscribirJugador(tomas);
-		martin.setModalidad(new Condicional() {
-			@Override
-			public boolean isPuedeJugar(Partido partido) {
-	    		return partido.jugadores.contains(carlos);
-	    	}
-		});
-		partido.inscribirJugador(martin); 
-		partido.generarJugadores();
-		assertFalse(partido.jugadores.contains(martin));
-	}
-	
-	@Test
-	public void testMartinJuegaPorqueSeInscribioCarlos() {
-		carlos.setModalidad(estandar);
 		partido.inscribirJugador(carlos);
 		partido.generarJugadores();
-		tomas.setModalidad(new Condicional() {
+		assertFalse(estaInscripto(carlos));
+	}
+	
+	@Test
+	public void testCarlosNoJuegaPorqueNoSeInscribioMartin() {
+		partido.inscribirJugador(tomas);
+		carlos.setModalidad(new Condicional() {
 			@Override
 			public boolean isPuedeJugar(Partido partido) {
-				return partido.jugadores.contains(carlos);
+	    		return estaInscripto(martin);
+	    	}
+		});
+		partido.inscribirJugador(carlos); 
+		partido.generarJugadores();
+		assertFalse(estaInscripto(carlos));
+	}
+	
+	@Test
+	public void testCarlosJuegaPorqueSeInscribioMartin() {
+		partido.inscribirJugador(martin);
+		partido.generarJugadores();
+		carlos.setModalidad(new Condicional() {
+			@Override
+			public boolean isPuedeJugar(Partido partido) {
+				return estaInscripto(martin);
 	    	}
 		});
 		partido.inscribirJugador(tomas);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(tomas));
+		assertTrue(estaInscripto(tomas));
 	}
 	
 	@Test
-	public void testMartinEsSolidarioYSeInscribeAPartido() {
-		martin.setModalidad(solidario);
+	public void testTomasEsSolidarioYSeInscribeAPartido() {
+		tomas.setModalidad(solidario);
+		partido.inscribirJugador(tomas);
+		partido.generarJugadores();
+		assertTrue(estaInscripto(tomas));
+	}
+	
+	@Test
+	public void testHay10JugadoresEstandarSeInscribeTomasSolidarioYNoQuedaSeleccionado() {
+		for (int i = 0 ; i < 10; i++){
+			partido.inscribirJugador(martin);
+		}
+		partido.inscribirJugador(tomas);
+		partido.generarJugadores();
+		assertFalse(estaInscripto(carlos));
+	}
+	
+	@Test
+	public void testHay10JugadoresCondicionalesSeAnotaMartinEstandarYQuedaSeleccionado(){
+		for (int i = 0 ; i < 10; i++){
+			partido.inscribirJugador(carlos);
+		}
 		partido.inscribirJugador(martin);
 		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(martin));
+		assertTrue(estaInscripto(martin));
 	}
 	
 	@Test
-	public void testHay10JugadoresEstandarSeInscribeCarlosSolidarioYNoQuedaSeleccionado() {
-		martin.setModalidad(estandar);
+	public void testHay10JugadoresCondicionalesSeAnotaTomasSolidarioYQuedaSeleccionado(){
 		for (int i = 0 ; i < 10; i++){
-			partido.inscribirJugador(martin);
+			partido.inscribirJugador(carlos);
 		}
-		carlos.setModalidad(solidario);
-		partido.inscribirJugador(carlos);
+		partido.inscribirJugador(tomas);
 		partido.generarJugadores();
-		assertFalse(partido.jugadores.contains(carlos));
-	}
-	
-	@Test
-	public void testHay10JugadoresCondicionalesSeAnotaCarlosEstandarYQuedaSeleccionado(){
-		martin.setModalidad(condicional);
-		for (int i = 0 ; i < 10; i++){
-			partido.inscribirJugador(martin);
-		}
-		carlos.setModalidad(estandar);
-		partido.inscribirJugador(carlos);
-		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(carlos));
-	}
-	
-	@Test
-	public void testHay10JugadoresCondicionalesSeAnotaCarlosSolidarioYQuedaSeleccionado(){
-		martin.setModalidad(new Condicional() {
-			@Override
-			public boolean isPuedeJugar(Partido partido) {
-				return true;
-	    	}
-		});
-		for (int i = 0 ; i < 10; i++){
-			partido.inscribirJugador(martin);
-		}
-		carlos.setModalidad(solidario);
-		partido.inscribirJugador(carlos);
-		partido.generarJugadores();
-		assertTrue(partido.jugadores.contains(carlos));
+		assertTrue(estaInscripto(tomas));
 	}
 }
