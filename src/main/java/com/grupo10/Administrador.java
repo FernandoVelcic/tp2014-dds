@@ -1,30 +1,28 @@
 package com.grupo10;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Administrador implements Observador {
 	public List<Participante> propuestas = new ArrayList<Participante>();
 	public List<Rechazo> propuestasRechazadas = new ArrayList<Rechazo>();
-	
-	Notificaciones emails = new Notificaciones();
+	public List<String> notificaciones = new ArrayList<String>();
 	private Partido partido;
 	
 	@Override
 	public void notificarPartidoConfirmado()
 	{
-		emails.notificar("Partido confirmado");
+		notificaciones.add("El partido esta confirmado");
 	}
 	
 	@Override
 	public void notificarFaltanJugadores()
 	{
-		emails.notificar("Faltan jugadores");
+		notificaciones.add("Faltan Jugadores");
 	}
 
 	@Override
-	public void notificarJuegaAmigo() {
+	public void notificarAamigos() {
 		
 	}
 
