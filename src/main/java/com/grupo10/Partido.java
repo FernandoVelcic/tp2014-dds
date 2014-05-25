@@ -1,9 +1,6 @@
 package com.grupo10;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +11,6 @@ import Modalidades.*;
 public class Partido {
 	public List<Participante> participantes = new ArrayList<Participante>();
 	public List<Participante> jugadores = new ArrayList<Participante>();
-	
 	private List<Observador> observadores = new ArrayList<Observador>();
 	private Date diaYhora;
 
@@ -24,31 +20,26 @@ public class Partido {
 		admin.setPartido(this);
 	}
 
-	public boolean inscribirJugador(Participante participante) {
-		if( isPartidoConfirmadoYnotificar() )
-			return false;
-
+	public void inscribirJugador(Participante participante) {
 		participantes.add(participante);
 		participante.notificarAamigos();
-		
-		return true;
 	}
 	
-	private void removeJugador(Participante participante)
-	{
+	private void removeJugador(Participante participante){
 		jugadores.remove(participante);
+		participantes.remove(participante);
 	}
 	
 	public void darBajaJugador(Participante participante) {
 		removeJugador(participante);
 		participante.hacerInfraccion("Por no asistir al partido ni proponer un reemplazo");
-		observadores.forEach(o -> o.notificarFaltanJugadores());
+		observadores.forEach(observador -> observador.notificarFaltanJugadores());
 	}
 	
-	public void darBajaJugadorYreemplazar(Participante participante, Participante reemplazo) {
+	public void darBajaJugadorYProponerReemplazo(Participante participante, Participante reemplazo) {
 		removeJugador(participante);
 		reemplazo.setModalidad(participante.modalidad);
-		jugadores.add(reemplazo);
+		participantes.add(reemplazo);
 	}
 
 	public void generarJugadores() {
@@ -63,12 +54,11 @@ public class Partido {
 	
 	public boolean isPartidoConfirmadoYnotificar()
 	{
-		if( jugadores.size() != 10 )
-			return false;
-		
-		observadores.forEach(o -> o.notificarPartidoConfirmado());
-		
-		return true;
+		if(jugadores.size() != 10) return false;
+		else{
+			observadores.forEach(observador -> observador.notificarPartidoConfirmado());
+			return true;
+		}
 	}
 	
 	public Integer calcularConfirmados() {
