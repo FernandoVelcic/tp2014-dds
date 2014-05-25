@@ -7,6 +7,8 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import Modalidades.Estandar;
+
 import com.grupo10.Participante;
 import com.grupo10.Partido;
 import com.grupo10.Administrador;
@@ -20,7 +22,9 @@ public class TestInfracciones {
 	@Before
 	public void setUp() throws Exception {
 		martin = new Participante();
+		martin.setModalidad(new Estandar());
 		tomas = new Participante();
+		tomas.setModalidad(new Estandar());
 		partido = new Partido(new Date(),new Administrador());
 	}
 

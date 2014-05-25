@@ -54,11 +54,12 @@ public class Partido {
 	
 	public boolean isPartidoConfirmadoYnotificar()
 	{
-		if(jugadores.size() != 10) return false;
-		else{
-			observadores.forEach(observador -> observador.notificarPartidoConfirmado());
-			return true;
-		}
+		if(jugadores.size() != 10)
+			return false;
+		
+		observadores.forEach(observador -> observador.notificarPartidoConfirmado());
+		
+		return true;
 	}
 	
 	public Integer calcularConfirmados() {

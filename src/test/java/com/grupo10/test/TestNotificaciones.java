@@ -4,9 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
-
 import org.junit.Before;
 import org.junit.Test;
+
+import Modalidades.Estandar;
 
 import com.grupo10.Administrador;
 import com.grupo10.Participante;
@@ -22,6 +23,7 @@ public class TestNotificaciones {
 	public void setUp() throws Exception {
 		admin = new Administrador();
 		martin = new Participante();
+		martin.setModalidad(new Estandar());
 		partido = new Partido(new Date(),admin);
 	}
 

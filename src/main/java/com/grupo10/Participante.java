@@ -13,7 +13,7 @@ public class Participante implements Observador {
 	
 	String nombre;
 	Date fechaNacimiento;
-	Modalidad modalidad = new Estandar();
+	Modalidad modalidad;
 	
 	public void setModalidad(Modalidad modalidad){
 		this.modalidad = modalidad;
