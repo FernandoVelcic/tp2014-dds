@@ -50,7 +50,7 @@ public class Participante implements Observador {
 	}
 	
 	@Override
-	public void notificarRechazo(){
-		
+	public void notificarRechazo(String motivo){
+		this.notificaciones.add("Rechazaron tu solicitud por: " + motivo);
 	}
 }

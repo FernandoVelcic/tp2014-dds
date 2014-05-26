@@ -27,7 +27,7 @@ public class Administrador implements Observador {
 	}
 
 	@Override
-	public void notificarRechazo() {
+	public void notificarRechazo(String motivo) {
 
 	}
 
@@ -51,7 +51,7 @@ public class Administrador implements Observador {
 	public void rechazarPropuesta(Participante participante, String motivo)
 	{
 		propuestasRechazadas.add(new Rechazo(participante, motivo));
-		participante.notificarRechazo();
+		participante.notificarRechazo(motivo);
 	}
 	
 	public void aceptarPropuesta(Participante participante)
