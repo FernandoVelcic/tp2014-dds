@@ -12,7 +12,7 @@ public class Administrador implements Observador {
 	@Override
 	public void notificarPartidoConfirmado()
 	{
-		notificaciones.add("El partido esta confirmado");
+		notificaciones.add("El partido está confirmado");
 	}
 	
 	@Override

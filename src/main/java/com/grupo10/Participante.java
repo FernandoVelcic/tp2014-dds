@@ -36,7 +36,7 @@ public class Participante implements Observador {
 	}
 	
 	public void notificarAamigos(){
-		amigos.forEach(amigo -> amigo.notificaciones.add(this +"se inscribió"));
+		amigos.forEach(amigo -> amigo.notificaciones.add(this +" se inscribió"));
 	}
 
 	@Override
