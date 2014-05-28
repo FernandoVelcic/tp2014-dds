@@ -10,10 +10,12 @@ public class Participante implements Observador {
 	public List<Participante> amigos = new ArrayList<Participante>();
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	public List<String> notificaciones = new ArrayList<String>();
+	private List<Calificacion> calificaciones = new ArrayList<Calificacion>();
 	
 	String nombre;
 	Date fechaNacimiento;
 	Modalidad modalidad;
+	Partido partidoActualAjugar;
 	
 	public void setModalidad(Modalidad modalidad){
 		this.modalidad = modalidad;
@@ -37,6 +39,16 @@ public class Participante implements Observador {
 	
 	public void notificarAamigos(){
 		amigos.forEach(amigo -> amigo.notificaciones.add(this +" se inscribió"));
+	}
+	
+	public void calificarA(Participante p, int puntaje, String critica)
+	{
+		if(!p.equals(this))
+		{
+			int posicionDelJugadorEnLaLista = partidoActualAjugar.participantes.indexOf(p);
+			if(posicionDelJugadorEnLaLista != -1)
+				partidoActualAjugar.participantes.get(posicionDelJugadorEnLaLista).calificaciones.add(new Calificacion(puntaje, critica, partidoActualAjugar));
+		}
 	}
 
 	@Override
