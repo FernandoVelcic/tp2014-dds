@@ -5,11 +5,11 @@ public class Calificacion {
 	public String critica;
 	public Partido partidoJugado;
 	
-	public Calificacion(int p, String c, Partido part)
+	public Calificacion(int puntaje, String critica, Partido partido)
 	{
-		puntaje = p;
-		critica = c;
-		partidoJugado = part;
+		this.puntaje = puntaje;
+		this.critica = critica;
+		this.partidoJugado = partido;
 	}
 	
 }

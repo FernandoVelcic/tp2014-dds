@@ -18,14 +18,23 @@ public class TestNotificaciones {
 	Administrador admin;
 	Participante martin;
 	Participante carlos;
+	Participante tomas;
+	Participante juan;
 	Partido partido;
+	Estandar estandar;
 	
 	@Before
 	public void setUp() throws Exception {
+		estandar = new Estandar();
 		admin = new Administrador();
 		martin = new Participante();
 		carlos = new Participante();
-		martin.setModalidad(new Estandar());
+		tomas = new Participante();
+		juan = new Participante();
+		martin.setModalidad(estandar);
+		carlos.setModalidad(estandar);
+		tomas.setModalidad(estandar);
+		juan.setModalidad(estandar);
 		partido = new Partido(new Date(),admin);
 	}
 
@@ -62,5 +71,17 @@ public class TestNotificaciones {
 		martin.agregarAmigo(carlos);
 		partido.inscribirJugador(martin);
 		assertTrue(carlos.notificaciones.contains(martin +" se inscribió"));
+	}
+	
+	//Acá habría que usar un mock para simplificar el testeo
+	@Test
+	public void testMartinSeInscribeAPartidoYSeNotificaATodosSusAmigos(){
+		martin.agregarAmigo(carlos);
+		martin.agregarAmigo(tomas);
+		martin.agregarAmigo(juan);
+		partido.inscribirJugador(martin);
+		assertTrue(carlos.notificaciones.contains(martin +" se inscribió"));
+		assertTrue(tomas.notificaciones.contains(martin +" se inscribió"));
+		assertTrue(juan.notificaciones.contains(martin +" se inscribió"));
 	}
 }

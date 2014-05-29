@@ -23,6 +23,7 @@ public class Partido {
 	public void inscribirJugador(Participante participante) {
 		participantes.add(participante);
 		participante.notificarAamigos();
+		participante.partidoActualAjugar = this;
 	}
 	
 	private void removeJugador(Participante participante){

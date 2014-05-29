@@ -10,7 +10,7 @@ public class Participante implements Observador {
 	public List<Participante> amigos = new ArrayList<Participante>();
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	public List<String> notificaciones = new ArrayList<String>();
-	private List<Calificacion> calificaciones = new ArrayList<Calificacion>();
+	public List<Calificacion> calificaciones = new ArrayList<Calificacion>();
 	
 	String nombre;
 	Date fechaNacimiento;
@@ -41,13 +41,15 @@ public class Participante implements Observador {
 		amigos.forEach(amigo -> amigo.notificaciones.add(this +" se inscribió"));
 	}
 	
-	public void calificarA(Participante p, int puntaje, String critica)
+	public boolean calificarA(Participante jugador, int puntaje, String critica)
 	{
-		if(!p.equals(this))
+		if ((jugador.equals(this)) || (!partidoActualAjugar.jugadores.contains(jugador))) return false;
+		else
 		{
-			int posicionDelJugadorEnLaLista = partidoActualAjugar.participantes.indexOf(p);
+			int posicionDelJugadorEnLaLista = partidoActualAjugar.participantes.indexOf(jugador);
 			if(posicionDelJugadorEnLaLista != -1)
 				partidoActualAjugar.participantes.get(posicionDelJugadorEnLaLista).calificaciones.add(new Calificacion(puntaje, critica, partidoActualAjugar));
+			return true;
 		}
 	}
 
