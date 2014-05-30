@@ -43,12 +43,10 @@ public class Participante implements Observador {
 	
 	public boolean calificarA(Participante jugador, int puntaje, String critica)
 	{
-		if ((jugador.equals(this)) || (!partidoActualAjugar.jugadores.contains(jugador))) return false;
+		if ((jugador.equals(this)) || (this.partidoActualAjugar != jugador.partidoActualAjugar)) return false;
 		else
 		{
-			int posicionDelJugadorEnLaLista = partidoActualAjugar.participantes.indexOf(jugador);
-			if(posicionDelJugadorEnLaLista != -1)
-				partidoActualAjugar.participantes.get(posicionDelJugadorEnLaLista).calificaciones.add(new Calificacion(puntaje, critica, partidoActualAjugar));
+			jugador.calificaciones.add(new Calificacion(puntaje, critica, partidoActualAjugar));
 			return true;
 		}
 	}
