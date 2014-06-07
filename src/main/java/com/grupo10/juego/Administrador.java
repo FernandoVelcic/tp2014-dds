@@ -42,20 +42,19 @@ public class Administrador implements Observador {
 	
 	public Participante analizarPropuesta()
 	{
-		Participante participante = propuestas.iterator().next();
-		propuestas.remove(participante);
-		
-		return participante;
+		return propuestas.iterator().next();
 	}
 	
 	public void rechazarPropuesta(Participante participante, String motivo)
 	{
+		propuestas.remove(participante);
 		propuestasRechazadas.add(new Rechazo(participante, motivo));
 		participante.notificarRechazo(motivo);
 	}
 	
 	public void aceptarPropuesta(Participante participante)
 	{
+		propuestas.remove(participante);
 		partido.inscribirJugador(participante);
 	}
 }
