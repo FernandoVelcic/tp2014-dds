@@ -32,30 +32,27 @@ public class TestCalificaciones {
 		partido1 = new Partido(new Date(), new Administrador());
 		partido2 = new Partido(new Date(), new Administrador());
 		calificacion = new Calificacion(7, "Jugó bien pero le faltó correr más", partido1);
+		
+		partido1.inscribirJugador(martin);
+		partido1.generarJugadores();
 	}
 
 	@Test
 	public void testMartinYCarlosJugaronJuntosYMartinCalificaACarlos() throws Exception{
-		partido1.inscribirJugador(martin);
 		partido1.inscribirJugador(carlos);
-		partido1.generarJugadores();
 		martin.calificar(carlos, calificacion);
 		assertTrue(carlos.calificaciones.size() == 1);	
 	}
 
 	@Test (expected = CalificacionException.class)
 	public void testMartinJugoUnPartidoCarlosOtroYMartinNoPuedeCalificarACarlos() throws Exception{
-		partido1.inscribirJugador(martin);
 		partido2.inscribirJugador(carlos);
-		partido1.generarJugadores();
 		partido2.generarJugadores();
 		martin.calificar(carlos, calificacion);
 	}
 	
 	@Test (expected = CalificacionException.class)
 	public void testMartinNoSePuedeCalificarASiMismo() throws Exception{
-		partido1.inscribirJugador(martin);
-		partido1.generarJugadores();
 		martin.calificar(martin, calificacion);
 	}
 }

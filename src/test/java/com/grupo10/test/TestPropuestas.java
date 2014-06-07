@@ -26,24 +26,22 @@ public class TestPropuestas {
 		carlos = new Participante();
 		martin.setModalidad(new Estandar());
 		partido = new Partido(new Date(),admin);
+		admin.proponerJugador(martin);
 	}
 
 	@Test
 	public void testSeProponeAMartinParaJugarYSeLoAgregaALaListaDePropuestas(){
-		admin.proponerJugador(martin);
 		assertTrue(admin.propuestas.contains(martin));
 	}
 	
 	@Test
 	public void testSeProponeAMartinYACarlosYSeAnalizaLaPropuestaDeMartin(){
-		admin.proponerJugador(martin);
 		admin.proponerJugador(carlos);
 		assertTrue(admin.analizarPropuesta() == martin);
 	}
 	
 	@Test
 	public void testSeAceptaPropuestaDeJuegoDeMartinYSeLoAgregaALaListaDeParticipantes(){
-		admin.proponerJugador(martin);
 		admin.aceptarPropuesta(martin);
 		assertTrue(partido.participantes.contains(martin));
 	}

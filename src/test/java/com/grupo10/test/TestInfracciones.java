@@ -25,20 +25,19 @@ public class TestInfracciones {
 		tomas = new Participante();
 		tomas.setModalidad(new Estandar());
 		partido = new Partido(new Date(),new Administrador());
+		
+		partido.inscribirJugador(martin);
+		partido.generarJugadores();
 	}
 
 	@Test
 	public void testMartinSeDaDeBajaDelPartidoSinProponerReemplazoYSeLeGeneraUnaInfraccion() {
-		partido.inscribirJugador(martin);
-		partido.generarJugadores();
 		partido.darBajaJugador(martin);
 		assertTrue(martin.infracciones.size() == 1);
 	}
 	
 	@Test
 	public void testMartinSeDaDeBajaDelPartidoYProponerReemplazoNoSeLeGeneraUnaInfraccion() {
-		partido.inscribirJugador(martin);
-		partido.generarJugadores();
 		partido.darBajaJugadorYProponerReemplazo(martin, tomas);
 		assertTrue(martin.infracciones.size() == 0);
 	}

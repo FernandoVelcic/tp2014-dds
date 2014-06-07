@@ -43,7 +43,7 @@ public class TestNotificaciones {
 			partido.inscribirJugador(martin);
 		}
 		partido.generarJugadores();
-		partido.isPartidoConfirmadoYnotificar();
+		partido.notificarPartidoConfirmado();
 		assertTrue(admin.notificaciones.contains("El partido está confirmado"));
 	}
 	
@@ -54,7 +54,7 @@ public class TestNotificaciones {
 		}
 		partido.generarJugadores();
 		partido.darBajaJugador(martin);
-		partido.isPartidoConfirmadoYnotificar();
+		partido.notificarPartidoConfirmado();
 		assertTrue(admin.notificaciones.contains("Faltan Jugadores"));
 	}
 	
@@ -72,7 +72,6 @@ public class TestNotificaciones {
 		assertTrue(carlos.notificaciones.contains(martin +" se inscribió"));
 	}
 	
-	//Acá habría que usar un mock para simplificar el testeo
 	@Test
 	public void testMartinSeInscribeAPartidoYSeNotificaATodosSusAmigos(){
 		martin.agregarAmigo(carlos);
