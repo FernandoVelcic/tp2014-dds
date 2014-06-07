@@ -1,5 +1,13 @@
 package com.grupo10.criterios;
 
-public class Calificaciones implements Criterio {
+import com.grupo10.juego.Participante;
 
+public class Calificaciones implements Criterio
+{
+
+	public double calcularValor(Participante p)
+	{
+		
+	}
+	
 }

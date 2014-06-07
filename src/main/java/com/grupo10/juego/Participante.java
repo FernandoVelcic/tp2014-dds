@@ -30,6 +30,7 @@ public class Participante implements Observador {
 		return promedio.getAsDouble();
 	}
 	
+		
 	public void setModalidad(Modalidad modalidad){
 		this.modalidad = modalidad;
 	}

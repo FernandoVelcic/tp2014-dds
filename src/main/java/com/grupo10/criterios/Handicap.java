@@ -1,5 +1,12 @@
 package com.grupo10.criterios;
 
-public class Handicap implements Criterio{
+import com.grupo10.juego.Participante;
 
+public class Handicap implements Criterio{
+	
+	
+	public double calcularValor(Participante p)
+	{
+		
+	}
 }
