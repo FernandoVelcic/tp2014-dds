@@ -3,11 +3,15 @@ package com.grupo10.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.grupo10.criterios.Criterio;
+
 public class Administrador implements Observador {
 	public List<Participante> propuestas = new ArrayList<Participante>();
 	public List<Rechazo> propuestasRechazadas = new ArrayList<Rechazo>();
 	public List<String> notificaciones = new ArrayList<String>();
 	private Partido partido;
+	
+	Criterio criterioParaArmarEquipos;
 	
 	@Override
 	public void notificarPartidoConfirmado()
@@ -56,5 +60,10 @@ public class Administrador implements Observador {
 	{
 		propuestas.remove(participante);
 		partido.inscribirJugador(participante);
+	}
+	
+	public void generarEquiposTentativos()
+	{
+		
 	}
 }
