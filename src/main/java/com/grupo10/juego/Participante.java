@@ -3,6 +3,7 @@ package com.grupo10.juego;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import java.util.OptionalDouble;
 
 import com.grupo10.excepciones.CalificacionException;
 import com.grupo10.modalidades.Modalidad;
@@ -18,6 +19,16 @@ public class Participante implements Observador {
 	Date fechaNacimiento;
 	Modalidad modalidad;
 	Partido partidoActualAjugar;
+	
+	public double getPromedioCalificaciones() throws Exception
+	{
+		OptionalDouble promedio = calificaciones.stream().mapToDouble(c -> c.puntaje).average();
+		
+		if( !promedio.isPresent() )
+			throw new CalificacionException("No tiene calificaciones");
+		
+		return promedio.getAsDouble();
+	}
 	
 	public void setModalidad(Modalidad modalidad){
 		this.modalidad = modalidad;
