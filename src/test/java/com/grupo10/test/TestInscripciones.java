@@ -31,11 +31,11 @@ public class TestInscripciones {
 		tomas = new Participante();
 		partido = new Partido(new Date(), admin);
 		estandar = new Estandar();
-		condicional = new Condicional();
+		condicional = new Condicional(true);
 		solidario = new Solidario();
 		martin.setModalidad(estandar);
-		tomas.setModalidad(solidario);
 		carlos.setModalidad(condicional);
+		tomas.setModalidad(solidario);
 	}
 
 	public boolean estaInscripto(Participante jugador){
@@ -67,12 +67,7 @@ public class TestInscripciones {
 
 	@Test
 	public void testCarlosEsCondicionalYSeInscribeAPartido() {
-		carlos.setModalidad(new Condicional() {
-			@Override
-			public boolean isPuedeJugar(Partido partido) {
-	    		return true;
-	    	}
-		}); 
+		carlos.setModalidad(new Condicional(true));
 		partido.inscribirJugador(carlos);
 		partido.generarJugadores();
 		assertTrue(estaInscripto(carlos));
@@ -88,12 +83,7 @@ public class TestInscripciones {
 	@Test
 	public void testCarlosJuegaPorqueHay9JugadoresConfirmados() {
 		cargarJugadores(9, martin);
-		carlos.setModalidad(new Condicional() {
-			@Override
-			public boolean isPuedeJugar(Partido partido) {
-	    		return partido.calcularConfirmados() == 9;
-	    	}
-		});
+		carlos.setModalidad(new Condicional(partido.calcularConfirmados() == 9));
 		partido.inscribirJugador(carlos);
 		partido.generarJugadores();
 		assertTrue(estaInscripto(carlos));
@@ -102,12 +92,7 @@ public class TestInscripciones {
 	@Test
 	public void testCarlosNoJuegaPorqueNoHay9JugadoresConfirmados() {
 		cargarJugadores(8, martin);
-		carlos.setModalidad(new Condicional() {
-			@Override
-			public boolean isPuedeJugar(Partido partido) {
-	    		return partido.calcularConfirmados() == 9;
-	    	}
-		});
+		carlos.setModalidad(new Condicional(partido.calcularConfirmados() == 9));
 		partido.inscribirJugador(carlos);
 		partido.generarJugadores();
 		assertFalse(estaInscripto(carlos));
@@ -115,12 +100,7 @@ public class TestInscripciones {
 
 	@Test
 	public void testCarlosNoJuegaPorqueNoSeInscribioMartin() {
-		carlos.setModalidad(new Condicional() {
-			@Override
-			public boolean isPuedeJugar(Partido partido) {
-	    		return estaInscripto(martin);
-	    	}
-		});
+		carlos.setModalidad(new Condicional(estaInscripto(martin)));
 		partido.inscribirJugador(carlos); 
 		partido.generarJugadores();
 		assertFalse(estaInscripto(carlos));
@@ -130,12 +110,7 @@ public class TestInscripciones {
 	public void testCarlosJuegaPorqueSeInscribioMartin() {
 		partido.inscribirJugador(martin);
 		partido.generarJugadores();
-		carlos.setModalidad(new Condicional() {
-			@Override
-			public boolean isPuedeJugar(Partido partido) {
-				return estaInscripto(martin);
-	    	}
-		});
+		carlos.setModalidad(new Condicional(estaInscripto(martin)));
 		partido.inscribirJugador(carlos);
 		partido.generarJugadores();
 		assertTrue(estaInscripto(carlos));
