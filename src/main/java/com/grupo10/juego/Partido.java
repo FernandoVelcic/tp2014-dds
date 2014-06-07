@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.grupo10.criterios.*;
 import com.grupo10.modalidades.*;
 
 public class Partido {
 	public List<Participante> participantes = new ArrayList<Participante>();
 	public List<Participante> jugadores = new ArrayList<Participante>();
+	public List<Participante> equipo1 = new ArrayList<Participante>();
+	public List<Participante> equipo2 = new ArrayList<Participante>();
+	
 	private List<Observador> observadores = new ArrayList<Observador>();
 	private Date diaYhora;
 
@@ -51,6 +55,16 @@ public class Partido {
 			.collect(Collectors.toList());
 		
 		notificarPartidoConfirmado();
+	}
+	
+	public void generarEquipos(Criterio criterio)
+	{
+		List<Participante> jugadoresOrdenados = jugadores.stream()
+			.sorted((j1,j2) -> Double.compare(criterio.calcularValor(j1), criterio.calcularValor(j2)))
+			.collect(Collectors.toList());
+		
+		equipo1 = jugadoresOrdenados.stream().filter(j -> jugadores.indexOf(j) % 2 == 0).collect(Collectors.toList());
+		equipo2 = jugadoresOrdenados.stream().filter(j -> jugadores.indexOf(j) % 2 == 1).collect(Collectors.toList());
 	}
 	
 	public void notificarPartidoConfirmado()
