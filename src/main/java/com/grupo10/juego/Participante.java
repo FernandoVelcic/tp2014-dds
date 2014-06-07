@@ -1,10 +1,12 @@
-package com.grupo10;
+package com.grupo10.juego;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
-import Modalidades.*;
+import com.grupo10.excepciones.CalificacionException;
+import com.grupo10.modalidades.Modalidad;
+
 
 public class Participante implements Observador {
 	public List<Participante> amigos = new ArrayList<Participante>();
@@ -41,14 +43,10 @@ public class Participante implements Observador {
 		amigos.forEach(amigo -> amigo.notificaciones.add(this +" se inscribió"));
 	}
 	
-	public boolean calificarA(Participante jugador, int puntaje, String critica)
+	public void calificar(Participante jugador, Calificacion calificacion) throws Exception
 	{
-		if ((jugador.equals(this)) || (this.partidoActualAjugar != jugador.partidoActualAjugar)) return false;
-		else
-		{
-			jugador.calificaciones.add(new Calificacion(puntaje, critica, partidoActualAjugar));
-			return true;
-		}
+		if ((jugador.equals(this)) || (this.partidoActualAjugar != jugador.partidoActualAjugar)) throw new CalificacionException("No se puede calificar");
+		else jugador.calificaciones.add(calificacion);
 	}
 
 	@Override

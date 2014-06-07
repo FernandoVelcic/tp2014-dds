@@ -1,4 +1,4 @@
-package com.grupo10;
+package com.grupo10.juego;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,11 +6,11 @@ import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
-import Modalidades.*;
 
-import com.grupo10.Administrador;
-import com.grupo10.Participante;
-import com.grupo10.Partido;
+import com.grupo10.juego.Administrador;
+import com.grupo10.juego.Participante;
+import com.grupo10.juego.Partido;
+import com.grupo10.modalidades.*;
 
 public class TestInscripciones {
 

@@ -7,12 +7,12 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import Modalidades.Estandar;
-
-import com.grupo10.Administrador;
-import com.grupo10.Calificacion;
-import com.grupo10.Participante;
-import com.grupo10.Partido;
+import com.grupo10.excepciones.CalificacionException;
+import com.grupo10.juego.Administrador;
+import com.grupo10.juego.Calificacion;
+import com.grupo10.juego.Participante;
+import com.grupo10.juego.Partido;
+import com.grupo10.modalidades.Estandar;
 
 public class TestCalificaciones {
 	
@@ -31,30 +31,31 @@ public class TestCalificaciones {
 		carlos.setModalidad(new Estandar());
 		partido1 = new Partido(new Date(), new Administrador());
 		partido2 = new Partido(new Date(), new Administrador());
+		calificacion = new Calificacion(7, "Jugó bien pero le faltó correr más", partido1);
 	}
 
 	@Test
-	public void testMartinYCarlosJugaronJuntosYMartinCalificaACarlos(){
+	public void testMartinYCarlosJugaronJuntosYMartinCalificaACarlos() throws Exception{
 		partido1.inscribirJugador(martin);
 		partido1.inscribirJugador(carlos);
 		partido1.generarJugadores();
-		martin.calificarA(carlos, 7, "Jugó bien pero le faltó correr más");
+		martin.calificar(carlos, calificacion);
 		assertTrue(carlos.calificaciones.size() == 1);	
 	}
 
-	@Test
-	public void testMartinJugoUnPartidoCarlosOtroYMartinNoPuedeCalificarACarlos(){
+	@Test (expected = CalificacionException.class)
+	public void testMartinJugoUnPartidoCarlosOtroYMartinNoPuedeCalificarACarlos() throws Exception{
 		partido1.inscribirJugador(martin);
 		partido2.inscribirJugador(carlos);
 		partido1.generarJugadores();
 		partido2.generarJugadores();
-		assertFalse(martin.calificarA(carlos, 7, "Jugó bien pero le faltó correr más"));	
+		martin.calificar(carlos, calificacion);
 	}
 	
-	@Test
-	public void testMartinNoSePuedeCalificarASiMismo(){
+	@Test (expected = CalificacionException.class)
+	public void testMartinNoSePuedeCalificarASiMismo() throws Exception{
 		partido1.inscribirJugador(martin);
 		partido1.generarJugadores();
-		assertFalse(martin.calificarA(martin, 7, "Jugó bien pero le faltó correr más"));	
+		martin.calificar(martin, calificacion);
 	}
 }

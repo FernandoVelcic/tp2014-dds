@@ -1,4 +1,4 @@
-package com.grupo10;
+package com.grupo10.juego;
 
 public interface Observador {
 	public void notificarPartidoConfirmado();

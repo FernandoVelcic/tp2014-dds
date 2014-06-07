@@ -1,4 +1,4 @@
-package com.grupo10;
+package com.grupo10.juego;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import Modalidades.*;
+import com.grupo10.modalidades.*;
 
 public class Partido {
 	public List<Participante> participantes = new ArrayList<Participante>();

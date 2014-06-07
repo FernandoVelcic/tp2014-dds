@@ -1,4 +1,4 @@
-package Modalidades;
+package com.grupo10.modalidades;
 
 public enum Prioridad {
 	ESTANDAR,

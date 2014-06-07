@@ -1,4 +1,4 @@
-package com.grupo10;
+package com.grupo10.juego;
 
 public class Calificacion {
 	public int puntaje;

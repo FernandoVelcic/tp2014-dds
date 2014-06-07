@@ -7,11 +7,10 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import Modalidades.Estandar;
-
-import com.grupo10.Participante;
-import com.grupo10.Partido;
-import com.grupo10.Administrador;
+import com.grupo10.juego.Administrador;
+import com.grupo10.juego.Participante;
+import com.grupo10.juego.Partido;
+import com.grupo10.modalidades.Estandar;
 
 public class TestInfracciones {
 
