@@ -50,17 +50,13 @@ public class Partido {
 			.limit(10)
 			.collect(Collectors.toList());
 		
-		isPartidoConfirmadoYnotificar();
+		notificarPartidoConfirmado();
 	}
 	
-	public boolean isPartidoConfirmadoYnotificar()
+	public void notificarPartidoConfirmado()
 	{
-		if(jugadores.size() != 10)
-			return false;
-		
+		if(jugadores.size() == 10)
 		observadores.forEach(observador -> observador.notificarPartidoConfirmado());
-		
-		return true;
 	}
 	
 	public Integer calcularConfirmados() {
