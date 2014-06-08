@@ -10,4 +10,3 @@ public class Handicap implements Criterio{
 		return p.handicup;
 	}
 }
-
