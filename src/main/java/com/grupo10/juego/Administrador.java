@@ -61,5 +61,10 @@ public class Administrador implements Observador {
 		propuestas.remove(participante);
 		partido.inscribirJugador(participante);
 	}
-
+	
+	public void generarEquiposTentativos()
+	{
+		
+	}
+	
 }
