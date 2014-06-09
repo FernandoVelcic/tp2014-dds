@@ -57,16 +57,6 @@ public class Partido {
 		notificarPartidoConfirmado();
 	}
 	
-	public void generarEquipos(CriterioOrden criterio)
-	{
-		List<Participante> jugadoresOrdenados = jugadores.stream()
-			.sorted((j1,j2) -> Double.compare(criterio.calcularValor(j1), criterio.calcularValor(j2)))
-			.collect(Collectors.toList());
-		
-		equipo1 = jugadoresOrdenados.stream().filter(j -> jugadores.indexOf(j) % 2 == 0).collect(Collectors.toList());
-		equipo2 = jugadoresOrdenados.stream().filter(j -> jugadores.indexOf(j) % 2 == 1).collect(Collectors.toList());
-	}
-	
 	public void notificarPartidoConfirmado()
 	{
 		if(jugadores.size() == 10)

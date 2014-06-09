@@ -2,7 +2,9 @@ package com.grupo10.juego;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.grupo10.criteriosdivisionequipos.CriterioDivision;
 import com.grupo10.criteriosordenequipos.CriterioOrden;
 
 public class Administrador implements Observador {
@@ -62,9 +64,12 @@ public class Administrador implements Observador {
 		partido.inscribirJugador(participante);
 	}
 	
-	public void generarEquiposTentativos()
+	public void generarEquiposTentativos(CriterioOrden criterioOrden, CriterioDivision criterioDivision)
 	{
-		
+		List<Participante> jugadoresOrdenados = partido.jugadores.stream()
+				.sorted((j1,j2) -> Double.compare(criterioOrden.calcularValor(j1), criterioOrden.calcularValor(j2)))
+				.collect(Collectors.toList());
+			criterioDivision.dividirEquipos(jugadoresOrdenados, partido);
 	}
 	
 }
