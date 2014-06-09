@@ -14,7 +14,7 @@ public class Participante implements Observador {
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	public List<String> notificaciones = new ArrayList<String>();
 	public List<Calificacion> calificaciones = new ArrayList<Calificacion>();
-	public int handicup;
+	public int handicap;
 	
 	String nombre;
 	Date fechaNacimiento;

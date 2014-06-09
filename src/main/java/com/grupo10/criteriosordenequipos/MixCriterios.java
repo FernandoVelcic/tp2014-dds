@@ -1,15 +1,15 @@
-package com.grupo10.criterios;
+package com.grupo10.criteriosordenequipos;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.grupo10.juego.Participante;
 
-public class MixCriterios implements Criterio 
+public class MixCriterios implements CriterioOrden 
 {
 
-	private List<Criterio> mix = new ArrayList<Criterio>();
+	private List<CriterioOrden> mix = new ArrayList<CriterioOrden>();
 
-	public void add(Criterio c)
+	public void add(CriterioOrden c)
 	{
 		mix.add(c);
 	}

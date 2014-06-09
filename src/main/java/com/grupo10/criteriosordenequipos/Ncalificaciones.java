@@ -1,4 +1,4 @@
-package com.grupo10.criterios;
+package com.grupo10.criteriosordenequipos;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.grupo10.juego.Calificacion;
 import com.grupo10.juego.Participante;
 
-public class Ncalificaciones implements Criterio{
+public class Ncalificaciones implements CriterioOrden{
 
 	private int n;
 	public Ncalificaciones(int numero)

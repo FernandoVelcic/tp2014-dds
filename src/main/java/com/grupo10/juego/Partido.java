@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.grupo10.criterios.*;
+import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.modalidades.*;
 
 public class Partido {
@@ -57,7 +57,7 @@ public class Partido {
 		notificarPartidoConfirmado();
 	}
 	
-	public void generarEquipos(Criterio criterio)
+	public void generarEquipos(CriterioOrden criterio)
 	{
 		List<Participante> jugadoresOrdenados = jugadores.stream()
 			.sorted((j1,j2) -> Double.compare(criterio.calcularValor(j1), criterio.calcularValor(j2)))

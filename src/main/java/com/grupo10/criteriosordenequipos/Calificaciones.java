@@ -1,8 +1,8 @@
-package com.grupo10.criterios;
+package com.grupo10.criteriosordenequipos;
 
 import com.grupo10.juego.Participante;
 
-public class Calificaciones implements Criterio
+public class Calificaciones implements CriterioOrden
 {
 
 	public double calcularValor(Participante p)

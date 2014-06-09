@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.grupo10.criterios.*;
+import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.juego.Calificacion;
 import com.grupo10.juego.Participante;
 import com.grupo10.juego.Partido;
