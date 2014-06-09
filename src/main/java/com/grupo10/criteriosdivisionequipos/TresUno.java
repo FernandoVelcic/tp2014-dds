@@ -9,8 +9,8 @@ import com.grupo10.juego.Partido;
 
 public class TresUno implements CriterioDivision {
 
-	private List <Integer> numerosEquipo1 = Arrays.asList(1,4,5,8,9);
-	private List <Integer> numerosEquipo2 = Arrays.asList(2,3,6,7,10);
+	private List <Integer> numerosEquipo1 = Arrays.asList(0,3,4,7,8);
+	private List <Integer> numerosEquipo2 = Arrays.asList(1,2,5,6,9);
 	
 	@Override
 	public void dividirEquipos(List<Participante> jugadores, Partido partido) {

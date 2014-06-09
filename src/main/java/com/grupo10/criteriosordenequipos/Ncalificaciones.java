@@ -17,10 +17,7 @@ public class Ncalificaciones implements CriterioOrden{
 	public double calcularValor(Participante p)
 	{
 		List<Calificacion> lista = p.getCalificaciones();
-		Collections.reverse(lista);
-		
-		if(n>lista.size())	return lista.stream().mapToDouble(c -> c.puntaje).sum()/n;
-		
+		Collections.reverse(lista);		
 		return lista.stream().limit(n).mapToDouble(c -> c.puntaje).average().orElse(0);
 	}
 }

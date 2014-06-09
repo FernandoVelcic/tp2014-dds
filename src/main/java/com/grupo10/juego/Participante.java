@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Date;
 
 
+
 import com.grupo10.excepciones.CalificacionException;
 import com.grupo10.modalidades.Modalidad;
 
@@ -24,6 +25,13 @@ public class Participante implements Observador {
 	public List<Calificacion> getCalificaciones()
 	{
 		return calificaciones;
+	}
+	
+	public List<Integer> getNotaCalificaciones()
+	{
+		List<Integer> puntajes = new ArrayList<Integer>();
+		calificaciones.forEach(c -> puntajes.add(c.puntaje));
+		return puntajes;
 	}
 	
 	public Partido getPartidoActual()
