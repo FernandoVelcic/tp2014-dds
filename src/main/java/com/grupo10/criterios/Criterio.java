@@ -4,6 +4,6 @@ import com.grupo10.juego.Participante;
 
 public interface Criterio {
 	
-	public double calcularValor(Participante p);
+	double calcularValor(Participante p);
 	
 }

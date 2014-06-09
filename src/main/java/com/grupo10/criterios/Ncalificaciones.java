@@ -1,7 +1,9 @@
 package com.grupo10.criterios;
 
-import java.util.OptionalDouble;
+import java.util.Collections;
+import java.util.List;
 
+import com.grupo10.juego.Calificacion;
 import com.grupo10.juego.Participante;
 
 public class Ncalificaciones implements Criterio{
@@ -14,18 +16,11 @@ public class Ncalificaciones implements Criterio{
 	
 	public double calcularValor(Participante p)
 	{
-		try{
-			OptionalDouble promedio = p.getCalificaciones().stream()
-				.skip(p.getCalificaciones().size()-n)
-				.mapToDouble(c -> c.puntaje).average();	
+		List<Calificacion> lista = p.getCalificaciones();
+		Collections.reverse(lista);
 		
-			if( !promedio.isPresent() )	return 0;
-			return promedio.getAsDouble();
-		}
-		catch(Exception e)
-		{
-			return 0;
-		}
+		if(n>lista.size())	return lista.stream().mapToDouble(c -> c.puntaje).sum()/n;
 		
+		return lista.stream().limit(n).mapToDouble(c -> c.puntaje).average().orElse(0);
 	}
 }
