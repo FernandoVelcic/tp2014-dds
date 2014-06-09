@@ -13,8 +13,6 @@ public class Administrador implements Observador {
 	public List<String> notificaciones = new ArrayList<String>();
 	private Partido partido;
 	
-	CriterioOrden criterioParaArmarEquipos;
-	
 	@Override
 	public void notificarPartidoConfirmado()
 	{
@@ -72,4 +70,7 @@ public class Administrador implements Observador {
 			criterioDivision.dividirEquipos(jugadoresOrdenados, partido);
 	}
 	
+	public void definirHandicap(Participante jugador, int handicap){
+		jugador.handicap = handicap;
+	}
 }
