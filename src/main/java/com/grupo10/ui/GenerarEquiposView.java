@@ -3,11 +3,13 @@ package com.grupo10.ui;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.MainWindow;
+import org.uqbar.arena.windows.Window;
+import org.uqbar.arena.windows.WindowOwner;
 
-public class GenerarEquiposView extends MainWindow<GenerarEquiposViewModel> {
+public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 
-	public GenerarEquiposView() {
-		super(new GenerarEquiposViewModel());
+	public GenerarEquiposView(WindowOwner owner) {
+		super(owner, new GenerarEquiposViewModel());
 	}
 
 	@Override
@@ -22,8 +24,8 @@ public class GenerarEquiposView extends MainWindow<GenerarEquiposViewModel> {
 		new Selector(mainPanel);
 		
 		new Button(mainPanel)
-			.setCaption("Generar equipos");
-			//.onClick(() -> getModelObject().generarEquipos());
+			.setCaption("Generar equipos")
+			.onClick(() -> getModelObject().generarEquipos());
 		
 		new Label(mainPanel).setText("Resultado: equipos generados");
 		
@@ -33,8 +35,8 @@ public class GenerarEquiposView extends MainWindow<GenerarEquiposViewModel> {
 		new List(mainPanel);
 		
 		new Button(mainPanel)
-			.setCaption("Confirmar equipos");
-			//.onClick(() -> getModelObject().confirmarEquipos());
+			.setCaption("Confirmar equipos")
+			.onClick(() -> getModelObject().confirmarEquipos());
 		//new TextBox(mainPanel).bindValueToProperty("test");
 	}
 

@@ -84,4 +84,8 @@ public class Participante implements Observador {
 	public void notificarRechazo(String motivo){
 		this.notificaciones.add("Rechazaron tu solicitud por: " + motivo);
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 }

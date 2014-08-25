@@ -1,4 +1,5 @@
-import com.grupo10.ui.GenerarEquiposView;
+
+import com.grupo10.ui.HomeView;
 
 /**
  * Correr esta clase con el siguiente argument
@@ -8,7 +9,7 @@ import com.grupo10.ui.GenerarEquiposView;
 public class OrganizadorPartidos {
 
 	public static void main(String[] args) {
-		new GenerarEquiposView().startApplication();
+		new HomeView().startApplication();
 	}
 
 }

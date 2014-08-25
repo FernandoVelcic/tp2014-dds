@@ -24,6 +24,8 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		new Label(mainPanel).setText("Criterios de busqueda");
 		new List(mainPanel);
 		
+		new Label(mainPanel).setText("Resultados");
+		new List(mainPanel);
 	}
 
 }
