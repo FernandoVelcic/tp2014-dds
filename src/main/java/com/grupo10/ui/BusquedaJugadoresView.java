@@ -54,15 +54,19 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		table.bindValueToProperty("participanteSeleccionado");
 
 		this.describeResultsGrid(table);
+		
+		new Button(mainPanel)
+			.setCaption("Ver jugador seleccionado")
+			.onClick(() -> getModelObject().verJugador(this));
 	}
 	
 	protected void describeResultsGrid(Table<Participante> table) {
-		new Column<Participante>(table) //
+		new Column<Participante>(table)
 			.setTitle("Nombre")
 			.setFixedSize(150)
 			.bindContentsToProperty("nombre");
 
-		new Column<Participante>(table) //
+		new Column<Participante>(table)
 			.setTitle("Apodo")
 			.setFixedSize(100)
 			.bindContentsToProperty("apodo");
@@ -71,12 +75,12 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel)
 			.setCaption("Buscar")
-			.onClick(new MessageSend(this.getModelObject(), "search"))
+			.onClick(() -> getModelObject().search())
 			.setAsDefault()
 			.disableOnError();
 
-		new Button(actionsPanel) //
+		new Button(actionsPanel)
 			.setCaption("Limpiar")
-			.onClick(new MessageSend(this.getModelObject(), "clear"));
+			.onClick(() -> getModelObject().clear());
 	}
 }

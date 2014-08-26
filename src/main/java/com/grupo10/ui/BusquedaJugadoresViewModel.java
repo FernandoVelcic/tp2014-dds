@@ -3,6 +3,7 @@ package com.grupo10.ui;
 import java.io.Serializable;
 import java.util.List;
 
+import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.homes.HomeJugadores;
@@ -54,5 +55,9 @@ public class BusquedaJugadoresViewModel implements Serializable{
 
 	public void setParticipanteSeleccionado(Participante participanteSeleccionado) {
 		this.participanteSeleccionado = participanteSeleccionado;
+	}
+	
+	public void verJugador(WindowOwner owner) {
+		new JugadorView(owner, participanteSeleccionado).open();
 	}
 }
