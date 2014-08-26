@@ -9,12 +9,8 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.grupo10.criteriosdivisionequipos.ParImpar;
-import com.grupo10.criteriosdivisionequipos.TresUno;
-import com.grupo10.criteriosordenequipos.Calificaciones;
-import com.grupo10.criteriosordenequipos.Handicap;
-import com.grupo10.criteriosordenequipos.MixCriterios;
-import com.grupo10.criteriosordenequipos.Ncalificaciones;
+import com.grupo10.criteriosdivisionequipos.*;
+import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.juego.Administrador;
 import com.grupo10.juego.Calificacion;
 import com.grupo10.juego.Participante;

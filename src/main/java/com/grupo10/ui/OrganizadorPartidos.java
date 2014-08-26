@@ -1,5 +1,5 @@
+package com.grupo10.ui;
 
-import com.grupo10.ui.HomeView;
 
 /**
  * Correr esta clase con el siguiente argument

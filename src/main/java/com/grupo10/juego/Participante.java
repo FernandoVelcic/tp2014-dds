@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
-
-
 import com.grupo10.excepciones.CalificacionException;
 import com.grupo10.modalidades.Modalidad;
 
@@ -21,7 +19,21 @@ public class Participante implements Observador {
 	Date fechaNacimiento;
 	Modalidad modalidad;
 	Partido partidoActualAjugar;
+	String apodo;
 	
+	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones) {
+		this.nombre = nombre;
+		this.apodo = apodo;
+		this.fechaNacimiento = fechaNacimiento;
+		this.handicap = handicap;
+		this.calificaciones = calificaciones;
+		this.infracciones = infracciones;
+	}
+	
+	public Participante() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public List<Calificacion> getCalificaciones()
 	{
 		return calificaciones;
@@ -87,5 +99,9 @@ public class Participante implements Observador {
 	
 	public String getNombre() {
 		return nombre;
+	}
+
+	public String getApodo() {
+		return apodo;
 	}
 }
