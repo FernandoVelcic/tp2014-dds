@@ -55,14 +55,19 @@ public class HomeJugadores implements Serializable {
 		List<Participante> resultados = new ArrayList<Participante>();
 
 		for (Participante participante : this.participantes) {
-			if (match(nombre, participante.getNombre()) && match(apodo, participante.getApodo())) {
+			if (matchStartsWith(nombre, participante.getNombre()) && matchLike(apodo, participante.getApodo())) {
 				resultados.add(participante);
 			}
 		}
 		return resultados;
 	}
 
-	protected boolean match(Object expectedValue, Object realValue) {
+	private boolean matchStartsWith(Object expectedValue, Object realValue) {
+		return expectedValue == null
+				|| realValue.toString().toLowerCase().startsWith(expectedValue.toString().toLowerCase());
+	}
+
+	protected boolean matchLike(Object expectedValue, Object realValue) {
 		return expectedValue == null
 			|| realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase());
 	}
