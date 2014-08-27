@@ -3,6 +3,7 @@ package com.grupo10.ui;
 import java.awt.Color;
 
 import org.uqbar.arena.actions.MessageSend;
+import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -55,9 +56,13 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 
 		this.describeResultsGrid(table);
 		
+		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
+		NotNullObservable elementSelected = new NotNullObservable("participanteSeleccionado");
+		
 		new Button(mainPanel)
 			.setCaption("Ver jugador seleccionado")
-			.onClick(() -> getModelObject().verJugador(this));
+			.onClick(() -> getModelObject().verJugador(this))
+			.bindEnabled(elementSelected);
 	}
 	
 	protected void describeResultsGrid(Table<Participante> table) {

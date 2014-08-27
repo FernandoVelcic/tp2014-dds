@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
+import org.uqbar.commons.utils.Observable;
+
 import com.grupo10.excepciones.CalificacionException;
 import com.grupo10.modalidades.Modalidad;
 
-
+@Observable
 public class Participante implements Observador {
 	public List<Participante> amigos = new ArrayList<Participante>();
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
