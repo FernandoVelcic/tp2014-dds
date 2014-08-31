@@ -45,6 +45,12 @@ public class HomeJugadores implements Serializable {
 		partido.inscribirJugador(new Participante("Fabian", "Fabi", new Date(), 10, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion10)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
 		partido.inscribirJugador(new Participante("Pablo", "Paul", new Date(), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5)), new ArrayList<Infraccion>(Arrays.asList(infraccion)), new Estandar()));
 		partido.inscribirJugador(new Participante("Jose", "Pepe", new Date(), 7, new ArrayList<Calificacion>(Arrays.asList(calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
+		partido.inscribirJugador(new Participante("Fabian", "Fabi", new Date(), 10, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion10)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
+		partido.inscribirJugador(new Participante("Pablo", "Paul", new Date(), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5)), new ArrayList<Infraccion>(Arrays.asList(infraccion)), new Estandar()));
+		partido.inscribirJugador(new Participante("Jose", "Pepe", new Date(), 7, new ArrayList<Calificacion>(Arrays.asList(calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
+		partido.inscribirJugador(new Participante("Fabian", "Fabi", new Date(), 10, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion10)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
+		partido.inscribirJugador(new Participante("Pablo", "Paul", new Date(), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5)), new ArrayList<Infraccion>(Arrays.asList(infraccion)), new Estandar()));
+		partido.inscribirJugador(new Participante("Jose", "Pepe", new Date(), 7, new ArrayList<Calificacion>(Arrays.asList(calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
 	}
 	
 	public List<Participante> search(String nombre, String apodo) {

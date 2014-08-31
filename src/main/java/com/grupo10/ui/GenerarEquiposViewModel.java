@@ -9,6 +9,7 @@ import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.homes.HomeJugadores;
 import com.grupo10.juego.Participante;
+import com.grupo10.juego.Partido;
 
 @Observable
 public class GenerarEquiposViewModel {
@@ -17,8 +18,13 @@ public class GenerarEquiposViewModel {
 
 	CriterioOrden criterioOrden;
 	List<CriterioOrden> listaCriteriosOrden;
+	
+	Partido partido;
+	List<Participante> equipo1;
+	List<Participante> equipo2;
 
 	public GenerarEquiposViewModel() {
+		partido = new HomeJugadores().getInstance().getPartido();
 		listaCriteriosDivision = new ArrayList<CriterioDivision>();
 		listaCriteriosDivision.add(new ParImpar());
 		listaCriteriosDivision.add(new TresUno());
@@ -31,8 +37,10 @@ public class GenerarEquiposViewModel {
 	}
 
 	public void generarEquipos() {
-		new HomeJugadores().getPartido().generarJugadores();
-		new HomeJugadores().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
+		partido.generarJugadores();
+		new HomeJugadores().getInstance().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
+		equipo1 = partido.equipo1;
+		equipo2 = partido.equipo2;
 	}
 	
 	public void confirmarEquipos() {
@@ -64,10 +72,10 @@ public class GenerarEquiposViewModel {
 	}
 	
 	public List<Participante> getEquipo1() {
-		return new HomeJugadores().getPartido().equipo1;
+		return equipo1;
 	}
 	
 	public List<Participante> getEquipo2() {
-		return new HomeJugadores().getPartido().equipo2;
+		return equipo2;
 	}
 }
