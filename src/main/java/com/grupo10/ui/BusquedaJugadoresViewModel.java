@@ -1,6 +1,7 @@
 package com.grupo10.ui;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.uqbar.arena.windows.WindowOwner;
@@ -13,7 +14,9 @@ import com.grupo10.juego.Participante;
 public class BusquedaJugadoresViewModel implements Serializable{
 	private String nombre;
 	private String apodo;
-	private Integer handicap;
+	private Date fechaNacimientoHasta;
+	private Integer handicapDesde, handicapHasta;
+	private Double promedioDesde, promedioHasta;
 	
 	private List<Participante> resultados;
 	private Participante participanteSeleccionado;

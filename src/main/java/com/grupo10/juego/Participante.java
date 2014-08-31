@@ -25,13 +25,14 @@ public class Participante implements Observador {
 	Modalidad modalidad;
 	Partido partidoActualAjugar;
 	
-	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones) {
+	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones, Modalidad modalidad) {
 		this.nombre = nombre;
 		this.apodo = apodo;
 		this.fechaNacimiento = fechaNacimiento;
 		this.handicap = handicap;
 		this.calificaciones = calificaciones;
 		this.infracciones = infracciones;
+		this.modalidad = modalidad;
 	}
 	
 	public Participante() {

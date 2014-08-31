@@ -1,6 +1,5 @@
 package com.grupo10.ui;
 
-import java.awt.Color;
 
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
@@ -9,7 +8,6 @@ import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.widgets.tables.*;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
-
 import com.grupo10.juego.Participante;
 
 public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
@@ -47,9 +45,9 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		new Label(searchFormPanel).setText("Handicap hasta");
 		new TextBox(searchFormPanel);//.bindValueToProperty("");
 		
-		new Label(searchFormPanel).setText("Promedio ultimo partido desde");
+		new Label(searchFormPanel).setText("Promedio del ultimo partido desde");
 		new TextBox(searchFormPanel);//.bindValueToProperty("");
-		new Label(searchFormPanel).setText("Promedio ultimo partido hasta");
+		new Label(searchFormPanel).setText("Promedio del ultimo partido hasta");
 		new TextBox(searchFormPanel);//.bindValueToProperty("");
 	
 		new Label(searchFormPanel).setText("Infracciones");
