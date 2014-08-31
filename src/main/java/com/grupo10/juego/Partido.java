@@ -30,7 +30,7 @@ public class Partido {
 		participante.partidoActualAjugar = this;
 	}
 	
-	private void removeJugador(Participante participante){
+	private void removeJugador(Participante participante) {
 		jugadores.remove(participante);
 		participantes.remove(participante);
 	}
@@ -57,10 +57,9 @@ public class Partido {
 		notificarPartidoConfirmado();
 	}
 	
-	public void notificarPartidoConfirmado()
-	{
+	public void notificarPartidoConfirmado() {
 		if(jugadores.size() == 10)
-		observadores.forEach(observador -> observador.notificarPartidoConfirmado());
+			observadores.forEach(observador -> observador.notificarPartidoConfirmado());
 	}
 	
 	public Integer calcularConfirmados() {
@@ -71,8 +70,7 @@ public class Partido {
 		return participantes.stream().filter(p -> p.getPrioridadModalidad() == Prioridad.ESTANDAR.ordinal());
 	}
 	
-	public void addObservador(Observador obs)
-	{
+	public void addObservador(Observador obs) {
 		observadores.add(obs);
 	}
 }

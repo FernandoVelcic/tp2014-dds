@@ -20,26 +20,26 @@ public class JugadorView extends Window<JugadorViewModel> {
 
 	@Override
 	public void createContents(Panel mainPanel) {
-		setTitle("Informacion del jugador: " + getModelObject().getNombre());
+		//setTitle("Informacion del jugador: " + getModelObject().jugador.getNombre());
 		mainPanel.setLayout(new ColumnLayout(2));
 		
 		new Label(mainPanel).setText("Nombre:");
-		new Label(mainPanel).setText(getModelObject().getNombre());
+		new Label(mainPanel).bindValueToProperty("jugador.nombre");
 		
 		new Label(mainPanel).setText("Apodo:");
-		new Label(mainPanel).setText(getModelObject().getApodo());
+		new Label(mainPanel).bindValueToProperty("jugador.apodo");
 		
 		new Label(mainPanel).setText("Handicap:");
-		new Label(mainPanel);
+		new Label(mainPanel).bindValueToProperty("jugador.handicap");
 		
 		new Label(mainPanel).setText("Promedio del ultimo partido:");
-		new Label(mainPanel);
+		new Label(mainPanel).bindValueToProperty("jugador.promedioActual");
 		
 		new Label(mainPanel).setText("Promedio de todos los partidos que jugo:");
-		new Label(mainPanel);
+		new Label(mainPanel).bindValueToProperty("jugador.promedio");
 		
 		new Label(mainPanel).setText("Fecha de nacimiento:");
-		new Label(mainPanel);
+		new Label(mainPanel).bindValueToProperty("fechaNacimiento");
 		
 		new Label(mainPanel).setText("Amigos:");
 		new Label(mainPanel).setText("Infracciones:");

@@ -13,6 +13,8 @@ import com.grupo10.juego.Participante;
 public class BusquedaJugadoresViewModel implements Serializable{
 	private String nombre;
 	private String apodo;
+	private Integer handicap;
+	
 	private List<Participante> resultados;
 	private Participante participanteSeleccionado;
 
@@ -23,6 +25,7 @@ public class BusquedaJugadoresViewModel implements Serializable{
 	public void clear() {
 		this.nombre = "";
 		this.apodo = "";
+		search();
 	}
 
 	public String getNombre() {

@@ -1,5 +1,7 @@
 package com.grupo10.ui;
 
+import java.text.SimpleDateFormat;
+
 import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.juego.Participante;
@@ -12,11 +14,12 @@ public class JugadorViewModel {
 		this.jugador = jugador;
 	}
 	
-	public String getNombre() {
-		return jugador.getNombre();
+	public Participante getJugador() {
+		return jugador;
 	}
 	
-	public String getApodo() {
-		return jugador.getApodo();
+	public String getFechaNacimiento() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return dateFormat.format(jugador.getFechaNacimiento());
 	}
 }

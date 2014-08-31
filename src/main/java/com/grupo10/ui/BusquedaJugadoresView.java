@@ -39,10 +39,10 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		Panel searchFormPanel = new Panel(mainPanel);
 		searchFormPanel.setLayout(new ColumnLayout(2));
 
-		new Label(searchFormPanel).setText("Nombre").setForeground(Color.BLUE);
+		new Label(searchFormPanel).setText("Nombre comienza con");
 		new TextBox(searchFormPanel).bindValueToProperty("nombre");
 
-		new Label(searchFormPanel).setText("Apodo").setForeground(Color.BLUE);
+		new Label(searchFormPanel).setText("Apodo contiene");
 		new TextBox(searchFormPanel).bindValueToProperty("apodo");
 	}
 	
@@ -75,6 +75,16 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 			.setTitle("Apodo")
 			.setFixedSize(100)
 			.bindContentsToProperty("apodo");
+		
+		new Column<Participante>(table)
+			.setTitle("Handicap")
+			.setFixedSize(100)
+			.bindContentsToProperty("handicap");
+		
+		new Column<Participante>(table)
+			.setTitle("Promedio")
+			.setFixedSize(100)
+			.bindContentsToProperty("promedio");
 	}
 	
 	protected void addActions(Panel actionsPanel) {

@@ -15,13 +15,15 @@ public class Participante implements Observador {
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	public List<String> notificaciones = new ArrayList<String>();
 	public List<Calificacion> calificaciones = new ArrayList<Calificacion>();
-	public int handicap;
+	
 	
 	String nombre;
+	String apodo;
 	Date fechaNacimiento;
+	public Integer handicap;
+
 	Modalidad modalidad;
 	Partido partidoActualAjugar;
-	String apodo;
 	
 	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones) {
 		this.nombre = nombre;
@@ -36,25 +38,16 @@ public class Participante implements Observador {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<Calificacion> getCalificaciones()
-	{
+	public List<Calificacion> getCalificaciones() {
 		return calificaciones;
 	}
 	
-	public List<Integer> getNotaCalificaciones()
-	{
-		List<Integer> puntajes = new ArrayList<Integer>();
-		calificaciones.forEach(c -> puntajes.add(c.puntaje));
-		return puntajes;
-	}
-	
-	public Partido getPartidoActual()
-	{
+	public Partido getPartidoActual() {
 		return partidoActualAjugar;
 	}
 	
 		
-	public void setModalidad(Modalidad modalidad){
+	public void setModalidad(Modalidad modalidad) {
 		this.modalidad = modalidad;
 	}
 	
@@ -84,17 +77,14 @@ public class Participante implements Observador {
 		else jugador.calificaciones.add(calificacion);
 	}
 
-	@Override
 	public void notificarPartidoConfirmado(){
 
 	}
 
-	@Override
 	public void notificarFaltanJugadores(){
 		
 	}
 	
-	@Override
 	public void notificarRechazo(String motivo){
 		this.notificaciones.add("Rechazaron tu solicitud por: " + motivo);
 	}
@@ -105,5 +95,21 @@ public class Participante implements Observador {
 
 	public String getApodo() {
 		return apodo;
+	}
+	
+	public Integer getHandicap() {
+		return handicap;
+	}
+	
+	public double getPromedio() {
+		return calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
+	}
+	
+	public double getPromedioActual() {
+		return calificaciones.stream().filter(c -> c.partidoJugado == partidoActualAjugar).mapToDouble(c -> c.puntaje).average().orElse(0);
+	}
+	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 }
