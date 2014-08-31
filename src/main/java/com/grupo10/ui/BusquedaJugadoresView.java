@@ -2,17 +2,11 @@ package com.grupo10.ui;
 
 import java.awt.Color;
 
-import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
-import org.uqbar.arena.widgets.Button;
-import org.uqbar.arena.widgets.Label;
-import org.uqbar.arena.widgets.List;
-import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
-import org.uqbar.arena.widgets.tables.Column;
-import org.uqbar.arena.widgets.tables.Table;
+import org.uqbar.arena.widgets.*;
+import org.uqbar.arena.widgets.tables.*;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -44,9 +38,25 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 
 		new Label(searchFormPanel).setText("Apodo contiene");
 		new TextBox(searchFormPanel).bindValueToProperty("apodo");
+	
+		new Label(searchFormPanel).setText("Fecha de nacimiento anterior a");
+		new TextBox(searchFormPanel);//.bindValueToProperty("");
+		
+		new Label(searchFormPanel).setText("Handicap desde");
+		new TextBox(searchFormPanel);//.bindValueToProperty("");
+		new Label(searchFormPanel).setText("Handicap hasta");
+		new TextBox(searchFormPanel);//.bindValueToProperty("");
+		
+		new Label(searchFormPanel).setText("Promedio ultimo partido desde");
+		new TextBox(searchFormPanel);//.bindValueToProperty("");
+		new Label(searchFormPanel).setText("Promedio ultimo partido hasta");
+		new TextBox(searchFormPanel);//.bindValueToProperty("");
+	
+		new Label(searchFormPanel).setText("Infracciones");
+		new Selector(searchFormPanel);//.bindValueToProperty("Tipo");
 	}
 	
-	protected void createResultsGrid(Panel mainPanel) {
+	public void createResultsGrid(Panel mainPanel) {
 		Table<Participante> table = new Table<Participante>(mainPanel, Participante.class);
 		table.setHeigth(200);
 		table.setWidth(450);
