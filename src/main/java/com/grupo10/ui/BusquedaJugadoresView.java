@@ -1,7 +1,5 @@
 package com.grupo10.ui;
 
-import java.text.SimpleDateFormat;
-
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;

@@ -88,7 +88,7 @@ public class HomeJugadores implements Serializable {
 
 	private boolean matchDateFrom(String fechaString, Date fechaNacimiento) {
 		return fechaString == null
-				|| fechaNacimiento.after(convertirStringAFecha(fechaString));
+				|| convertirStringAFecha(fechaString).after(fechaNacimiento);
 	}
 
 	private boolean matchStartsWith(Object expectedValue, Object realValue) {
