@@ -1,5 +1,6 @@
 package com.grupo10.ui;
 
+import java.text.SimpleDateFormat;
 
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
@@ -8,10 +9,10 @@ import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.widgets.tables.*;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+
 import com.grupo10.juego.Participante;
 
 public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
-
 	public BusquedaJugadoresView(WindowOwner owner) {
 		super(owner, new BusquedaJugadoresViewModel());
 		this.getModelObject().search();
@@ -31,25 +32,29 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		Panel searchFormPanel = new Panel(mainPanel);
 		searchFormPanel.setLayout(new ColumnLayout(2));
 
-		new Label(searchFormPanel).setText("Nombre comienza con");
+		new Label(searchFormPanel).setText("Nombre comienza con:");
 		new TextBox(searchFormPanel).bindValueToProperty("nombre");
 
-		new Label(searchFormPanel).setText("Apodo contiene");
+		new Label(searchFormPanel).setText("Apodo contiene:");
 		new TextBox(searchFormPanel).bindValueToProperty("apodo");
 	
-		new Label(searchFormPanel).setText("Fecha de nacimiento anterior a");
-		new TextBox(searchFormPanel);//.bindValueToProperty("");
+		new Label(searchFormPanel).setText("Handicap desde:");
+		new TextBox(searchFormPanel).bindValueToProperty("handicapDesde");
 		
-		new Label(searchFormPanel).setText("Handicap desde");
-		new TextBox(searchFormPanel);//.bindValueToProperty("");
-		new Label(searchFormPanel).setText("Handicap hasta");
-		new TextBox(searchFormPanel);//.bindValueToProperty("");
+		new Label(searchFormPanel).setText("Handicap hasta:");
+		new TextBox(searchFormPanel).bindValueToProperty("handicapHasta");
 		
-		new Label(searchFormPanel).setText("Promedio del ultimo partido desde");
-		new TextBox(searchFormPanel);//.bindValueToProperty("");
-		new Label(searchFormPanel).setText("Promedio del ultimo partido hasta");
-		new TextBox(searchFormPanel);//.bindValueToProperty("");
+		new Label(searchFormPanel).setText("Promedio del ultimo partido desde:");
+		new TextBox(searchFormPanel).bindValueToProperty("promedioDesde");
+		
+		new Label(searchFormPanel).setText("Promedio del ultimo partido hasta:");
+		new TextBox(searchFormPanel).bindValueToProperty("promedioHasta");
 	
+		new Label(searchFormPanel).setText("Fecha de nacimiento anterior a:");
+		new TextBox(searchFormPanel).bindValueToProperty("fechaString");
+		new Label(searchFormPanel).setText("");
+		new Label(searchFormPanel).setText("(mm/dd/yyyy)").setFontSize(8);
+		
 		new Label(searchFormPanel).setText("Infracciones");
 		new Selector(searchFormPanel);//.bindValueToProperty("Tipo");
 	}
@@ -57,7 +62,7 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 	public void createResultsGrid(Panel mainPanel) {
 		Table<Participante> table = new Table<Participante>(mainPanel, Participante.class);
 		table.setHeigth(200);
-		table.setWidth(450);
+		table.setWidth(600);
 
 		table.bindItemsToProperty("resultados");
 		table.bindValueToProperty("participanteSeleccionado");
@@ -93,6 +98,11 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 			.setTitle("Promedio")
 			.setFixedSize(100)
 			.bindContentsToProperty("promedio");
+		
+		new Column<Participante>(table)
+		.setTitle("Fecha Nacimiento")
+		.setFixedSize(150)
+		.bindContentsToTransformer(new DateToStringTransformer());
 	}
 	
 	protected void addActions(Panel actionsPanel) {

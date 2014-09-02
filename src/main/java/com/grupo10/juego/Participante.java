@@ -1,5 +1,6 @@
 package com.grupo10.juego;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -20,10 +21,12 @@ public class Participante implements Observador {
 	String nombre;
 	String apodo;
 	Date fechaNacimiento;
-	public Integer handicap;
+	public int handicap;
 
 	Modalidad modalidad;
 	Partido partidoActualAjugar;
+	
+	
 	
 	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones, Modalidad modalidad) {
 		this.nombre = nombre;
