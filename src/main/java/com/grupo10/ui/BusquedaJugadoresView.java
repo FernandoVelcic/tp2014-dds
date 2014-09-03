@@ -1,5 +1,8 @@
 package com.grupo10.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -53,8 +56,11 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		new Label(searchFormPanel).setText("");
 		new Label(searchFormPanel).setText("(mm/dd/yyyy)").setFontSize(8);
 		
-		new Label(searchFormPanel).setText("Infracciones");
-		new Selector(searchFormPanel);//.bindValueToProperty("Tipo");
+		new Label(searchFormPanel).setText("Posee Infracciones");
+		new CheckBox(searchFormPanel).bindValueToProperty("tieneInfracciones");
+		new Label(searchFormPanel).setText("No Posee Infracciones");
+		new CheckBox(searchFormPanel).bindValueToProperty("noTieneInfracciones");
+		
 	}
 	
 	public void createResultsGrid(Panel mainPanel) {

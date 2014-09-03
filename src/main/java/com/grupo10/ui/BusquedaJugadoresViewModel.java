@@ -1,6 +1,7 @@
 package com.grupo10.ui;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,12 +19,14 @@ public class BusquedaJugadoresViewModel implements Serializable{
 	private Date fechaNacimientoHasta;
 	private Integer handicapDesde, handicapHasta;
 	private Double promedioDesde, promedioHasta;
+	private boolean tieneInfracciones;
+	private boolean noTieneInfracciones;
 
 	private List<Participante> resultados;
 	private Participante participanteSeleccionado;
 
 	public void search() {
-		this.resultados = HomeJugadores.getInstance().search(this.nombre, this.apodo, this.handicapDesde, this.handicapHasta, this.promedioDesde, this.promedioHasta, this.fechaString);
+		this.resultados = HomeJugadores.getInstance().search(this.nombre, this.apodo, this.handicapDesde, this.handicapHasta, this.promedioDesde, this.promedioHasta, this.fechaString, this.tieneInfracciones, this.noTieneInfracciones);
 	}
 	
 	public void clear() {
@@ -34,6 +37,8 @@ public class BusquedaJugadoresViewModel implements Serializable{
 		this.handicapHasta = null;
 		this.promedioDesde = null;
 		this.promedioHasta = null;
+		this.tieneInfracciones = null != null;
+		this.noTieneInfracciones = null != null;
 		search();
 	}
 
@@ -120,4 +125,21 @@ public class BusquedaJugadoresViewModel implements Serializable{
 	public void verJugador(WindowOwner owner) {
 		new JugadorView(owner, participanteSeleccionado).open();
 	}
+
+	public boolean getTieneInfracciones() {
+		return tieneInfracciones;
+	}
+
+	public void setTieneInfracciones(boolean tieneInfracciones) {
+		this.tieneInfracciones = tieneInfracciones;
+	}
+	
+	public boolean isNoTieneInfracciones() {
+		return noTieneInfracciones;
+	}
+
+	public void setNoTieneInfracciones(boolean noTieneInfracciones) {
+		this.noTieneInfracciones = noTieneInfracciones;
+	}
+
 }

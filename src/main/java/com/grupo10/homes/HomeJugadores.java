@@ -58,7 +58,7 @@ public class HomeJugadores implements Serializable {
 		partido.inscribirJugador(new Participante("Federico", "Fede", new Date("07/06/1984"), 9, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
 	}
 	
-	public List<Participante> search(String nombre, String apodo, Integer handicapDesde, Integer handicapHasta, Double promedioDesde, Double promedioHasta, String fechaString) {
+	public List<Participante> search(String nombre, String apodo, Integer handicapDesde, Integer handicapHasta, Double promedioDesde, Double promedioHasta, String fechaString, boolean tieneInfracciones, boolean noTieneInfracciones) {
 		List<Participante> resultados = new ArrayList<Participante>();
 
 		for (Participante participante : partido.participantes) {
@@ -68,13 +68,15 @@ public class HomeJugadores implements Serializable {
 					&& matchIntegerTo(handicapHasta, participante.getHandicap())
 					&& matchDoubleFrom(promedioDesde, participante.getPromedio())
 					&& matchDoubleTo(promedioHasta, participante.getPromedio())
-					&& matchDateFrom(fechaString, participante.getFechaNacimiento())) {
+					&& matchDateFrom(fechaString, participante.getFechaNacimiento())
+					&& matchTieneInfracciones(tieneInfracciones, participante.getInfracciones())
+		|| matchNoTieneInfracciones(noTieneInfracciones, participante.getInfracciones())) {
 				resultados.add(participante);
 			}
 		}
 		return resultados;
 	}
-	
+
 	private Date convertirStringAFecha(String fechaString){
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date dateFormat = null;
@@ -84,6 +86,14 @@ public class HomeJugadores implements Serializable {
 			e.printStackTrace();
 		}
 		return dateFormat;
+	}
+	
+	private boolean matchTieneInfracciones(boolean tieneInfracciones, List<Infraccion> list) {
+		return tieneInfracciones == (list.size() > 0);
+	}
+	
+	private boolean matchNoTieneInfracciones(boolean noTieneInfracciones, List<Infraccion> list) {
+		return noTieneInfracciones == (list.size() == 0);
 	}
 
 	private boolean matchDateFrom(String fechaString, Date fechaNacimiento) {

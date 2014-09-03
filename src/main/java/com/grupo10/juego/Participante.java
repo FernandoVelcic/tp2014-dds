@@ -13,6 +13,7 @@ import com.grupo10.modalidades.Modalidad;
 public class Participante implements Observador {
 	public List<Participante> amigos = new ArrayList<Participante>();
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
+	
 	public List<String> notificaciones = new ArrayList<String>();
 	public List<Calificacion> calificaciones = new ArrayList<Calificacion>();
 	
@@ -115,4 +116,13 @@ public class Participante implements Observador {
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+	
+	public List<Infraccion> getInfracciones() {
+		return infracciones;
+	}
+
+	public void setInfracciones(List<Infraccion> infracciones) {
+		this.infracciones = infracciones;
+	}
+
 }
