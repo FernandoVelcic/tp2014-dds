@@ -28,7 +28,7 @@ public class BusquedaJugadoresViewModel implements Serializable{
 	public void search() {
 		this.resultados = HomeJugadores.getInstance().search(this.nombre, this.apodo, this.handicapDesde, this.handicapHasta, this.promedioDesde, this.promedioHasta, this.fechaString, this.tieneInfracciones, this.noTieneInfracciones);
 	}
-	
+
 	public void clear() {
 		this.nombre = "";
 		this.apodo = "";

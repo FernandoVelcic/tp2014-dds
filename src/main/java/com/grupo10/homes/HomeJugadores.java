@@ -13,6 +13,7 @@ import com.grupo10.juego.Infraccion;
 import com.grupo10.juego.Participante;
 import com.grupo10.juego.Partido;
 import com.grupo10.modalidades.Estandar;
+import com.grupo10.ui.BusquedaJugadoresViewModel;
 
 import java.util.Date;
 
@@ -60,7 +61,6 @@ public class HomeJugadores implements Serializable {
 	
 	public List<Participante> search(String nombre, String apodo, Integer handicapDesde, Integer handicapHasta, Double promedioDesde, Double promedioHasta, String fechaString, boolean tieneInfracciones, boolean noTieneInfracciones) {
 		List<Participante> resultados = new ArrayList<Participante>();
-
 		for (Participante participante : partido.participantes) {
 			if (matchStartsWith(nombre, participante.getNombre()) 
 					&& matchLike(apodo, participante.getApodo()) 
@@ -69,8 +69,8 @@ public class HomeJugadores implements Serializable {
 					&& matchDoubleFrom(promedioDesde, participante.getPromedio())
 					&& matchDoubleTo(promedioHasta, participante.getPromedio())
 					&& matchDateFrom(fechaString, participante.getFechaNacimiento())
-					&& matchTieneInfracciones(tieneInfracciones, participante.getInfracciones())
-		|| matchNoTieneInfracciones(noTieneInfracciones, participante.getInfracciones())) {
+					&& (matchTieneInfracciones(tieneInfracciones, participante.getInfracciones())
+					|| matchNoTieneInfracciones(noTieneInfracciones, participante.getInfracciones()))) {
 				resultados.add(participante);
 			}
 		}

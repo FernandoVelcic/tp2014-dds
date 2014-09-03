@@ -43,7 +43,9 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		new TextBox(searchFormPanel).bindValueToProperty("handicapDesde");
 		
 		new Label(searchFormPanel).setText("Handicap hasta:");
-		new TextBox(searchFormPanel).bindValueToProperty("handicapHasta");
+		TextBox textHandicapH = new TextBox(searchFormPanel);
+		textHandicapH.bindValueToProperty("handicapHasta");
+		
 		
 		new Label(searchFormPanel).setText("Promedio del ultimo partido desde:");
 		new TextBox(searchFormPanel).bindValueToProperty("promedioDesde");
