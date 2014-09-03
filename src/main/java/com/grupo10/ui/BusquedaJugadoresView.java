@@ -46,7 +46,6 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		TextBox textHandicapH = new TextBox(searchFormPanel);
 		textHandicapH.bindValueToProperty("handicapHasta");
 		
-		
 		new Label(searchFormPanel).setText("Promedio del ultimo partido desde:");
 		new TextBox(searchFormPanel).bindValueToProperty("promedioDesde");
 		
@@ -109,6 +108,11 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		.setTitle("Fecha Nacimiento")
 		.setFixedSize(150)
 		.bindContentsToTransformer(new DateToStringTransformer());
+		
+		new Column<Participante>(table)
+		.setTitle("Handicap mayor a 8")
+		.setFixedSize(150)
+		.bindContentsToTransformer(new HandicapMayorA8X());
 	}
 	
 	protected void addActions(Panel actionsPanel) {
