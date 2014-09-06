@@ -49,9 +49,9 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		new Label(mainPanel).setText("Resultado: equipos generados");
 		
 		new Label(mainPanel).setText("Equipo 1:");
-		new List<Participante>(mainPanel).bindItemsToProperty("equipo1");
+		new JugadoresGrid().createResultsGrid(this, mainPanel, "equipo1");
 		new Label(mainPanel).setText("Equipo 2:");
-		new List<Participante>(mainPanel).bindItemsToProperty("equipo2");
+		new JugadoresGrid().createResultsGrid(this, mainPanel, "equipo2");
 		
 		new Button(mainPanel)
 			.setCaption("Confirmar equipos")

@@ -12,6 +12,10 @@ import com.grupo10.modalidades.Modalidad;
 @Observable
 public class Participante implements Observador {
 	public List<Participante> amigos = new ArrayList<Participante>();
+	public List<Participante> getAmigos() {
+		return amigos;
+	}
+
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	
 	public List<String> notificaciones = new ArrayList<String>();

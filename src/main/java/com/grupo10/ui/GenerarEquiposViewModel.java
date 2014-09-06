@@ -22,6 +22,8 @@ public class GenerarEquiposViewModel {
 	Partido partido;
 	List<Participante> equipo1;
 	List<Participante> equipo2;
+	
+	Participante participanteSeleccionado;
 
 	public GenerarEquiposViewModel() {
 		partido = new HomeJugadores().getInstance().getPartido();
@@ -77,5 +79,9 @@ public class GenerarEquiposViewModel {
 	
 	public List<Participante> getEquipo2() {
 		return equipo2;
+	}
+	
+	public void setParticipanteSeleccionado(Participante participanteSeleccionado) {
+		this.participanteSeleccionado = participanteSeleccionado;
 	}
 }

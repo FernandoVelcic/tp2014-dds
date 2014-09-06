@@ -1,17 +1,12 @@
 package com.grupo10.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
-import org.uqbar.arena.widgets.tables.*;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
-import com.grupo10.juego.Participante;
 
 public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 	public BusquedaJugadoresView(WindowOwner owner) {
@@ -24,7 +19,15 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		setTitle("Busqueda de jugadores");
 		this.searchFormPanel(mainPanel);
 		this.addActions(mainPanel);
-		this.createResultsGrid(mainPanel);
+		new JugadoresGrid().createResultsGrid(this, mainPanel, "resultados");
+		
+		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
+		NotNullObservable elementSelected = new NotNullObservable("participanteSeleccionado");
+		
+		new Button(mainPanel)
+			.setCaption("Ver jugador seleccionado")
+			.onClick(() -> new JugadorView(this, getModelObject().getParticipanteSeleccionado()).open())
+			.bindEnabled(elementSelected);
 	}
 
 	private void searchFormPanel(Panel mainPanel) {
@@ -62,57 +65,6 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		new Label(searchFormPanel).setText("No Posee Infracciones");
 		new CheckBox(searchFormPanel).bindValueToProperty("noTieneInfracciones");
 		
-	}
-	
-	public void createResultsGrid(Panel mainPanel) {
-		Table<Participante> table = new Table<Participante>(mainPanel, Participante.class);
-		table.setHeigth(200);
-		table.setWidth(600);
-
-		table.bindItemsToProperty("resultados");
-		table.bindValueToProperty("participanteSeleccionado");
-
-		this.describeResultsGrid(table);
-		
-		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
-		NotNullObservable elementSelected = new NotNullObservable("participanteSeleccionado");
-		
-		new Button(mainPanel)
-			.setCaption("Ver jugador seleccionado")
-			.onClick(() -> getModelObject().verJugador(this))
-			.bindEnabled(elementSelected);
-	}
-	
-	protected void describeResultsGrid(Table<Participante> table) {
-		new Column<Participante>(table)
-			.setTitle("Nombre")
-			.setFixedSize(150)
-			.bindContentsToProperty("nombre");
-
-		new Column<Participante>(table)
-			.setTitle("Apodo")
-			.setFixedSize(100)
-			.bindContentsToProperty("apodo");
-		
-		new Column<Participante>(table)
-			.setTitle("Handicap")
-			.setFixedSize(100)
-			.bindContentsToProperty("handicap");
-		
-		new Column<Participante>(table)
-			.setTitle("Promedio")
-			.setFixedSize(100)
-			.bindContentsToProperty("promedio");
-		
-		new Column<Participante>(table)
-		.setTitle("Fecha Nacimiento")
-		.setFixedSize(150)
-		.bindContentsToTransformer(new DateToStringTransformer());
-		
-		new Column<Participante>(table)
-		.setTitle("Handicap mayor a 8")
-		.setFixedSize(150)
-		.bindContentsToTransformer(new HandicapMayorA8X());
 	}
 	
 	protected void addActions(Panel actionsPanel) {

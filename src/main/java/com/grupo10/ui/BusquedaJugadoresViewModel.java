@@ -37,8 +37,8 @@ public class BusquedaJugadoresViewModel implements Serializable{
 		this.handicapHasta = null;
 		this.promedioDesde = null;
 		this.promedioHasta = null;
-		this.tieneInfracciones = null != null;
-		this.noTieneInfracciones = null != null;
+		this.tieneInfracciones = false;
+		this.noTieneInfracciones = false;
 		search();
 	}
 
@@ -120,10 +120,6 @@ public class BusquedaJugadoresViewModel implements Serializable{
 
 	public void setParticipanteSeleccionado(Participante participanteSeleccionado) {
 		this.participanteSeleccionado = participanteSeleccionado;
-	}
-	
-	public void verJugador(WindowOwner owner) {
-		new JugadorView(owner, participanteSeleccionado).open();
 	}
 
 	public boolean getTieneInfracciones() {

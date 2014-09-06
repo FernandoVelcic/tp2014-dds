@@ -45,9 +45,16 @@ public class HomeJugadores implements Serializable {
 		Infraccion infraccion2 = new Infraccion("Insulto al arbitro");
 		Infraccion infraccion3 = new Infraccion("Pelea con compañero");
 
-		partido.inscribirJugador(new Participante("Franco", "Pancho", new Date("10/10/1980"), 6, new ArrayList<Calificacion>(Arrays.asList(calificacion3,calificacion4)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
-		partido.inscribirJugador(new Participante("Martin", "Tincho", new Date("01/12/1985"), 8, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6)), new ArrayList<Infraccion>(Arrays.asList(infraccion1)), new Estandar()));
-		partido.inscribirJugador(new Participante("Oscar", "Osqui", new Date("12/20/1984"), 9, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion9,calificacion9)), new ArrayList<Infraccion>(Arrays.asList(infraccion1)), new Estandar()));
+		Participante martin = new Participante("Martin", "Tincho", new Date("01/12/1985"), 8, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6)), new ArrayList<Infraccion>(Arrays.asList(infraccion1)), new Estandar());
+		Participante oscar = new Participante("Oscar", "Osqui", new Date("12/20/1984"), 9, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion9,calificacion9)), new ArrayList<Infraccion>(Arrays.asList(infraccion1)), new Estandar());
+		
+		Participante franco = new Participante("Franco", "Pancho", new Date("10/10/1980"), 6, new ArrayList<Calificacion>(Arrays.asList(calificacion3,calificacion4)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar());
+		franco.agregarAmigo(martin);
+		franco.agregarAmigo(oscar);
+		
+		partido.inscribirJugador(franco);
+		partido.inscribirJugador(martin);
+		partido.inscribirJugador(oscar);
 		partido.inscribirJugador(new Participante("Fabian", "Fabi", new Date("04/15/1988"), 10, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion10)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
 		partido.inscribirJugador(new Participante("Pablo", "Paul", new Date("02/24/1982"), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5)), new ArrayList<Infraccion>(Arrays.asList(infraccion2)), new Estandar()));
 		partido.inscribirJugador(new Participante("Jose", "Pepe", new Date("08/14/1987"), 7, new ArrayList<Calificacion>(Arrays.asList(calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar()));
