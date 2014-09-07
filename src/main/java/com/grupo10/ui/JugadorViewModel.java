@@ -29,7 +29,6 @@ public class JugadorViewModel {
 	}
 	
 	public String getFechaNacimiento() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		return dateFormat.format(jugador.getFechaNacimiento());
+		return new DateToStringTransformer().convertirFechaAString(jugador.getFechaNacimiento());
 	}
 }

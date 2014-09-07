@@ -1,5 +1,6 @@
 package com.grupo10.ui;
 
+import com.uqbar.commons.collections.Transformer;
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
@@ -43,13 +44,18 @@ public class JugadoresGrid {
 			.bindContentsToProperty("promedio");
 		
 		new Column<Participante>(table)
-		.setTitle("Fecha Nacimiento")
-		.setFixedSize(150)
-		.bindContentsToTransformer(new DateToStringTransformer());
+			.setTitle("Fecha Nacimiento")
+			.setFixedSize(150)
+			.bindContentsToTransformer(new Transformer<Participante, String>() {
+				@Override
+				public String transform(Participante participante) {
+					return new DateToStringTransformer().convertirFechaAString(participante.getFechaNacimiento());
+				}
+			});
 		
 		new Column<Participante>(table)
-		.setTitle("Handicap mayor a 8")
-		.setFixedSize(150)
-		.bindContentsToTransformer(new HandicapMayorA8X());
+			.setTitle("Handicap mayor a 8")
+			.setFixedSize(150)
+			.bindContentsToTransformer(new HandicapMayorA8X());
 	}
 }
