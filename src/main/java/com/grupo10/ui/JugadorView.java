@@ -49,7 +49,7 @@ public class JugadorView extends Window<JugadorViewModel> {
 		new Label(infoPanel).bindValueToProperty("fechaNacimiento");
 		
 		new Label(infoPanel).setText("Cantidad de partidos que jugo:");
-		new Label(infoPanel);
+		new Label(infoPanel).bindValueToProperty("jugador.cantidadPartidosJugados");
 
 		new Label(mainPanel).setText("Amigos:");
 		new JugadoresGrid().createResultsGrid(this, mainPanel, "jugador.amigos");

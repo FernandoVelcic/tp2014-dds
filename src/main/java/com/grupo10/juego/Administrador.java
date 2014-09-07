@@ -70,6 +70,10 @@ public class Administrador implements Observador {
 		criterioDivision.dividirEquipos(jugadoresOrdenados, partido);
 	}
 	
+	public void confirmarEquipos(){
+		this.partido.jugadores.forEach(j -> j.cantidadPartidosJugados++);
+	}
+	
 	public void definirHandicap(Participante jugador, int handicap){
 		jugador.handicap = handicap;
 	}

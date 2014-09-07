@@ -2,9 +2,7 @@ package com.grupo10.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.uqbar.commons.utils.Observable;
-
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.homes.HomeJugadores;
@@ -27,6 +25,9 @@ public class GenerarEquiposViewModel {
 
 	public GenerarEquiposViewModel() {
 		partido = new HomeJugadores().getInstance().getPartido();
+		MixCriterios mixCriterios = new MixCriterios();
+		mixCriterios.add(new Calificaciones());
+		mixCriterios.add(new Handicap());
 		listaCriteriosDivision = new ArrayList<CriterioDivision>();
 		listaCriteriosDivision.add(new ParImpar());
 		listaCriteriosDivision.add(new TresUno());
@@ -34,8 +35,8 @@ public class GenerarEquiposViewModel {
 		listaCriteriosOrden = new ArrayList<CriterioOrden>();
 		listaCriteriosOrden.add(new Calificaciones());
 		listaCriteriosOrden.add(new Handicap());
-		//listaCriteriosOrden.add(new MixCriterios());
-		//listaCriteriosOrden.add(new Ncalificaciones());
+		listaCriteriosOrden.add(mixCriterios);
+		listaCriteriosOrden.add(new Ncalificaciones(3));
 	}
 
 	public void generarEquipos() {
@@ -46,7 +47,7 @@ public class GenerarEquiposViewModel {
 	}
 	
 	public void confirmarEquipos() {
-		
+		new HomeJugadores().getInstance().getAdmin().confirmarEquipos();
 	}
 
 	public CriterioDivision getCriterioDivision() {

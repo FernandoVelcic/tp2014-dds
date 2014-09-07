@@ -17,15 +17,13 @@ public class Participante implements Observador {
 	public List<String> notificaciones = new ArrayList<String>();
 	public List<Calificacion> calificaciones = new ArrayList<Calificacion>();
 	
-	
+	public int cantidadPartidosJugados;
+	public int handicap;
 	String nombre;
 	String apodo;
 	Date fechaNacimiento;
-	public int handicap;
-
 	Modalidad modalidad;
 	Partido partidoActualAjugar;
-	
 	
 	
 	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones, Modalidad modalidad) {
@@ -127,6 +125,14 @@ public class Participante implements Observador {
 	
 	public List<Participante> getAmigos() {
 		return amigos;
+	}
+	
+	public int getCantidadPartidosJugados() {
+		return cantidadPartidosJugados;
+	}
+
+	public void setCantidadPartidosJugados(int cantidadPartidosJugados) {
+		this.cantidadPartidosJugados = cantidadPartidosJugados;
 	}
 
 }
