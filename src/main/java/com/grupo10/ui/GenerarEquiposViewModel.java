@@ -81,6 +81,10 @@ public class GenerarEquiposViewModel {
 		return equipo2;
 	}
 	
+	public Participante getParticipanteSeleccionado() {
+		return participanteSeleccionado;
+	}
+	
 	public void setParticipanteSeleccionado(Participante participanteSeleccionado) {
 		this.participanteSeleccionado = participanteSeleccionado;
 	}
