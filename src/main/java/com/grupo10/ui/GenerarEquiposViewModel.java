@@ -92,20 +92,19 @@ public class GenerarEquiposViewModel {
 		this.participanteSeleccionado = participanteSeleccionado;
 	}
 	
-	//Negreada para habilitar formulario
-	//TODO: matenme
-	Participante habilitarFormulario;
+	//Para habilitar formulario
+	HabilitarFormulario habilitarFormulario;
 	
-	public Participante getHabilitarFormulario() {
+	public HabilitarFormulario getHabilitarFormulario() {
 		return habilitarFormulario;
 	}
 	
-	public void setHabilitarFormulario(Participante participante) {
+	public void setHabilitarFormulario(HabilitarFormulario participante) {
 		habilitarFormulario = participante;
 	}
 	
 	public void actualizarFormulario() {
 		if(criterioOrden != null && criterioDivision != null)
-			setHabilitarFormulario(new Participante());
+			setHabilitarFormulario(new HabilitarFormulario());
 	}
 }
