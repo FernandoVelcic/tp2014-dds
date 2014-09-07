@@ -52,7 +52,7 @@ public class JugadorView extends Window<JugadorViewModel> {
 		new JugadoresGrid().createResultsGrid(this, mainPanel, "jugador.amigos");
 		
 		new Label(mainPanel).setText("Infracciones:");
-		
+		new InfraccionesGrid().createResultsGrid(this, mainPanel, "jugador.infracciones");
 		
 		new Button(mainPanel)
 			.setCaption("Volver")

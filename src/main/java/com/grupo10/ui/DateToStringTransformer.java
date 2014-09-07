@@ -8,7 +8,7 @@ import com.uqbar.commons.collections.Transformer;
 
 public final class DateToStringTransformer implements Transformer<Participante, String>{
 	
-	private String convertirFechaAString(Date fecha){
+	public String convertirFechaAString(Date fecha){
 		String patron = "dd/MM/yyyy";
 	    SimpleDateFormat formato = new SimpleDateFormat(patron);
 	    formato.format(fecha);
