@@ -1,5 +1,6 @@
 package com.grupo10.ui;
 
+import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -41,10 +42,14 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		selectCriterioOrden.bindValueToProperty("criterioOrden");
 		selectCriterioOrden.bindItemsToProperty("listaCriteriosOrden");
 
+		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
+		NotNullObservable elementSelected = new NotNullObservable("habilitarFormulario");
+
 		//
 		new Button(mainPanel)
 			.setCaption("Generar equipos")
-			.onClick(() -> getModelObject().generarEquipos());
+			.onClick(() -> getModelObject().generarEquipos())
+			.bindEnabled(elementSelected);
 		
 		new Label(mainPanel).setText("Resultado: equipos generados");
 		
@@ -55,7 +60,8 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		
 		new Button(mainPanel)
 			.setCaption("Confirmar equipos")
-			.onClick(() -> getModelObject().confirmarEquipos());
+			.onClick(() -> getModelObject().confirmarEquipos())
+			.bindEnabled(elementSelected);
 	}
 
 }

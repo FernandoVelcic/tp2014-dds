@@ -56,6 +56,7 @@ public class GenerarEquiposViewModel {
 	
 	public void setCriterioDivision(CriterioDivision criterioDivision) {
 		this.criterioDivision = criterioDivision;
+		actualizarFormulario();
 	}
 
 	public CriterioOrden getCriterioOrden() {
@@ -64,6 +65,7 @@ public class GenerarEquiposViewModel {
 	
 	public void setCriterioOrden(CriterioOrden criterioOrden) {
 		this.criterioOrden = criterioOrden;
+		actualizarFormulario();
 	}
 	
 	public List<CriterioDivision> getListaCriteriosDivision() {
@@ -88,5 +90,22 @@ public class GenerarEquiposViewModel {
 	
 	public void setParticipanteSeleccionado(Participante participanteSeleccionado) {
 		this.participanteSeleccionado = participanteSeleccionado;
+	}
+	
+	//Negreada para habilitar formulario
+	//TODO: matenme
+	Participante habilitarFormulario;
+	
+	public Participante getHabilitarFormulario() {
+		return habilitarFormulario;
+	}
+	
+	public void setHabilitarFormulario(Participante participante) {
+		habilitarFormulario = participante;
+	}
+	
+	public void actualizarFormulario() {
+		if(criterioOrden != null && criterioDivision != null)
+			setHabilitarFormulario(new Participante());
 	}
 }
