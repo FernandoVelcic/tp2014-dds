@@ -1,19 +1,13 @@
 package com.grupo10.ui;
 
 import org.uqbar.arena.bindings.NotNullObservable;
-import org.uqbar.arena.bindings.ObservableProperty;
-import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
-import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.lacar.ui.model.ListBuilder;
-import org.uqbar.lacar.ui.model.bindings.Binding;
 
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
-import com.grupo10.juego.Participante;
 
 public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 
@@ -60,8 +54,13 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		
 		new Button(mainPanel)
 			.setCaption("Confirmar equipos")
-			.onClick(() -> getModelObject().confirmarEquipos())
+			.onClick(() -> actionConfirmarEquipos())
 			.bindEnabled(elementSelected);
+	}
+	
+	public void actionConfirmarEquipos(){
+		getModelObject().confirmarEquipos();
+		new InformationPanel(this, "Confirmación", "       Partido creado correctamente      ").open();
 	}
 
 }

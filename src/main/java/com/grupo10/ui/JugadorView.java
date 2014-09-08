@@ -1,20 +1,12 @@
 package com.grupo10.ui;
 
-import java.util.Date;
-
-import org.eclipse.core.internal.databinding.conversion.DateToStringConverter;
 import org.uqbar.arena.layout.ColumnLayout;
-import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
-import org.uqbar.arena.widgets.List;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
-
-import com.grupo10.juego.Infraccion;
 import com.grupo10.juego.Participante;
-import com.uqbar.commons.collections.Transformer;
 
 
 public class JugadorView extends Window<JugadorViewModel> {
