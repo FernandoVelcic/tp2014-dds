@@ -5,11 +5,14 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
-
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
 
 public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
+
+	public boolean generarEquipos = false;
+	public int cantidadGenerarEquipos = 0;
+	public int cantidadConfirmarEquipos = 0;
 
 	public GenerarEquiposView(WindowOwner owner) {
 		super(owner, new GenerarEquiposViewModel());
@@ -42,7 +45,7 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		//
 		new Button(mainPanel)
 			.setCaption("Generar equipos")
-			.onClick(() -> getModelObject().generarEquipos())
+			.onClick(() -> actionGenerarEquipo())
 			.bindEnabled(elementSelected);
 		
 		new Label(mainPanel).setText("Resultado: equipos generados");
@@ -58,9 +61,30 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 			.bindEnabled(elementSelected);
 	}
 	
+	public void actionGenerarEquipo(){
+		cantidadGenerarEquipos += 1;
+		getModelObject().generarEquipos();
+		generarEquipos = true;
+		cantidadConfirmarEquipos = 0;
+	}
+	
 	public void actionConfirmarEquipos(){
+		cantidadConfirmarEquipos += 1;
 		getModelObject().confirmarEquipos();
-		new InformationPanel(this, "Confirmación", "       Partido creado correctamente      ").open();
+		
+		if (generarEquipos && cantidadGenerarEquipos == cantidadConfirmarEquipos){
+			new InformationPanel(this, "Confirmación", "       Partido creado correctamente      ").open();
+			cantidadConfirmarEquipos += 1;
+			getModelObject().confirmarEquipos();
+			cantidadGenerarEquipos = 0;
+			cantidadConfirmarEquipos = 0;
+		}
+		
+		else if (!generarEquipos)
+			new InformationPanel(this, "Error", "       Debe generar los equipos para poder confirmar el partido      ").open();			
+		
+		else if (cantidadGenerarEquipos != cantidadConfirmarEquipos)
+			new InformationPanel(this, "Error", "       Este equipo ya ha sido creado      ").open();			
 	}
 
 }
