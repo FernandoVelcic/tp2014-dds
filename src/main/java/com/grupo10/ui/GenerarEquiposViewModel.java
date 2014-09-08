@@ -25,18 +25,42 @@ public class GenerarEquiposViewModel {
 
 	public GenerarEquiposViewModel() {
 		partido = new HomeJugadores().getInstance().getPartido();
-		MixCriterios mixCriterios = new MixCriterios();
+		MixCriterios mixCriterios = new MixCriterios()  {
+			public String toString() {
+				return "Calificaciones+handicap (MixCriterio)";
+			}
+		};
 		mixCriterios.add(new Calificaciones());
 		mixCriterios.add(new Handicap());
 		listaCriteriosDivision = new ArrayList<CriterioDivision>();
-		listaCriteriosDivision.add(new ParImpar());
-		listaCriteriosDivision.add(new TresUno());
+		listaCriteriosDivision.add(new ParImpar() {
+			public String toString() {
+				return "ParImpar";
+			}
+		});
+		listaCriteriosDivision.add(new TresUno() {
+			public String toString() {
+				return "TresUno";
+			}
+		});
 		
 		listaCriteriosOrden = new ArrayList<CriterioOrden>();
-		listaCriteriosOrden.add(new Calificaciones());
-		listaCriteriosOrden.add(new Handicap());
+		listaCriteriosOrden.add(new Calificaciones() {
+			public String toString() {
+				return "Calificaciones";
+			}
+		});
+		listaCriteriosOrden.add(new Handicap() {
+			public String toString() {
+				return "Handicap";
+			}
+		});
 		listaCriteriosOrden.add(mixCriterios);
-		listaCriteriosOrden.add(new Ncalificaciones(3));
+		listaCriteriosOrden.add(new Ncalificaciones(3) {
+			public String toString() {
+				return "Calificaciones 3 (Ncalificaciones)";
+			}
+		});
 	}
 
 	public void generarEquipos() {
