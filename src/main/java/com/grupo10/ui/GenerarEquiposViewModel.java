@@ -24,7 +24,7 @@ public class GenerarEquiposViewModel {
 	Participante participanteSeleccionado;
 
 	public GenerarEquiposViewModel() {
-		partido = new HomeJugadores().getInstance().getPartido();
+		partido = HomeJugadores.getInstance().getPartido();
 		MixCriterios mixCriterios = new MixCriterios()  {
 			public String toString() {
 				return "Calificaciones+handicap (MixCriterio)";
@@ -65,13 +65,13 @@ public class GenerarEquiposViewModel {
 
 	public void generarEquipos() {
 		partido.generarJugadores();
-		new HomeJugadores().getInstance().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
+		HomeJugadores.getInstance().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
 		equipo1 = partido.equipo1;
 		equipo2 = partido.equipo2;
 	}
 	
 	public void confirmarEquipos() {
-		new HomeJugadores().getInstance().getAdmin().confirmarEquipos();
+		HomeJugadores.getInstance().getAdmin().confirmarEquipos();
 	}
 
 	public CriterioDivision getCriterioDivision() {

@@ -19,7 +19,7 @@ import com.grupo10.ui.BusquedaJugadoresViewModel;
 
 import java.util.Date;
 
-public class HomeJugadores implements Serializable {
+public class HomeJugadores {
 	private static HomeJugadores instance;
 	private Administrador admin = new Administrador();
 	private Partido partido = new Partido(new Date(), admin);
@@ -32,7 +32,7 @@ public class HomeJugadores implements Serializable {
 	}
 
 	@SuppressWarnings("deprecation")
-	public HomeJugadores() {
+	private HomeJugadores() {
 		
 		Calificacion calificacion1 = new Calificacion(1,"",partido);
 		Calificacion calificacion2 = new Calificacion(2,"",partido);
