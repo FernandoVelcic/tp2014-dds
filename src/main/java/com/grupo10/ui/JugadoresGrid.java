@@ -1,6 +1,7 @@
 package com.grupo10.ui;
 
 import com.uqbar.commons.collections.Transformer;
+
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
@@ -26,7 +27,8 @@ public class JugadoresGrid {
 		new Column<Participante>(table)
 			.setTitle("Nombre")
 			.setFixedSize(150)
-			.bindContentsToProperty("nombre");
+			.bindContentsToProperty("nombre")
+			.bindBackground("handicap", new HandicapMayorA8X());
 
 		new Column<Participante>(table)
 			.setTitle("Apodo")
@@ -52,10 +54,5 @@ public class JugadoresGrid {
 					return new DateToStringTransformer().convertirFechaAString(participante.getFechaNacimiento());
 				}
 			});
-		
-		new Column<Participante>(table)
-			.setTitle("Handicap mayor a 8")
-			.setFixedSize(150)
-			.bindContentsToTransformer(new HandicapMayorA8X());
 	}
 }
