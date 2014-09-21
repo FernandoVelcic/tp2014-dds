@@ -11,14 +11,15 @@ import org.uqbar.arena.windows.WindowOwner;
 
 import com.grupo10.juego.Participante;
 
-public class JugadoresGrid {
-	public void createResultsGrid(WindowOwner window, Panel mainPanel, String propertyName) {
+public class JugadoresGridBuilder {
+	public void createResultsGrid(Panel mainPanel, String propertyName, boolean bindProperty) {
 		Table<Participante> table = new Table<Participante>(mainPanel, Participante.class);
 		table.setHeigth(200);
 		table.setWidth(600);
 
 		table.bindItemsToProperty(propertyName);
-		table.bindValueToProperty("participanteSeleccionado");
+		if(bindProperty)
+			table.bindValueToProperty("participanteSeleccionado");
 
 		this.describeResultsGrid(table);
 	}

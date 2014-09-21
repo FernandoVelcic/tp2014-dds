@@ -25,7 +25,6 @@ public class Participante implements Observador {
 	Modalidad modalidad;
 	Partido partidoActualAjugar;
 	
-	
 	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones, Modalidad modalidad) {
 		this.nombre = nombre;
 		this.apodo = apodo;

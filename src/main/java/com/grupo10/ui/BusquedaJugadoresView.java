@@ -19,7 +19,7 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		setTitle("Busqueda de jugadores");
 		this.searchFormPanel(mainPanel);
 		this.addActions(mainPanel);
-		new JugadoresGrid().createResultsGrid(this, mainPanel, "resultados");
+		new JugadoresGridBuilder().createResultsGrid(mainPanel, "resultados", true);
 		
 		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
 		NotNullObservable elementSelected = new NotNullObservable("participanteSeleccionado");
