@@ -1,6 +1,5 @@
 package com.grupo10.homes;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import com.grupo10.juego.Partido;
 import com.grupo10.modalidades.Condicional;
 import com.grupo10.modalidades.Estandar;
 import com.grupo10.modalidades.Solidario;
-import com.grupo10.ui.BusquedaJugadoresViewModel;
 
 import java.util.Date;
 
@@ -49,23 +47,23 @@ public class HomeJugadores {
 		Infraccion infraccion2 = new Infraccion("Insulto al arbitro");
 		Infraccion infraccion3 = new Infraccion("Pelea con compañero");
 		
-		Participante martin = new Participante("Martin", "Tincho", new Date("01/12/1985"), 8, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6)), new ArrayList<Infraccion>(Arrays.asList(infraccion1)), new Condicional(true));
-		Participante oscar = new Participante("Oscar", "Osqui", new Date("12/20/1984"), 9, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion9,calificacion9)), new ArrayList<Infraccion>(Arrays.asList(infraccion1)), new Estandar());
-		Participante franco = new Participante("Franco", "Pancho", new Date("10/10/1980"), 6, new ArrayList<Calificacion>(Arrays.asList(calificacion3,calificacion4)), new ArrayList<Infraccion>(Arrays.asList(infraccion1, infraccion2, infraccion3)), new Solidario());
-		Participante fabian = new Participante("Fabian", "Fabi", new Date("04/15/1988"), 10, new ArrayList<Calificacion>(Arrays.asList(calificacion10,calificacion10)), new ArrayList<Infraccion>(Arrays.asList()), new Condicional(false));
-		Participante pablo = new Participante("Pablo", "Paul", new Date("02/24/1982"), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5)), new ArrayList<Infraccion>(Arrays.asList(infraccion2)), new Estandar());
-		Participante jose = new Participante("Jose", "Pepe", new Date("08/14/1987"), 7, new ArrayList<Calificacion>(Arrays.asList(calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar());
-		Participante marcelo = new Participante("Marcelo", "Marce", new Date("11/28/1988"), 10, new ArrayList<Calificacion>(Arrays.asList(calificacion10)), new ArrayList<Infraccion>(Arrays.asList()), new Solidario());
-		Participante tomas = new Participante("Tomas", "Tomy", new Date("09/18/1985"), 2, new ArrayList<Calificacion>(Arrays.asList(calificacion1,calificacion3,calificacion3,calificacion2)), new ArrayList<Infraccion>(Arrays.asList(infraccion3)), new Solidario());
-		Participante cristian = new Participante("Cristian", "Cris", new Date("04/29/1986"), 8, new ArrayList<Calificacion>(Arrays.asList(calificacion9, calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar());
-		Participante enrique = new Participante("Enrique", "Quique", new Date("05/17/1984"), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion7,calificacion3)), new ArrayList<Infraccion>(Arrays.asList()), new Condicional(true));
-		Participante marcos = new Participante("Marcos", "Mark", new Date("08/07/1982"), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5)), new ArrayList<Infraccion>(Arrays.asList(infraccion3)), new Estandar());
-		Participante federico = new Participante("Federico", "Fede", new Date("07/06/1984"), 9, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion8)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar());
-		Participante miguel = new Participante("Miguel", "Migue", new Date("09/10/1982"), 7, new ArrayList<Calificacion>(Arrays.asList(calificacion7,calificacion6)), new ArrayList<Infraccion>(Arrays.asList(infraccion3)), new Condicional(true));
-		Participante alejandro = new Participante("Alejandro", "Ale", new Date("09/21/1980"), 5, new ArrayList<Calificacion>(Arrays.asList(calificacion5, calificacion6)), new ArrayList<Infraccion>(Arrays.asList()), new Solidario());
-		Participante fernando = new Participante("Fernando", "Fer", new Date("09/06/1991"), 9, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion10)), new ArrayList<Infraccion>(Arrays.asList(infraccion2, infraccion3)), new Condicional(false));
-		Participante roberto = new Participante("Roberto", "Robert", new Date("12/12/1984"), 10, new ArrayList<Calificacion>(Arrays.asList(calificacion9,calificacion10,calificacion10,calificacion9)), new ArrayList<Infraccion>(Arrays.asList()), new Estandar());
-		Participante carlos = new Participante("Carlos", "Carl", new Date("11/16/1989"), 4, new ArrayList<Calificacion>(Arrays.asList(calificacion4,calificacion5)), new ArrayList<Infraccion>(Arrays.asList()), new Condicional(true));
+		Participante martin = new Participante("Martin", "Tincho", new Date("01/12/1985"), 8, Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6), Arrays.asList(infraccion1), new Condicional(true));
+		Participante oscar = new Participante("Oscar", "Osqui", new Date("12/20/1984"), 9, Arrays.asList(calificacion10,calificacion9,calificacion9), Arrays.asList(infraccion1), new Estandar());
+		Participante franco = new Participante("Franco", "Pancho", new Date("10/10/1980"), 6, Arrays.asList(calificacion3,calificacion4), Arrays.asList(infraccion1, infraccion2, infraccion3), new Solidario());
+		Participante fabian = new Participante("Fabian", "Fabi", new Date("04/15/1988"), 10, Arrays.asList(calificacion10,calificacion10), Arrays.asList(), new Condicional(false));
+		Participante pablo = new Participante("Pablo", "Paul", new Date("02/24/1982"), 5, Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5), Arrays.asList(infraccion2), new Estandar());
+		Participante jose = new Participante("Jose", "Pepe", new Date("08/14/1987"), 7, Arrays.asList(calificacion8), Arrays.asList(), new Estandar());
+		Participante marcelo = new Participante("Marcelo", "Marce", new Date("11/28/1988"), 10, Arrays.asList(calificacion10), Arrays.asList(), new Solidario());
+		Participante tomas = new Participante("Tomas", "Tomy", new Date("09/18/1985"), 2, Arrays.asList(calificacion1,calificacion3,calificacion3,calificacion2), Arrays.asList(infraccion3), new Solidario());
+		Participante cristian = new Participante("Cristian", "Cris", new Date("04/29/1986"), 8, Arrays.asList(calificacion9, calificacion8), Arrays.asList(), new Estandar());
+		Participante enrique = new Participante("Enrique", "Quique", new Date("05/17/1984"), 5, Arrays.asList(calificacion7,calificacion3), Arrays.asList(), new Condicional(true));
+		Participante marcos = new Participante("Marcos", "Mark", new Date("08/07/1982"), 5, Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5), Arrays.asList(infraccion3), new Estandar());
+		Participante federico = new Participante("Federico", "Fede", new Date("07/06/1984"), 9, Arrays.asList(calificacion9,calificacion8), Arrays.asList(), new Estandar());
+		Participante miguel = new Participante("Miguel", "Migue", new Date("09/10/1982"), 7, Arrays.asList(calificacion7,calificacion6), Arrays.asList(infraccion3), new Condicional(true));
+		Participante alejandro = new Participante("Alejandro", "Ale", new Date("09/21/1980"), 5, Arrays.asList(calificacion5, calificacion6), Arrays.asList(), new Solidario());
+		Participante fernando = new Participante("Fernando", "Fer", new Date("09/06/1991"), 9, Arrays.asList(calificacion9,calificacion10), Arrays.asList(infraccion2, infraccion3), new Condicional(false));
+		Participante roberto = new Participante("Roberto", "Robert", new Date("12/12/1984"), 10, Arrays.asList(calificacion9,calificacion10,calificacion10,calificacion9), Arrays.asList(), new Estandar());
+		Participante carlos = new Participante("Carlos", "Carl", new Date("11/16/1989"), 4, Arrays.asList(calificacion4,calificacion5), Arrays.asList(), new Condicional(true));
 		
 		partido.inscribirJugador(franco);
 		partido.inscribirJugador(martin);

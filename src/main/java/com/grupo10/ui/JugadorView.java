@@ -19,7 +19,7 @@ public class JugadorView extends Window<Participante> {
 
 	@Override
 	public void createContents(Panel mainPanel) {
-		setTitle("Informacion del jugador: " );//+ getModelObject().jugador.getNombre());
+		setTitle("Informacion del jugador: " + getModelObject().getNombre());
 		
 		Panel infoPanel = new Panel(mainPanel);		
 		infoPanel.setLayout(new ColumnLayout(2));
