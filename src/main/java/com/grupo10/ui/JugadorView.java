@@ -49,7 +49,7 @@ public class JugadorView extends Window<Participante> {
 		new JugadoresGridBuilder().createResultsGrid(mainPanel, "amigos", false);
 		
 		new Label(mainPanel).setText("Infracciones:");
-		new InfraccionesGrid().createResultsGrid(this, mainPanel, "infracciones");
+		new InfraccionesGridBuilder().createResultsGrid( mainPanel, "infracciones");
 		
 		new Button(mainPanel)
 			.setCaption("Volver")

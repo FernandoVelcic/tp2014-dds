@@ -9,8 +9,8 @@ import org.uqbar.arena.windows.WindowOwner;
 import com.grupo10.juego.Infraccion;
 import com.grupo10.juego.Participante;
 
-public class InfraccionesGrid {
-	public void createResultsGrid(WindowOwner window, Panel mainPanel, String propertyName) {
+public class InfraccionesGridBuilder {
+	public void createResultsGrid(Panel mainPanel, String propertyName) {
 		Table<Infraccion> table = new Table<Infraccion>(mainPanel, Infraccion.class);
 		table.setHeigth(200);
 		table.setWidth(600);
