@@ -5,6 +5,7 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.model.UserException;
 
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
@@ -55,7 +56,7 @@ public class GenerarEquiposView extends SimpleWindow<GenerarEquiposViewModel> {
 		new Button(mainPanel)
 			.setCaption("Generar equipos")
 			.onClick(() -> actionGenerarEquipo())
-			.bindEnabledToProperty("habilitarFormulario");
+			.bindEnabledToProperty("enableGenerarConfirmarEquipos");
 		
 		new Label(mainPanel).setText("Resultado: equipos generados");
 		
@@ -67,7 +68,7 @@ public class GenerarEquiposView extends SimpleWindow<GenerarEquiposViewModel> {
 		new Button(mainPanel)
 			.setCaption("Confirmar equipos")
 			.onClick(() -> actionConfirmarEquipos())
-			.bindEnabledToProperty("habilitarFormulario");
+			.bindEnabledToProperty("enableGenerarConfirmarEquipos");
 	}
 	
 	private void addUltimosPartidosPanel(Panel mainPanel){
@@ -97,9 +98,8 @@ public class GenerarEquiposView extends SimpleWindow<GenerarEquiposViewModel> {
 	
 	public void actionConfirmarEquipos(){
 		cantidadConfirmarEquipos += 1;
-		getModelObject().confirmarEquipos();
 		
-		if (generarEquipos && cantidadGenerarEquipos == cantidadConfirmarEquipos){
+		if (generarEquipos && cantidadGenerarEquipos >= cantidadConfirmarEquipos){
 			new InformationPanel(this, "Confirmación", "       Partido creado correctamente      ").open();
 			cantidadConfirmarEquipos += 1;
 			getModelObject().confirmarEquipos();
@@ -108,10 +108,10 @@ public class GenerarEquiposView extends SimpleWindow<GenerarEquiposViewModel> {
 		}
 		
 		else if (!generarEquipos)
-			new InformationPanel(this, "Error", "       Debe generar los equipos para poder confirmar el partido      ").open();			
+			throw new UserException("Debe generar los equipos para poder confirmar el partido");		
 		
 		else if (cantidadGenerarEquipos != cantidadConfirmarEquipos)
-			new InformationPanel(this, "Error", "       Este equipo ya ha sido creado      ").open();			
+			throw new UserException("Este equipo ya ha sido creado");			
 	}
 
 	@Override

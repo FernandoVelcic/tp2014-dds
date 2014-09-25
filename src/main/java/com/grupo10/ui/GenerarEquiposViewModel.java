@@ -29,6 +29,7 @@ public class GenerarEquiposViewModel {
 		
 	boolean enableCriteriosMix = false;
 	boolean enableNPartidos = false;
+	boolean enableGenerarConfirmarEquipos = false;
 	
 	MixCriterios mixCriterios = new MixCriterios(){
 		public String toString() {
@@ -72,7 +73,6 @@ public class GenerarEquiposViewModel {
 			}
 		});
 		
-		
 		listaCriteriosOrden.addAll(listaCriteriosOrdenParaMix);
 		listaCriteriosOrden.add(mixCriterios);
 		listaCriteriosOrden.add(nCalificaciones);
@@ -95,7 +95,7 @@ public class GenerarEquiposViewModel {
 	
 	public void setCriterioDivision(CriterioDivision criterioDivision) {
 		this.criterioDivision = criterioDivision;
-		actualizarFormulario();
+		activarBotonGenerarEquipos();
 	}
 
 	public CriterioOrden getCriterioOrden() {
@@ -113,8 +113,7 @@ public class GenerarEquiposViewModel {
 			enableNPartidos = true;
 		}
 		else enableNPartidos = false;
-		
-		actualizarFormulario();
+		activarBotonGenerarEquipos();
 	}
 	
 	public List<CriterioDivision> getListaCriteriosDivision() {
@@ -133,20 +132,9 @@ public class GenerarEquiposViewModel {
 		return equipo2;
 	}
 	
-	//Para habilitar formulario
-	boolean habilitarFormulario = false;
-	
-	public boolean getHabilitarFormulario() {
-		return habilitarFormulario;
-	}
-	
-	public void setHabilitarFormulario(boolean habilitarFormulario) {
-		this.habilitarFormulario = habilitarFormulario;
-	}
-	
-	public void actualizarFormulario() {
+	public void activarBotonGenerarEquipos() {
 		if(criterioOrden != null && criterioDivision != null)
-			habilitarFormulario = true;
+			enableGenerarConfirmarEquipos = true;
 	}
 
 	public CriterioOrden getCriterioOrdenParaMix() {
@@ -155,7 +143,6 @@ public class GenerarEquiposViewModel {
 
 	public void setCriterioOrdenParaMix(CriterioOrden criterioOrdenParaMix) {
 		this.criterioOrdenParaMix = criterioOrdenParaMix;
-		actualizarFormulario();
 	}
 
 	public List<CriterioOrden> getListaCriteriosOrdenParaMix() {
@@ -203,5 +190,13 @@ public class GenerarEquiposViewModel {
 			throw new UserException("La lista de criterios no puede ser vacía");
 		}
 		
+	}
+
+	public boolean enableGenerarConfirmarEquipos() {
+		return enableGenerarConfirmarEquipos;
+	}
+
+	public void enableGenerarConfirmarEquipos(boolean enableGenerarConfirmarEquipos) {
+		this.enableGenerarConfirmarEquipos = enableGenerarConfirmarEquipos;
 	}
 }
