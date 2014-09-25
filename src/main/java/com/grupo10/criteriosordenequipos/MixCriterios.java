@@ -9,14 +9,14 @@ public class MixCriterios implements CriterioOrden
 
 	private List<CriterioOrden> mix = new ArrayList<CriterioOrden>();
 
-	public void add(CriterioOrden c)
-	{
-		mix.add(c);
+	public void add(CriterioOrden criterio){
+		if (criterio != null) {
+			mix.add(criterio);
+		}
 	}
 	
-	public double calcularValor(Participante p) 
-	{
-		return mix.stream().mapToDouble(c -> c.calcularValor(p)).average().getAsDouble();		
+	public double calcularValor(Participante participante) {
+		return mix.stream().mapToDouble(c -> c.calcularValor(participante)).average().getAsDouble();		
 	}
 
 	public List<CriterioOrden> getMix() {

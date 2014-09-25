@@ -3,13 +3,13 @@ package com.grupo10.ui;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
-import org.uqbar.arena.windows.Window;
+import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
 
-public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
+public class GenerarEquiposView extends SimpleWindow<GenerarEquiposViewModel> {
 
 	public boolean generarEquipos = false;
 	public int cantidadGenerarEquipos = 0;
@@ -80,8 +80,6 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		cantidadPartidos.setWidth(50);
 		cantidadPartidos.bindValueToProperty("cantidadPartidos");
 		cantidadPartidos.bindEnabledToProperty("enableNPartidos");
-		
-		new Label(addUltimosPartidosPanel).setText("Calificaciones ultimos: " + getModelObject().cantidadPartidos);
 	}
 	
 	public void actionAgregarMixCriterios(){
@@ -91,6 +89,7 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		
 	public void actionGenerarEquipo(){
 		cantidadGenerarEquipos += 1;
+		getModelObject().validaciones();
 		getModelObject().generarEquipos();
 		generarEquipos = true;
 		cantidadConfirmarEquipos = 0;
@@ -113,6 +112,18 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		
 		else if (cantidadGenerarEquipos != cantidadConfirmarEquipos)
 			new InformationPanel(this, "Error", "       Este equipo ya ha sido creado      ").open();			
+	}
+
+	@Override
+	protected void addActions(Panel actionsPanel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void createFormPanel(Panel mainPanel) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

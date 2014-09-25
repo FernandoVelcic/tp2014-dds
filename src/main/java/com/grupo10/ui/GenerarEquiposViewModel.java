@@ -3,7 +3,9 @@ package com.grupo10.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
+
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.homes.HomeJugadores;
@@ -194,5 +196,12 @@ public class GenerarEquiposViewModel {
 
 	public void setEnableNPartidos(boolean enableNPartidos) {
 		this.enableNPartidos = enableNPartidos;
+	}
+
+	protected void validaciones() {
+		if (criterioOrden == mixCriterios && mixCriterios.getMix().isEmpty()){
+			throw new UserException("La lista de criterios no puede ser vacía");
+		}
+		
 	}
 }
