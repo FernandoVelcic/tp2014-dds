@@ -22,8 +22,8 @@ public class InformationPanel extends GenerarEquiposView {
 		new Label(mainPanel).setText(informacion).setHeigth(16);
 		
 		new Button(mainPanel)
-		.setCaption("Aceptar")
-		.onClick(() -> this.close());
+			.setCaption("Aceptar")
+			.onClick(() -> this.close());
 	}
 
 }

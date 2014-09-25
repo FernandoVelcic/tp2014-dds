@@ -25,17 +25,13 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		setTitle("Generar Equipos");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
-		NotNullObservable elementSelected = new NotNullObservable("habilitarFormulario");
-		
-		//
 		new Label(mainPanel).setText("Criterio de seleccion");
 		Selector<CriterioDivision> selectCriterioDivision = new Selector<CriterioDivision>(mainPanel)
 			.allowNull(false);
 	
 		selectCriterioDivision.bindValueToProperty("criterioDivision");
 		selectCriterioDivision.bindItemsToProperty("listaCriteriosDivision");
-		//
+
 		new Label(mainPanel).setText("Criterio de ordenamiento");
 		Selector<CriterioOrden> selectCriterioOrden = new Selector<CriterioOrden>(mainPanel)
 			.allowNull(false);
@@ -51,17 +47,16 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		selectCriterioOrdenParaMix.bindItemsToProperty("listaCriteriosOrdenParaMix");
 		
 		new Button(mainPanel)
-		.setCaption("Agregar")
-		.onClick(() -> actionAgregarMixCriterios())
-		.bindEnabledToProperty("enableCriteriosMix");
+			.setCaption("Agregar")
+			.onClick(() -> actionAgregarMixCriterios())
+			.bindEnabledToProperty("enableCriteriosMix");
 
 		this.addUltimosPartidosPanel(mainPanel);
 		
-		//
 		new Button(mainPanel)
 			.setCaption("Generar equipos")
 			.onClick(() -> actionGenerarEquipo())
-			.bindEnabled(elementSelected);
+			.bindEnabledToProperty("habilitarFormulario");
 		
 		new Label(mainPanel).setText("Resultado: equipos generados");
 		
@@ -73,7 +68,7 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		new Button(mainPanel)
 			.setCaption("Confirmar equipos")
 			.onClick(() -> actionConfirmarEquipos())
-			.bindEnabled(elementSelected);
+			.bindEnabledToProperty("habilitarFormulario");
 	}
 	
 	private void addUltimosPartidosPanel(Panel mainPanel){

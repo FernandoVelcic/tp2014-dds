@@ -72,9 +72,9 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 			.onClick(() -> getModelObject().search())
 			.setAsDefault()
 			.disableOnError();
-/*
+
 		new Button(actionsPanel)
 			.setCaption("Limpiar")
-			.onClick(() -> getModelObject().clear());*/
+			.onClick(() -> getModelObject().getCriterioBusqueda().clear());
 	}
 }

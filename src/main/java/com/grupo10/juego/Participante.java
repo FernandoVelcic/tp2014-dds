@@ -100,11 +100,11 @@ public class Participante implements Observador {
 		return handicap;
 	}
 	
-	public double getPromedio() {
+	public Double getPromedio() {
 		return calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
 	}
 	
-	public double getPromedioActual() {
+	public Double getPromedioActual() {
 		return calificaciones.stream().filter(c -> c.partidoJugado == partidoActualAjugar).mapToDouble(c -> c.puntaje).average().orElse(0);
 	}
 	

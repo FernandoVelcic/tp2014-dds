@@ -16,14 +16,11 @@ public class CriteriosBusqueda {
 	private String fecha;
 	private Integer handicapDesde;
 	private Integer handicapHasta;
-	private Double promedioDesde;
-	private Double promedioHasta;
+	private Integer promedioDesde;
+	private Integer promedioHasta;
 	private boolean tieneInfracciones;
 	private boolean noTieneInfracciones;
 
-	public CriteriosBusqueda(){
-		inicializarValores();
-	}
 	
 	public List<Participante> searchJugadores(List<Participante> participantes) {
 		return participantes.stream().filter(participante -> coincideValores(participante)).collect(Collectors.toList());
@@ -32,17 +29,10 @@ public class CriteriosBusqueda {
 	private boolean coincideValores(Participante participante) {
 		return
 				nombreComienzaCon(participante) && apodoContiene(participante) &&
-				(fecha == null || participante.getFechaNacimiento().isBefore(LocalDate.parse(this.fecha))) &&
-				(participanteTieneInfracciones(participante) ||
-				participanteNoTieneInfracciones(participante)) &&
-				(handicapDesde == null || esMenorOIgualQue(this.handicapDesde.doubleValue(), participante.getHandicap().doubleValue())) &&
-				(handicapHasta == null || esMayorOIgualQue(this.handicapHasta.doubleValue(), participante.getHandicap().doubleValue())) &&
-				(promedioDesde == null || esMenorOIgualQue(this.promedioDesde.doubleValue(), participante.getPromedio())) &&
-				(promedioHasta == null || esMayorOIgualQue(this.promedioHasta.doubleValue(), participante.getPromedio()));		
-	}
-	
-	private void inicializarValores(){
-		this.apodo = "";
+				fechaEsMenorA(fecha, participante.getFechaNacimiento()) &&
+				(participanteTieneInfracciones(participante) || participanteNoTieneInfracciones(participante)) &&
+				isBetween(handicapDesde, handicapHasta, participante.getHandicap().doubleValue()) &&
+				isBetween(promedioDesde, promedioHasta, participante.getPromedio());
 	}
 	
 	private boolean participanteTieneInfracciones(Participante participante){
@@ -53,12 +43,32 @@ public class CriteriosBusqueda {
 		return this.noTieneInfracciones == (participante.getInfracciones().size() == 0);
 	}
 	
-	private boolean esMenorOIgualQue(Double valorIngresado, Double valorReal){
-		return valorIngresado <= valorReal;
+	private boolean fechaEsMenorA(String fecha1, LocalDate fecha2) {
+		return fecha1 == null || fecha2.isBefore(LocalDate.parse(fecha1));
 	}
 	
-	private boolean esMayorOIgualQue(Double valorIngresado, Double valorReal){
-		return valorIngresado >= valorReal;
+	private boolean isBetween(Integer desde, Integer hasta, Double valor) {
+		if(desde != null && desde > valor) {
+			return false;
+		}
+		
+		if(hasta != null && valor > hasta) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public void clear() {
+		this.nombre = "";
+		this.apodo = "";
+		this.fecha = "";
+		this.handicapDesde = null;
+		this.handicapHasta = null;
+		this.promedioDesde = null;
+		this.promedioHasta = null;
+		this.tieneInfracciones = false;
+		this.noTieneInfracciones = false;
 	}
 	
 	private boolean nombreComienzaCon(Participante participante){
@@ -66,7 +76,7 @@ public class CriteriosBusqueda {
 	}
 	
 	private boolean apodoContiene(Participante participante){
-		return participante.getApodo().toLowerCase().contains(this.apodo.toLowerCase());
+		return this.apodo == null || participante.getApodo().toLowerCase().contains(this.apodo.toLowerCase());
 	}
 	
 	/***Getters & Setters***/
@@ -111,19 +121,19 @@ public class CriteriosBusqueda {
 		this.handicapHasta = handicapHasta;
 	}
 
-	public Double getPromedioDesde() {
+	public Integer getPromedioDesde() {
 		return promedioDesde;
 	}
 
-	public void setPromedioDesde(Double promedioDesde) {
+	public void setPromedioDesde(Integer promedioDesde) {
 		this.promedioDesde = promedioDesde;
 	}
 
-	public Double getPromedioHasta() {
+	public Integer getPromedioHasta() {
 		return promedioHasta;
 	}
 
-	public void setPromedioHasta(Double promedioHasta) {
+	public void setPromedioHasta(Integer promedioHasta) {
 		this.promedioHasta = promedioHasta;
 	}
 

@@ -122,26 +122,26 @@ public class GenerarEquiposViewModel {
 	}
 	
 	//Para habilitar formulario
-	HabilitarFormulario habilitarFormulario;
+	boolean habilitarFormulario = false;
 	
-	public HabilitarFormulario getHabilitarFormulario() {
+	public boolean getHabilitarFormulario() {
 		return habilitarFormulario;
 	}
 	
-	public void setHabilitarFormulario(HabilitarFormulario participante) {
-		habilitarFormulario = participante;
+	public void setHabilitarFormulario(boolean habilitarFormulario) {
+		this.habilitarFormulario = habilitarFormulario;
 	}
 	
 	public void actualizarFormulario() {
 		if(criterioOrden != null && criterioDivision != null)
-			setHabilitarFormulario(new HabilitarFormulario());
+			habilitarFormulario = true;
 	}
 
-	public CriterioOrden getcriterioOrdenParaMix() {
+	public CriterioOrden getCriterioOrdenParaMix() {
 		return criterioOrdenParaMix;
 	}
 
-	public void setcriterioOrdenParaMix(CriterioOrden criterioOrdenParaMix) {
+	public void setCriterioOrdenParaMix(CriterioOrden criterioOrdenParaMix) {
 		this.criterioOrdenParaMix = criterioOrdenParaMix;
 		actualizarFormulario();
 	}
@@ -150,8 +150,7 @@ public class GenerarEquiposViewModel {
 		return listaCriteriosOrdenParaMix;
 	}
 
-	public void setListaCriteriosOrdenParaMix(
-			List<CriterioOrden> listaCriteriosOrdenParaMix) {
+	public void setListaCriteriosOrdenParaMix(List<CriterioOrden> listaCriteriosOrdenParaMix) {
 		this.listaCriteriosOrdenParaMix = listaCriteriosOrdenParaMix;
 	}
 

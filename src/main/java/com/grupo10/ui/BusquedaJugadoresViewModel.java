@@ -46,5 +46,4 @@ public class BusquedaJugadoresViewModel implements Serializable{
 	public void setCriterioBusqueda(CriteriosBusqueda criterioBusqueda) {
 		this.criterioBusqueda = criterioBusqueda;
 	}
-
 }
