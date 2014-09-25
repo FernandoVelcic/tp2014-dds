@@ -26,10 +26,17 @@ public class GenerarEquiposViewModel {
 	List<Participante> equipo2;
 		
 	boolean enableCriteriosMix = false;
+	boolean enableNPartidos = false;
 	
-	MixCriterios mixCriterios = new MixCriterios()  {
+	MixCriterios mixCriterios = new MixCriterios(){
 		public String toString() {
 			return "MixCriterio";
+		}
+	};
+	
+	Ncalificaciones nCalificaciones = new Ncalificaciones(cantidadPartidos){
+		public String toString() {
+			return "Calificaciones de ultimos partidos";
 		}
 	};
 	
@@ -63,13 +70,10 @@ public class GenerarEquiposViewModel {
 			}
 		});
 		
+		
 		listaCriteriosOrden.addAll(listaCriteriosOrdenParaMix);
 		listaCriteriosOrden.add(mixCriterios);
-		listaCriteriosOrden.add(new Ncalificaciones(cantidadPartidos){
-			public String toString() {
-				return "Calificaciones de ultimos partidos";
-			}
-		});
+		listaCriteriosOrden.add(nCalificaciones);
 	}
 
 	public void generarEquipos() {
@@ -102,6 +106,12 @@ public class GenerarEquiposViewModel {
 			enableCriteriosMix = true;
 		}
 		else enableCriteriosMix = false;
+		
+		if (criterioOrden == nCalificaciones){
+			enableNPartidos = true;
+		}
+		else enableNPartidos = false;
+		
 		actualizarFormulario();
 	}
 	
@@ -162,14 +172,6 @@ public class GenerarEquiposViewModel {
 		this.mixCriterios = mixCriterios;
 	}
 
-	public boolean isEnabled() {
-		return enableCriteriosMix;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enableCriteriosMix = enabled;
-	}
-
 	public boolean isEnableCriteriosMix() {
 		return enableCriteriosMix;
 	}
@@ -184,5 +186,13 @@ public class GenerarEquiposViewModel {
 
 	public void setCantidadPartidos(int cantidadPartidos) {
 		this.cantidadPartidos = cantidadPartidos;
+	}
+
+	public boolean isEnableNPartidos() {
+		return enableNPartidos;
+	}
+
+	public void setEnableNPartidos(boolean enableNPartidos) {
+		this.enableNPartidos = enableNPartidos;
 	}
 }

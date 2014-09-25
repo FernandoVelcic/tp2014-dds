@@ -79,6 +79,7 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		TextBox cantidadPartidos = new TextBox(addUltimosPartidosPanel);
 		cantidadPartidos.setWidth(50);
 		cantidadPartidos.bindValueToProperty("cantidadPartidos");
+		cantidadPartidos.bindEnabledToProperty("enableNPartidos");
 		
 		new Label(addUltimosPartidosPanel).setText("Calificaciones ultimos: " + getModelObject().cantidadPartidos);
 	}
