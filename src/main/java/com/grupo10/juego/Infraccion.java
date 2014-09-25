@@ -1,19 +1,19 @@
 package com.grupo10.juego;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class Infraccion {
-	private Date date;
+	private LocalDate date;
 	private String motivo;
 	
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -26,7 +26,7 @@ public class Infraccion {
 	}
 
 	public Infraccion(String motivo) {
-		date = new Date();
+		date = LocalDate.now();
 		this.motivo = motivo;
 	}
 

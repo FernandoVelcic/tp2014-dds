@@ -2,13 +2,11 @@ package com.grupo10.test;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.juego.Administrador;
@@ -67,7 +65,7 @@ public class TestEquipos{
 		jose = new Participante();
 		
 		admin = new Administrador();
-		partido = new Partido(new Date(), admin);
+		partido = new Partido(LocalDate.now(), admin);
 		
 		martin.setModalidad(new Estandar());
 		carlos.setModalidad(new Estandar());

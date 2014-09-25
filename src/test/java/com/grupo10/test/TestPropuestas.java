@@ -2,11 +2,9 @@ package com.grupo10.test;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
-
 import com.grupo10.juego.Administrador;
 import com.grupo10.juego.Participante;
 import com.grupo10.juego.Partido;
@@ -25,7 +23,7 @@ public class TestPropuestas {
 		martin = new Participante();
 		carlos = new Participante();
 		martin.setModalidad(new Estandar());
-		partido = new Partido(new Date(),admin);
+		partido = new Partido(LocalDate.now(),admin);
 		admin.proponerJugador(martin);
 	}
 

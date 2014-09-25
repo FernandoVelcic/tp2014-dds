@@ -1,13 +1,8 @@
 package com.grupo10.ui;
 
-import com.uqbar.commons.collections.Transformer;
-
-import org.uqbar.arena.bindings.NotNullObservable;
-import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
-import org.uqbar.arena.windows.WindowOwner;
 
 import com.grupo10.juego.Participante;
 
@@ -49,11 +44,6 @@ public class JugadoresGridBuilder {
 		new Column<Participante>(table)
 			.setTitle("Fecha Nacimiento")
 			.setFixedSize(150)
-			.bindContentsToTransformer(new Transformer<Participante, String>() {
-				@Override
-				public String transform(Participante participante) {
-					return new DateToStringTransformer().convertirFechaAString(participante.getFechaNacimiento());
-				}
-			});
+			.bindContentsToProperty("fechaNacimiento");
 	}
 }

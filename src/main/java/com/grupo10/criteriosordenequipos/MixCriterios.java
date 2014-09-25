@@ -18,6 +18,14 @@ public class MixCriterios implements CriterioOrden
 	{
 		return mix.stream().mapToDouble(c -> c.calcularValor(p)).average().getAsDouble();		
 	}
+
+	public List<CriterioOrden> getMix() {
+		return mix;
+	}
+
+	public void setMix(List<CriterioOrden> mix) {
+		this.mix = mix;
+	}
 	
 	
 }

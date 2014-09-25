@@ -1,11 +1,9 @@
 package com.grupo10.juego;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
-
 import org.uqbar.commons.utils.Observable;
-
 import com.grupo10.excepciones.CalificacionException;
 import com.grupo10.modalidades.Modalidad;
 
@@ -19,13 +17,13 @@ public class Participante implements Observador {
 	
 	public int cantidadPartidosJugados;
 	public int handicap;
-	String nombre;
-	String apodo;
-	Date fechaNacimiento;
-	Modalidad modalidad;
-	Partido partidoActualAjugar;
+	public String nombre;
+	public String apodo;
+	public LocalDate fechaNacimiento;
+	public Modalidad modalidad;
+	public Partido partidoActualAjugar;
 	
-	public Participante(String nombre, String apodo, Date fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones, Modalidad modalidad) {
+	public Participante(String nombre, String apodo, LocalDate fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones, Modalidad modalidad) {
 		this.nombre = nombre;
 		this.apodo = apodo;
 		this.fechaNacimiento = fechaNacimiento;
@@ -110,7 +108,7 @@ public class Participante implements Observador {
 		return calificaciones.stream().filter(c -> c.partidoJugado == partidoActualAjugar).mapToDouble(c -> c.puntaje).average().orElse(0);
 	}
 	
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 	

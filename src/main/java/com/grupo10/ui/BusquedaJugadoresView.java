@@ -37,34 +37,33 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 		searchFormPanel.setLayout(new ColumnLayout(2));
 
 		new Label(searchFormPanel).setText("Nombre comienza con:");
-		new TextBox(searchFormPanel).bindValueToProperty("nombre");
+		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.nombre");
 
 		new Label(searchFormPanel).setText("Apodo contiene:");
-		new TextBox(searchFormPanel).bindValueToProperty("apodo");
+		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.apodo");
 	
 		new Label(searchFormPanel).setText("Handicap desde:");
-		new TextBox(searchFormPanel).bindValueToProperty("handicapDesde");
+		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.handicapDesde");
 		
 		new Label(searchFormPanel).setText("Handicap hasta:");
 		TextBox textHandicapH = new TextBox(searchFormPanel);
-		textHandicapH.bindValueToProperty("handicapHasta");
+		textHandicapH.bindValueToProperty("criterioBusqueda.handicapHasta");
 		
 		new Label(searchFormPanel).setText("Promedio del ultimo partido desde:");
-		new TextBox(searchFormPanel).bindValueToProperty("promedioDesde");
+		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.promedioDesde");
 		
 		new Label(searchFormPanel).setText("Promedio del ultimo partido hasta:");
-		new TextBox(searchFormPanel).bindValueToProperty("promedioHasta");
+		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.promedioHasta");
 	
 		new Label(searchFormPanel).setText("Fecha de nacimiento anterior a:");
-		new TextBox(searchFormPanel).bindValueToProperty("fechaString");
+		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.fechaString");
 		new Label(searchFormPanel).setText("");
-		new Label(searchFormPanel).setText("(mm/dd/yyyy)").setFontSize(8);
+		new Label(searchFormPanel).setText("(yyyy-mm-dd)").setFontSize(8);
 		
 		new Label(searchFormPanel).setText("Posee Infracciones");
-		new CheckBox(searchFormPanel).bindValueToProperty("tieneInfracciones");
+		new CheckBox(searchFormPanel).bindValueToProperty("criterioBusqueda.tieneInfracciones");
 		new Label(searchFormPanel).setText("No Posee Infracciones");
-		new CheckBox(searchFormPanel).bindValueToProperty("noTieneInfracciones");
-		
+		new CheckBox(searchFormPanel).bindValueToProperty("criterioBusqueda.noTieneInfracciones");
 	}
 	
 	protected void addActions(Panel actionsPanel) {
@@ -73,9 +72,9 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 			.onClick(() -> getModelObject().search())
 			.setAsDefault()
 			.disableOnError();
-
+/*
 		new Button(actionsPanel)
 			.setCaption("Limpiar")
-			.onClick(() -> getModelObject().clear());
+			.onClick(() -> getModelObject().clear());*/
 	}
 }

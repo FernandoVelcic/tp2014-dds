@@ -1,6 +1,5 @@
 package com.grupo10.ui;
 
-import com.grupo10.juego.Participante;
 import java.awt.Color;
 import com.uqbar.commons.collections.Transformer;
 

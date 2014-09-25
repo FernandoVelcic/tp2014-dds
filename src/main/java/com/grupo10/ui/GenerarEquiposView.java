@@ -1,10 +1,12 @@
 package com.grupo10.ui;
 
 import org.uqbar.arena.bindings.NotNullObservable;
+import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
 
@@ -23,6 +25,9 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		setTitle("Generar Equipos");
 		mainPanel.setLayout(new VerticalLayout());
 		
+		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
+		NotNullObservable elementSelected = new NotNullObservable("habilitarFormulario");
+		
 		//
 		new Label(mainPanel).setText("Criterio de seleccion");
 		Selector<CriterioDivision> selectCriterioDivision = new Selector<CriterioDivision>(mainPanel)
@@ -30,7 +35,6 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 	
 		selectCriterioDivision.bindValueToProperty("criterioDivision");
 		selectCriterioDivision.bindItemsToProperty("listaCriteriosDivision");
-
 		//
 		new Label(mainPanel).setText("Criterio de ordenamiento");
 		Selector<CriterioOrden> selectCriterioOrden = new Selector<CriterioOrden>(mainPanel)
@@ -39,9 +43,20 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		selectCriterioOrden.bindValueToProperty("criterioOrden");
 		selectCriterioOrden.bindItemsToProperty("listaCriteriosOrden");
 
-		//Deshabilitar el boton si no hay ningun elemento seleccionado en la grilla.
-		NotNullObservable elementSelected = new NotNullObservable("habilitarFormulario");
+		new Label(mainPanel).setText("Criterio de ordenamiento para Mix Criterios");
+		Selector<CriterioOrden> selectCriterioOrdenParaMix = new Selector<CriterioOrden>(mainPanel);
+		
+		selectCriterioOrdenParaMix.bindEnabledToProperty("enableCriteriosMix");
+		selectCriterioOrdenParaMix.bindValueToProperty("criterioOrdenParaMix");
+		selectCriterioOrdenParaMix.bindItemsToProperty("listaCriteriosOrdenParaMix");
+		
+		new Button(mainPanel)
+		.setCaption("Agregar")
+		.onClick(() -> actionAgregarMixCriterios())
+		.bindEnabledToProperty("enableCriteriosMix");
 
+		this.addUltimosPartidosPanel(mainPanel);
+		
 		//
 		new Button(mainPanel)
 			.setCaption("Generar equipos")
@@ -61,6 +76,22 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 			.bindEnabled(elementSelected);
 	}
 	
+	private void addUltimosPartidosPanel(Panel mainPanel){
+		Panel addUltimosPartidosPanel = new Panel(mainPanel);
+		addUltimosPartidosPanel.setLayout(new ColumnLayout(3));
+		
+		new Label(addUltimosPartidosPanel).setText("Cantidad de partidos:");
+		
+		TextBox cantidadPartidos = new TextBox(addUltimosPartidosPanel);
+		cantidadPartidos.setWidth(50);
+		cantidadPartidos.bindValueToProperty("cantidadPartidos");
+		
+		new Label(addUltimosPartidosPanel).setText("Calificaciones ultimos: " + getModelObject().cantidadPartidos);
+	}
+	public void actionAgregarMixCriterios(){
+		getModelObject().mixCriterios.add(getModelObject().criterioOrdenParaMix);
+	}
+		
 	public void actionGenerarEquipo(){
 		cantidadGenerarEquipos += 1;
 		getModelObject().generarEquipos();

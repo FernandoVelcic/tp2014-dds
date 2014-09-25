@@ -2,11 +2,9 @@ package com.grupo10.test;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
-
 import com.grupo10.juego.Administrador;
 import com.grupo10.juego.Participante;
 import com.grupo10.juego.Partido;
@@ -29,7 +27,7 @@ public class TestInscripciones {
 		martin = new Participante();
 		carlos = new Participante();
 		tomas = new Participante();
-		partido = new Partido(new Date(), admin);
+		partido = new Partido(LocalDate.now(), admin);
 		estandar = new Estandar();
 		condicional = new Condicional(true);
 		solidario = new Solidario();

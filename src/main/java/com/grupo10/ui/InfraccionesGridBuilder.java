@@ -1,13 +1,9 @@
 package com.grupo10.ui;
 
-import com.uqbar.commons.collections.Transformer;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
-import org.uqbar.arena.windows.WindowOwner;
-
 import com.grupo10.juego.Infraccion;
-import com.grupo10.juego.Participante;
 
 public class InfraccionesGridBuilder {
 	public void createResultsGrid(Panel mainPanel, String propertyName) {
@@ -24,12 +20,7 @@ public class InfraccionesGridBuilder {
 		new Column<Infraccion>(table)
 			.setTitle("Fecha")
 			.setFixedSize(150)
-			.bindContentsToTransformer(new Transformer<Infraccion, String>() {
-				@Override
-				public String transform(Infraccion infraccion) {
-					return new DateToStringTransformer().convertirFechaAString(infraccion.getDate());
-				}
-			});
+			.bindContentsToProperty("date");
 		
 		new Column<Infraccion>(table)
 			.setTitle("Motivo")

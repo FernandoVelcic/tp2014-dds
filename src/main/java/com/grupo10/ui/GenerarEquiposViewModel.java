@@ -2,6 +2,7 @@ package com.grupo10.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.uqbar.commons.utils.Observable;
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
@@ -15,21 +16,26 @@ public class GenerarEquiposViewModel {
 	List<CriterioDivision> listaCriteriosDivision;
 
 	CriterioOrden criterioOrden;
+	CriterioOrden criterioOrdenParaMix;
 	List<CriterioOrden> listaCriteriosOrden;
+	List<CriterioOrden> listaCriteriosOrdenParaMix;
+	int cantidadPartidos;
 	
 	Partido partido;
 	List<Participante> equipo1;
 	List<Participante> equipo2;
-
+		
+	boolean enableCriteriosMix = false;
+	
+	MixCriterios mixCriterios = new MixCriterios()  {
+		public String toString() {
+			return "MixCriterio";
+		}
+	};
+	
 	public GenerarEquiposViewModel() {
 		partido = HomeJugadores.getInstance().getPartido();
-		MixCriterios mixCriterios = new MixCriterios()  {
-			public String toString() {
-				return "Calificaciones+handicap (MixCriterio)";
-			}
-		};
-		mixCriterios.add(new Calificaciones());
-		mixCriterios.add(new Handicap());
+				
 		listaCriteriosDivision = new ArrayList<CriterioDivision>();
 		listaCriteriosDivision.add(new ParImpar() {
 			public String toString() {
@@ -43,20 +49,25 @@ public class GenerarEquiposViewModel {
 		});
 		
 		listaCriteriosOrden = new ArrayList<CriterioOrden>();
-		listaCriteriosOrden.add(new Calificaciones() {
+		listaCriteriosOrdenParaMix = new ArrayList<CriterioOrden>();
+		
+		listaCriteriosOrdenParaMix.add(new Calificaciones(){
 			public String toString() {
 				return "Calificaciones";
 			}
 		});
-		listaCriteriosOrden.add(new Handicap() {
+		
+		listaCriteriosOrdenParaMix.add(new Handicap(){
 			public String toString() {
 				return "Handicap";
 			}
 		});
+		
+		listaCriteriosOrden.addAll(listaCriteriosOrdenParaMix);
 		listaCriteriosOrden.add(mixCriterios);
-		listaCriteriosOrden.add(new Ncalificaciones(3) {
+		listaCriteriosOrden.add(new Ncalificaciones(cantidadPartidos){
 			public String toString() {
-				return "Calificaciones 3 (Ncalificaciones)";
+				return "Calificaciones de ultimos partidos";
 			}
 		});
 	}
@@ -87,6 +98,10 @@ public class GenerarEquiposViewModel {
 	
 	public void setCriterioOrden(CriterioOrden criterioOrden) {
 		this.criterioOrden = criterioOrden;
+		if (criterioOrden == mixCriterios){
+			enableCriteriosMix = true;
+		}
+		else enableCriteriosMix = false;
 		actualizarFormulario();
 	}
 	
@@ -120,5 +135,55 @@ public class GenerarEquiposViewModel {
 	public void actualizarFormulario() {
 		if(criterioOrden != null && criterioDivision != null)
 			setHabilitarFormulario(new HabilitarFormulario());
+	}
+
+	public CriterioOrden getcriterioOrdenParaMix() {
+		return criterioOrdenParaMix;
+	}
+
+	public void setcriterioOrdenParaMix(CriterioOrden criterioOrdenParaMix) {
+		this.criterioOrdenParaMix = criterioOrdenParaMix;
+		actualizarFormulario();
+	}
+
+	public List<CriterioOrden> getListaCriteriosOrdenParaMix() {
+		return listaCriteriosOrdenParaMix;
+	}
+
+	public void setListaCriteriosOrdenParaMix(
+			List<CriterioOrden> listaCriteriosOrdenParaMix) {
+		this.listaCriteriosOrdenParaMix = listaCriteriosOrdenParaMix;
+	}
+
+	public MixCriterios getMixCriterios() {
+		return mixCriterios;
+	}
+
+	public void setMixCriterios(MixCriterios mixCriterios) {
+		this.mixCriterios = mixCriterios;
+	}
+
+	public boolean isEnabled() {
+		return enableCriteriosMix;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enableCriteriosMix = enabled;
+	}
+
+	public boolean isEnableCriteriosMix() {
+		return enableCriteriosMix;
+	}
+
+	public void setEnableCriteriosMix(boolean enableCriteriosMix) {
+		this.enableCriteriosMix = enableCriteriosMix;
+	}
+
+	public int getCantidadPartidos() {
+		return cantidadPartidos;
+	}
+
+	public void setCantidadPartidos(int cantidadPartidos) {
+		this.cantidadPartidos = cantidadPartidos;
 	}
 }

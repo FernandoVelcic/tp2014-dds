@@ -2,11 +2,9 @@ package com.grupo10.test;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
-
 import com.grupo10.excepciones.CalificacionException;
 import com.grupo10.juego.Administrador;
 import com.grupo10.juego.Calificacion;
@@ -29,8 +27,8 @@ public class TestCalificaciones {
 		martin.setModalidad(new Estandar());
 		carlos = new Participante();
 		carlos.setModalidad(new Estandar());
-		partido1 = new Partido(new Date(), new Administrador());
-		partido2 = new Partido(new Date(), new Administrador());
+		partido1 = new Partido(LocalDate.now(), new Administrador());
+		partido2 = new Partido(LocalDate.now(), new Administrador());
 		calificacion = new Calificacion(7, "Jugó bien pero le faltó correr más", partido1);
 		
 		partido1.inscribirJugador(martin);

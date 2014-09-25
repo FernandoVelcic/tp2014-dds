@@ -1,12 +1,10 @@
 package com.grupo10.juego;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import com.grupo10.criteriosordenequipos.*;
 import com.grupo10.modalidades.*;
 
 public class Partido {
@@ -16,10 +14,10 @@ public class Partido {
 	public List<Participante> equipo2 = new ArrayList<Participante>();
 	
 	private List<Observador> observadores = new ArrayList<Observador>();
-	private Date diaYhora;
+	private LocalDate fecha;
 
-	public Partido(Date diaYhora, Administrador admin) {
-		this.diaYhora = diaYhora;
+	public Partido(LocalDate fecha, Administrador admin) {
+		this.fecha = fecha;
 		addObservador(admin);
 		admin.setPartido(this);
 	}
