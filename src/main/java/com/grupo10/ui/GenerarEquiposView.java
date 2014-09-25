@@ -1,6 +1,5 @@
 package com.grupo10.ui;
 
-import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
@@ -83,8 +82,10 @@ public class GenerarEquiposView extends Window<GenerarEquiposViewModel> {
 		
 		new Label(addUltimosPartidosPanel).setText("Calificaciones ultimos: " + getModelObject().cantidadPartidos);
 	}
+	
 	public void actionAgregarMixCriterios(){
 		getModelObject().mixCriterios.add(getModelObject().criterioOrdenParaMix);
+		System.out.println(getModelObject().mixCriterios.getMix());
 	}
 		
 	public void actionGenerarEquipo(){

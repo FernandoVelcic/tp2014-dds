@@ -19,7 +19,7 @@ public class GenerarEquiposViewModel {
 	CriterioOrden criterioOrdenParaMix;
 	List<CriterioOrden> listaCriteriosOrden;
 	List<CriterioOrden> listaCriteriosOrdenParaMix;
-	int cantidadPartidos;
+	int cantidadPartidos = 3;
 	
 	Partido partido;
 	List<Participante> equipo1;

@@ -36,8 +36,8 @@ public class HomeJugadores {
 		Infraccion infraccion2 = new Infraccion("Insulto al arbitro");
 		Infraccion infraccion3 = new Infraccion("Pelea con compañero");
 		
-		Participante martin = new Participante("Martin", "Tincho", LocalDate.of(1985, Month.JANUARY, 1), 8, Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6), Arrays.asList(infraccion1), new Condicional(true));
-		Participante oscar = new Participante("Oscar", "Osqui", LocalDate.of(1988, Month.AUGUST, 10), 9, Arrays.asList(calificacion10,calificacion9,calificacion9), Arrays.asList(infraccion1), new Estandar());
+		Participante martin = new Participante("Martin", "Tincho", LocalDate.of(1985, Month.JANUARY, 1), 9, Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6), Arrays.asList(infraccion1), new Condicional(true));
+		Participante oscar = new Participante("Oscar", "Osqui", LocalDate.of(1988, Month.AUGUST, 10), 8, Arrays.asList(calificacion10,calificacion9,calificacion9), Arrays.asList(infraccion1), new Estandar());
 		Participante franco = new Participante("Franco", "Pancho", LocalDate.of(1987, Month.JUNE, 21), 6, Arrays.asList(calificacion3,calificacion4), Arrays.asList(infraccion1, infraccion2, infraccion3), new Solidario());
 		Participante fabian = new Participante("Fabian", "Fabi", LocalDate.of(1986, Month.DECEMBER, 30), 10, Arrays.asList(calificacion10,calificacion10), Arrays.asList(), new Condicional(false));
 		Participante pablo = new Participante("Pablo", "Paul", LocalDate.of(1990, Month.SEPTEMBER, 21), 5, Arrays.asList(calificacion9,calificacion6,calificacion3,calificacion5), Arrays.asList(infraccion2), new Estandar());
