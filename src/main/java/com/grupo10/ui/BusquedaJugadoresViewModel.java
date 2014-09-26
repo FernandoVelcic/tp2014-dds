@@ -3,6 +3,7 @@ package com.grupo10.ui;
 import java.io.Serializable;
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.homes.HomeJugadores;

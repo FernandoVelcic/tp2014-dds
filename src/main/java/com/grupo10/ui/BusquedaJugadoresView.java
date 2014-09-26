@@ -1,14 +1,17 @@
 package com.grupo10.ui;
 
+import java.time.LocalDate;
+
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
-import org.uqbar.arena.windows.Window;
+import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.model.UserException;
 
 
-public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
+public class BusquedaJugadoresView extends SimpleWindow<BusquedaJugadoresViewModel> {
 	public BusquedaJugadoresView(WindowOwner owner) {
 		super(owner, new BusquedaJugadoresViewModel());
 		this.getModelObject().search();
@@ -69,12 +72,29 @@ public class BusquedaJugadoresView extends Window<BusquedaJugadoresViewModel> {
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel)
 			.setCaption("Buscar")
-			.onClick(() -> getModelObject().search())
+			.onClick(() -> actionBuscar())
 			.setAsDefault()
 			.disableOnError();
 
 		new Button(actionsPanel)
 			.setCaption("Limpiar")
 			.onClick(() -> getModelObject().getCriterioBusqueda().clear());
+	}
+	
+	public void actionBuscar(){
+		
+		try {
+			LocalDate.parse(getModelObject().getCriterioBusqueda().fecha);
+			getModelObject().search();
+		}
+		catch (Exception pe) {
+			throw new UserException("Verifique la fecha ingresada por favor");
+		}
+	}
+
+	@Override
+	protected void createFormPanel(Panel mainPanel) {
+		// TODO Auto-generated method stub
+		
 	}
 }

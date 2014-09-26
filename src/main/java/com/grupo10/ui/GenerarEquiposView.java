@@ -85,7 +85,6 @@ public class GenerarEquiposView extends SimpleWindow<GenerarEquiposViewModel> {
 	
 	public void actionAgregarMixCriterios(){
 		getModelObject().mixCriterios.add(getModelObject().criterioOrdenParaMix);
-		System.out.println(getModelObject().mixCriterios.getMix());
 	}
 		
 	public void actionGenerarEquipo(){

@@ -3,7 +3,6 @@ package com.grupo10.ui;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.juego.Participante;
@@ -70,7 +69,7 @@ public class CriteriosBusqueda {
 	public void clear() {
 		this.nombre = "";
 		this.apodo = "";
-		this.fecha = "";
+		this.fecha = null;
 		this.handicapDesde = null;
 		this.handicapHasta = null;
 		this.promedioDesde = null;
@@ -152,4 +151,5 @@ public class CriteriosBusqueda {
 	public void setNoTieneInfracciones(boolean noTieneInfracciones) {
 		this.noTieneInfracciones = noTieneInfracciones;
 	}
+
 }
