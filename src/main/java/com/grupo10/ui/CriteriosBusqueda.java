@@ -11,22 +11,22 @@ import com.grupo10.juego.Participante;
 @Observable
 public class CriteriosBusqueda {
 	
-	private String nombre;
-	private String apodo;
-	private String fecha;
-	private Integer handicapDesde;
-	private Integer handicapHasta;
-	private Integer promedioDesde;
-	private Integer promedioHasta;
-	private boolean tieneInfracciones;
-	private boolean noTieneInfracciones;
+	public String nombre;
+	public String apodo;
+	public String fecha;
+	public Integer handicapDesde;
+	public Integer handicapHasta;
+	public Integer promedioDesde;
+	public Integer promedioHasta;
+	public boolean tieneInfracciones;
+	public boolean noTieneInfracciones;
 
 	
 	public List<Participante> searchJugadores(List<Participante> participantes) {
 		return participantes.stream().filter(participante -> coincideValores(participante)).collect(Collectors.toList());
 	}
 
-	private boolean coincideValores(Participante participante) {
+	public boolean coincideValores(Participante participante) {
 		return
 				nombreComienzaCon(participante) && apodoContiene(participante) &&
 				fechaEsMenorA(fecha, participante.getFechaNacimiento()) &&
@@ -43,7 +43,7 @@ public class CriteriosBusqueda {
 		return this.noTieneInfracciones == (participante.getInfracciones().size() == 0);
 	}
 	
-	private boolean fechaEsMenorA(String fecha1, LocalDate fecha2) {
+	public boolean fechaEsMenorA(String fecha1, LocalDate fecha2) {
 		return fecha1 == null || fecha2.isBefore(LocalDate.parse(fecha1));
 	}
 	
@@ -59,6 +59,14 @@ public class CriteriosBusqueda {
 		return true;
 	}
 	
+	public boolean nombreComienzaCon(Participante participante){
+		return this.nombre == null || participante.getNombre().toLowerCase().startsWith(this.nombre.toLowerCase());
+	}
+	
+	public boolean apodoContiene(Participante participante){
+		return this.apodo == null || participante.getApodo().toLowerCase().contains(this.apodo.toLowerCase());
+	}
+	
 	public void clear() {
 		this.nombre = "";
 		this.apodo = "";
@@ -69,14 +77,6 @@ public class CriteriosBusqueda {
 		this.promedioHasta = null;
 		this.tieneInfracciones = false;
 		this.noTieneInfracciones = false;
-	}
-	
-	private boolean nombreComienzaCon(Participante participante){
-		return this.nombre == null || participante.getNombre().toLowerCase().startsWith(this.nombre.toLowerCase());
-	}
-	
-	private boolean apodoContiene(Participante participante){
-		return this.apodo == null || participante.getApodo().toLowerCase().contains(this.apodo.toLowerCase());
 	}
 	
 	/***Getters & Setters***/

@@ -2,7 +2,9 @@ package com.grupo10.homes;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.grupo10.juego.*;
 import com.grupo10.modalidades.*;
@@ -11,6 +13,7 @@ public class HomeJugadores {
 	private static HomeJugadores instance;
 	public Administrador admin = new Administrador();
 	public Partido partido = new Partido(LocalDate.now(), admin);
+	public List<Participante> jugadores = new ArrayList<Participante>();
 	
 	public static HomeJugadores getInstance() {
 		if (instance == null) {
@@ -107,6 +110,14 @@ public class HomeJugadores {
 
 	public void setAdmin(Administrador admin) {
 		this.admin = admin;
+	}
+
+	public List<Participante> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(List<Participante> jugadores) {
+		this.jugadores = jugadores;
 	}
 
 	
