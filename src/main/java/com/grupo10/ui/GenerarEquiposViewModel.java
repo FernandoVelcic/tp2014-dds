@@ -24,8 +24,8 @@ public class GenerarEquiposViewModel {
 	int cantidadPartidos = 3;
 	
 	Partido partido;
-	List<Participante> equipo1;
-	List<Participante> equipo2;
+	List<Participante> equipo1 = HomeJugadores.getInstance().recuperarEquipo1();
+	List<Participante> equipo2 = HomeJugadores.getInstance().recuperarEquipo2();
 		
 	boolean enableCriteriosMix = false;
 	boolean enableNPartidos = false;
@@ -83,7 +83,7 @@ public class GenerarEquiposViewModel {
 		HomeJugadores.getInstance().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
 		equipo1 = partido.equipo1;
 		equipo2 = partido.equipo2;
-		HomeJugadores.getInstance().guardarPartido();
+		HomeJugadores.getInstance().guardarPartido(equipo1, equipo2);
 	}
 	
 	public void confirmarEquipos() {

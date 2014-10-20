@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -22,14 +25,14 @@ public class Participante implements Observador {
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Transient
+	@ManyToMany(cascade = {CascadeType.ALL})
 	public List<Participante> amigos = new ArrayList<Participante>();
 	@Transient
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	
 	@Transient
 	public List<String> notificaciones = new ArrayList<String>();
-	@Transient
+	@ManyToMany(cascade = {CascadeType.ALL})
 	public List<Calificacion> calificaciones = new ArrayList<Calificacion>();
 	
 	public int cantidadPartidosJugados = 0;

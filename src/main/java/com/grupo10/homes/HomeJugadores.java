@@ -121,7 +121,31 @@ public class HomeJugadores {
 		this.jugadores = jugadores;
 	}
 	
-	public void guardarPartido() {
+	public void guardarPartido(List<Participante> equipo1, List<Participante> equipo2) {
+		partido.equipo1 = equipo1;
+		partido.equipo2 = equipo2;
+		
+		EntityManagerHelper.beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(partido);
+		
+		EntityManagerHelper.commit();
+	}
+	
+	public List<Participante> recuperarEquipo1() {
+		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido").getResultList();
+
+		if(partidos.isEmpty())
+			return null;
+		
+		return partidos.get(0).equipo1;
+	}
+	
+	public List<Participante> recuperarEquipo2() {
+		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido").getResultList();
+
+		if(partidos.isEmpty())
+			return null;
+		
+		return partidos.get(0).equipo2;
 	}
 }

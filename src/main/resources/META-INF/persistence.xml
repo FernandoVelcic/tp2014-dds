@@ -10,6 +10,7 @@
     	
     	<class>com.grupo10.juego.Partido</class>
     	<class>com.grupo10.juego.Participante</class>
+    	<class>com.grupo10.juego.Calificacion</class>
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

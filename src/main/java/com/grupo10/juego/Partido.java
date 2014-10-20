@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import com.grupo10.modalidades.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,10 +25,10 @@ public class Partido {
 	@Transient
 	public List<Participante> jugadores = new ArrayList<Participante>();
 	
-	//@OneToMany
-	@Transient
+	@OneToMany(cascade = {CascadeType.ALL})
 	public List<Participante> equipo1 = new ArrayList<Participante>();
 	//@OneToMany
+	//@OneToMany(cascade = {CascadeType.ALL})
 	@Transient
 	public List<Participante> equipo2 = new ArrayList<Participante>();
 	
