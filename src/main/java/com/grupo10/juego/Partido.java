@@ -5,15 +5,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import com.grupo10.modalidades.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+@Entity
 public class Partido {
+	@Id @GeneratedValue
+	private Long id;
+	
+	@Transient
 	public List<Participante> participantes = new ArrayList<Participante>();
+	@Transient
 	public List<Participante> jugadores = new ArrayList<Participante>();
+	
+	//@OneToMany
+	@Transient
 	public List<Participante> equipo1 = new ArrayList<Participante>();
+	//@OneToMany
+	@Transient
 	public List<Participante> equipo2 = new ArrayList<Participante>();
 	
+	@Transient
 	private List<Observador> observadores = new ArrayList<Observador>();
+
 	private LocalDate fecha;
 
 	public Partido(LocalDate fecha, Administrador admin) {

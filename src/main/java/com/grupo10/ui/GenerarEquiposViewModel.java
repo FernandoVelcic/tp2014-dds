@@ -83,6 +83,7 @@ public class GenerarEquiposViewModel {
 		HomeJugadores.getInstance().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
 		equipo1 = partido.equipo1;
 		equipo2 = partido.equipo2;
+		HomeJugadores.getInstance().guardarPartido();
 	}
 	
 	public void confirmarEquipos() {

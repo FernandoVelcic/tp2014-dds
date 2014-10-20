@@ -3,16 +3,33 @@ package com.grupo10.juego;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 import org.uqbar.commons.utils.Observable;
+
 import com.grupo10.excepciones.CalificacionException;
 import com.grupo10.modalidades.Modalidad;
 
+@Entity
 @Observable
 public class Participante implements Observador {
+	@Id @GeneratedValue
+	private Long id;
+	
+	@Transient
 	public List<Participante> amigos = new ArrayList<Participante>();
+	@Transient
 	public List<Infraccion> infracciones = new ArrayList<Infraccion>();
 	
+	@Transient
 	public List<String> notificaciones = new ArrayList<String>();
+	@Transient
 	public List<Calificacion> calificaciones = new ArrayList<Calificacion>();
 	
 	public int cantidadPartidosJugados = 0;
@@ -20,7 +37,9 @@ public class Participante implements Observador {
 	public String nombre;
 	public String apodo;
 	public LocalDate fechaNacimiento;
+	@Transient
 	public Modalidad modalidad;
+	@ManyToOne
 	public Partido partidoActualAjugar;
 	
 	public Participante(String nombre, String apodo, LocalDate fechaNacimiento, int handicap, List<Calificacion> calificaciones, List<Infraccion> infracciones, Modalidad modalidad) {

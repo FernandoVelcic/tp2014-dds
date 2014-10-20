@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.group10.db.EntityManagerHelper;
 import com.grupo10.juego.*;
 import com.grupo10.modalidades.*;
 
@@ -119,6 +120,8 @@ public class HomeJugadores {
 	public void setJugadores(List<Participante> jugadores) {
 		this.jugadores = jugadores;
 	}
-
 	
+	public void guardarPartido() {
+		EntityManagerHelper.getEntityManager().persist(partido);
+	}
 }

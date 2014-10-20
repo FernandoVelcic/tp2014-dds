@@ -8,8 +8,9 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-    	
-    	 
+    	<class>com.grupo10.juego.Partido</class>
+    	<class>com.grupo10.juego.Participante</class>
+
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         <!--
