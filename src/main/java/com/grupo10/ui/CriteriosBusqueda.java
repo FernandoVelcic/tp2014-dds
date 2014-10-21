@@ -69,7 +69,7 @@ public class CriteriosBusqueda {
 	public void clear() {
 		this.nombre = "";
 		this.apodo = "";
-		this.fecha = null;
+		this.fecha = "";
 		this.handicapDesde = null;
 		this.handicapHasta = null;
 		this.promedioDesde = null;
@@ -96,12 +96,12 @@ public class CriteriosBusqueda {
 		this.apodo = apodo;
 	}
 
-	public String getFechaString() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFechaString(String fechaString) {
-		this.fecha = fechaString;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
 	public Integer getHandicapDesde() {

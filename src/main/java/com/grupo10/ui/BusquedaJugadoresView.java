@@ -59,7 +59,7 @@ public class BusquedaJugadoresView extends SimpleWindow<BusquedaJugadoresViewMod
 		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.promedioHasta");
 	
 		new Label(searchFormPanel).setText("Fecha de nacimiento anterior a:");
-		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.fechaString");
+		new TextBox(searchFormPanel).bindValueToProperty("criterioBusqueda.fecha");
 		new Label(searchFormPanel).setText("");
 		new Label(searchFormPanel).setText("(yyyy-mm-dd)").setFontSize(8);
 		
@@ -84,7 +84,8 @@ public class BusquedaJugadoresView extends SimpleWindow<BusquedaJugadoresViewMod
 	public void actionBuscar(){
 		
 		try {
-			LocalDate.parse(getModelObject().getCriterioBusqueda().fecha);
+			if(getModelObject().getCriterioBusqueda().fecha != null)
+				LocalDate.parse(getModelObject().getCriterioBusqueda().fecha);
 			getModelObject().search();
 		}
 		catch (Exception pe) {
