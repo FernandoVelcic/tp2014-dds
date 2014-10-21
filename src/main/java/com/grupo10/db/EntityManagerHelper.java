@@ -1,4 +1,4 @@
-package com.group10.db;
+package com.grupo10.db;
 
 import java.util.function.*;
 import javax.persistence.EntityManager;

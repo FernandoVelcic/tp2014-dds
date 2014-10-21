@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.group10.db.EntityManagerHelper;
+import com.grupo10.db.EntityManagerHelper;
 import com.grupo10.juego.*;
 import com.grupo10.modalidades.*;
 
