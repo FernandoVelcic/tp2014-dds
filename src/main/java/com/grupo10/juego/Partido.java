@@ -16,9 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class Partido {
-	@Id @GeneratedValue
-	private Long id;
+public class Partido extends PersistentEntity{
 	
 	@Transient
 	public List<Participante> participantes = new ArrayList<Participante>();

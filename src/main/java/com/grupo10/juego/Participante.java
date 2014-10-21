@@ -21,9 +21,7 @@ import com.grupo10.modalidades.Modalidad;
 
 @Entity
 @Observable
-public class Participante implements Observador {
-	@Id @GeneratedValue
-	private Long id;
+public class Participante extends PersistentEntity implements Observador {
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
 	public List<Participante> amigos = new ArrayList<Participante>();

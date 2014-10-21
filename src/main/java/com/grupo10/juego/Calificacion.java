@@ -6,9 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Calificacion {
-	@Id @GeneratedValue
-	private Long id;
+public class Calificacion extends PersistentEntity {
 	
 	public int puntaje;
 	public String critica;
