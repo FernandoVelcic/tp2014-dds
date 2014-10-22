@@ -22,6 +22,9 @@ public class HomeView extends MainWindow<HomeViewModel> {
 		new Button(mainPanel)
 			.setCaption("Busqueda de jugadores")
 			.onClick(() -> getModelObject().busquedaJugadores(this));
+		new Button(mainPanel)
+		.setCaption("Ver equipos")
+		.onClick(() -> getModelObject().verEquipos(this));
 	}
 
 }

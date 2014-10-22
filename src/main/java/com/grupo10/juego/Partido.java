@@ -40,6 +40,10 @@ public class Partido extends PersistentEntity{
 		addObservador(admin);
 		admin.setPartido(this);
 	}
+	
+	protected Partido(){
+		
+	}
 
 	public void inscribirJugador(Participante participante) {
 		participantes.add(participante);

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.Query;
+
 import com.grupo10.db.EntityManagerHelper;
 import com.grupo10.juego.*;
 import com.grupo10.modalidades.*;
@@ -131,18 +133,16 @@ public class HomeJugadores {
 		EntityManagerHelper.commit();
 	}
 	
-	public List<Participante> recuperarEquipo1() {
-		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido").getResultList();
-
+	public List<Participante> recuperarEquipo1(Partido partido) {
+		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido p where p.id = :id").setParameter("id",partido.getId()).getResultList();
 		if(partidos.isEmpty())
 			return null;
 		
 		return partidos.get(0).equipo1;
 	}
 	
-	public List<Participante> recuperarEquipo2() {
-		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido").getResultList();
-
+	public List<Participante> recuperarEquipo2(Partido partido) {
+		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido p where p.id = :id").setParameter("id",partido.getId()).getResultList();
 		if(partidos.isEmpty())
 			return null;
 		

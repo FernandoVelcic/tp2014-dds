@@ -14,4 +14,7 @@ public class HomeViewModel {
 		new BusquedaJugadoresView(owner).open();
 	}
 
+	public void verEquipos(WindowOwner owner) {
+		new VerEquiposView(owner).open();
+	}
 }

@@ -24,8 +24,8 @@ public class GenerarEquiposViewModel {
 	int cantidadPartidos = 3;
 	
 	Partido partido;
-	List<Participante> equipo1 = HomeJugadores.getInstance().recuperarEquipo1();
-	List<Participante> equipo2 = HomeJugadores.getInstance().recuperarEquipo2();
+	List<Participante> equipo1;
+	List<Participante> equipo2;
 		
 	boolean enableCriteriosMix = false;
 	boolean enableNPartidos = false;
