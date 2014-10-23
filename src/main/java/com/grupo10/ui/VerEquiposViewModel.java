@@ -69,7 +69,7 @@ public class VerEquiposViewModel {
 
 	public void mostrarEquipos() {
 		equipo1 = HomeJugadores.getInstance().recuperarEquipo1(partido);
-		equipo2 = HomeJugadores.getInstance().recuperarEquipo1(partido);
+		equipo2 = HomeJugadores.getInstance().recuperarEquipo2(partido);
 		
 		
 	}

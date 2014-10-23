@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -127,8 +128,11 @@ public class Participante extends PersistentEntity implements Observador {
 		return handicap;
 	}
 	
-	public Double getPromedio() {
+	@PrePersist
+	public void setearPromedio(){
 		this.promedio = calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
+	}
+	public Double getPromedio() {
 		return promedio;
 	}
 	
