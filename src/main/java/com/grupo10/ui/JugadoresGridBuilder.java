@@ -40,10 +40,10 @@ public class JugadoresGridBuilder {
 			.setTitle("Promedio")
 			.setFixedSize(100)
 			.bindContentsToProperty("promedio");
-		
+		/*
 		new Column<Participante>(table)
 			.setTitle("Fecha Nacimiento")
 			.setFixedSize(150)
-			.bindContentsToProperty("fechaNacimiento");
+			.bindContentsToProperty("fechaNacimiento");*/
 	}
 }

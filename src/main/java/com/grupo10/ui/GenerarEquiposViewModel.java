@@ -8,6 +8,7 @@ import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.criteriosdivisionequipos.*;
 import com.grupo10.criteriosordenequipos.*;
+import com.grupo10.db.EntityManagerHelper;
 import com.grupo10.homes.HomeJugadores;
 import com.grupo10.juego.Participante;
 import com.grupo10.juego.Partido;
@@ -82,7 +83,7 @@ public class GenerarEquiposViewModel {
 		partido.generarJugadores();
 		HomeJugadores.getInstance().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
 		equipo1 = partido.equipo1;
-		equipo2 = partido.equipo2;
+		equipo2 = partido.equipo2;		
 		HomeJugadores.getInstance().guardarPartido(equipo1, equipo2);
 	}
 	

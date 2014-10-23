@@ -7,13 +7,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.excepciones.CalificacionException;
@@ -37,7 +36,12 @@ public class Participante extends PersistentEntity implements Observador {
 	public int handicap;
 	public String nombre;
 	public String apodo;
-	public LocalDate fechaNacimiento;
+	public Double promedio = 0.0;
+	//TODO ver como arreglar esto
+	//@Column(nullable = false)
+	//@Type(type="org.joda.time.contrib.hibernate.PersistentLocalDate")
+	@Transient
+	public LocalDate fechaNacimiento = LocalDate.now();
 	@Transient
 	public Modalidad modalidad;
 	@ManyToOne
@@ -121,7 +125,12 @@ public class Participante extends PersistentEntity implements Observador {
 	}
 	
 	public Double getPromedio() {
-		return calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
+		this.promedio = calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
+		return promedio;
+	}
+	
+	public void setPromedio(Double promedio){
+		this.promedio = promedio;
 	}
 	
 	public Double getPromedioActual() {

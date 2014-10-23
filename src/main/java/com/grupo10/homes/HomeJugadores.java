@@ -126,10 +126,9 @@ public class HomeJugadores {
 	public void guardarPartido(List<Participante> equipo1, List<Participante> equipo2) {
 		partido.equipo1 = equipo1;
 		partido.equipo2 = equipo2;
-		
 		EntityManagerHelper.beginTransaction();
-		EntityManagerHelper.getEntityManager().persist(partido);
-		
+		equipo1.forEach(participante -> EntityManagerHelper.getEntityManager().persist(participante));
+		equipo2.forEach(participante -> EntityManagerHelper.getEntityManager().persist(participante));
 		EntityManagerHelper.commit();
 	}
 	

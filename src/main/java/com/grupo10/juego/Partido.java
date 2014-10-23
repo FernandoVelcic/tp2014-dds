@@ -9,11 +9,15 @@ import java.util.stream.Stream;
 import com.grupo10.modalidades.*;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 public class Partido extends PersistentEntity{
@@ -24,10 +28,11 @@ public class Partido extends PersistentEntity{
 	public List<Participante> jugadores = new ArrayList<Participante>();
 	
 	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="equipo1")
 	public List<Participante> equipo1 = new ArrayList<Participante>();
-	//@OneToMany
-	//@OneToMany(cascade = {CascadeType.ALL})
-	@Transient
+
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="equipo2")
 	public List<Participante> equipo2 = new ArrayList<Participante>();
 	
 	@Transient
