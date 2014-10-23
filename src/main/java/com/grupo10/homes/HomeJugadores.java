@@ -16,6 +16,7 @@ public class HomeJugadores {
 	private static HomeJugadores instance;
 	public Administrador admin = new Administrador();
 	public Partido partido = new Partido(LocalDate.now(), admin);
+	
 	public static HomeJugadores getInstance() {
 		if (instance == null) {
 			instance = new HomeJugadores();
@@ -132,12 +133,6 @@ public class HomeJugadores {
 
 	public void setAdmin(Administrador admin) {
 		this.admin = admin;
-	}
-
-	public void guardarPartido(List<Participante> equipo1, List<Participante> equipo2) {
-		partido.equipo1 = equipo1;
-		partido.equipo2 = equipo2;
-		
 	}
 	
 	public List<Participante> recuperarEquipo1(Partido partido) {
