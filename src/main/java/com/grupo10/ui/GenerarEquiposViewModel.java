@@ -88,7 +88,7 @@ public class GenerarEquiposViewModel {
 	}
 	
 	public void confirmarEquipos() {
-		HomeJugadores.getInstance().getAdmin().confirmarEquipos();
+		HomeJugadores.getInstance().confirmarEquipos();
 	}
 
 	public CriterioDivision getCriterioDivision() {

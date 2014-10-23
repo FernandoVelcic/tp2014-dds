@@ -1,9 +1,9 @@
 package com.grupo10.test;
 
-import static org.junit.Assert.*;
-
 import java.time.LocalDate;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.grupo10.db.*;
@@ -21,6 +21,16 @@ public class TestConexionSQL {
 	public void contextUpWithTransaction() throws Exception {
 		EntityManagerHelper.withTransaction(() -> {
 		});
+	}
+	
+	@Before
+	public void begin() throws Exception {
+		EntityManagerHelper.beginTransaction();
+	}
+		
+	@After
+	public void tearDown() throws Exception {
+		EntityManagerHelper.rollback();
 	}
 	
 	@Test

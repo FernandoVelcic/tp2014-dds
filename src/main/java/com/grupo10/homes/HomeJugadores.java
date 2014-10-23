@@ -16,8 +16,6 @@ public class HomeJugadores {
 	private static HomeJugadores instance;
 	public Administrador admin = new Administrador();
 	public Partido partido = new Partido(LocalDate.now(), admin);
-	public List<Participante> jugadores = new ArrayList<Participante>();
-	
 	public static HomeJugadores getInstance() {
 		if (instance == null) {
 			instance = new HomeJugadores();
@@ -97,7 +95,28 @@ public class HomeJugadores {
 		marcos.agregarAmigo(martin);
 		marcos.agregarAmigo(carlos);
 		marcos.agregarAmigo(fernando);
+
+		EntityManagerHelper.beginTransaction();
+		EntityManagerHelper.getEntityManager().persist(franco);
+		EntityManagerHelper.getEntityManager().persist(martin);
+		EntityManagerHelper.getEntityManager().persist(oscar);
+		EntityManagerHelper.getEntityManager().persist(fabian);
+		EntityManagerHelper.getEntityManager().persist(pablo);
+		EntityManagerHelper.getEntityManager().persist(jose);
+		EntityManagerHelper.getEntityManager().persist(marcelo);
+		EntityManagerHelper.getEntityManager().persist(tomas);
+		EntityManagerHelper.getEntityManager().persist(cristian);
+		EntityManagerHelper.getEntityManager().persist(enrique);
+		EntityManagerHelper.getEntityManager().persist(marcos);
+		EntityManagerHelper.getEntityManager().persist(federico);
+		EntityManagerHelper.getEntityManager().persist(miguel);
+		EntityManagerHelper.getEntityManager().persist(alejandro);
+		EntityManagerHelper.getEntityManager().persist(fernando);
+		EntityManagerHelper.getEntityManager().persist(roberto);
+		EntityManagerHelper.getEntityManager().persist(carlos);
+		EntityManagerHelper.commit();
 	}
+	
 	
 	public Partido getPartido() {
 		return partido;
@@ -115,21 +134,10 @@ public class HomeJugadores {
 		this.admin = admin;
 	}
 
-	public List<Participante> getJugadores() {
-		return jugadores;
-	}
-
-	public void setJugadores(List<Participante> jugadores) {
-		this.jugadores = jugadores;
-	}
-	
 	public void guardarPartido(List<Participante> equipo1, List<Participante> equipo2) {
 		partido.equipo1 = equipo1;
 		partido.equipo2 = equipo2;
-		EntityManagerHelper.beginTransaction();
-		equipo1.forEach(participante -> EntityManagerHelper.getEntityManager().persist(participante));
-		equipo2.forEach(participante -> EntityManagerHelper.getEntityManager().persist(participante));
-		EntityManagerHelper.commit();
+		
 	}
 	
 	public List<Participante> recuperarEquipo1(Partido partido) {
@@ -146,5 +154,13 @@ public class HomeJugadores {
 			return null;
 		
 		return partidos.get(0).equipo2;
+	}
+
+	public void confirmarEquipos() {
+		getAdmin().confirmarEquipos();
+		EntityManagerHelper.beginTransaction();
+		EntityManagerHelper.getEntityManager().persist(partido);
+		EntityManagerHelper.commit();
+		
 	}
 }

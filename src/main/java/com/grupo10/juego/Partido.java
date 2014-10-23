@@ -28,11 +28,13 @@ public class Partido extends PersistentEntity{
 	public List<Participante> jugadores = new ArrayList<Participante>();
 	
 	@OneToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="equipo1")
+	@JoinTable(name="Equipo1")
+	@Column(nullable = true)
 	public List<Participante> equipo1 = new ArrayList<Participante>();
 
 	@OneToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="equipo2")
+	@JoinTable(name="Equipo2")
+	@Column(nullable = true)
 	public List<Participante> equipo2 = new ArrayList<Participante>();
 	
 	@Transient
