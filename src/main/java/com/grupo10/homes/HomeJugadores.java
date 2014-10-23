@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.hibernate.Query;
 
 import com.grupo10.db.EntityManagerHelper;
@@ -97,25 +99,27 @@ public class HomeJugadores {
 		marcos.agregarAmigo(carlos);
 		marcos.agregarAmigo(fernando);
 
-		EntityManagerHelper.beginTransaction();
-		EntityManagerHelper.getEntityManager().persist(franco);
-		EntityManagerHelper.getEntityManager().persist(martin);
-		EntityManagerHelper.getEntityManager().persist(oscar);
-		EntityManagerHelper.getEntityManager().persist(fabian);
-		EntityManagerHelper.getEntityManager().persist(pablo);
-		EntityManagerHelper.getEntityManager().persist(jose);
-		EntityManagerHelper.getEntityManager().persist(marcelo);
-		EntityManagerHelper.getEntityManager().persist(tomas);
-		EntityManagerHelper.getEntityManager().persist(cristian);
-		EntityManagerHelper.getEntityManager().persist(enrique);
-		EntityManagerHelper.getEntityManager().persist(marcos);
-		EntityManagerHelper.getEntityManager().persist(federico);
-		EntityManagerHelper.getEntityManager().persist(miguel);
-		EntityManagerHelper.getEntityManager().persist(alejandro);
-		EntityManagerHelper.getEntityManager().persist(fernando);
-		EntityManagerHelper.getEntityManager().persist(roberto);
-		EntityManagerHelper.getEntityManager().persist(carlos);
-		EntityManagerHelper.commit();
+		if(EntityManagerHelper.getEntityManager().find(Participante.class, (long)1) == null){
+			EntityManagerHelper.beginTransaction();
+			EntityManagerHelper.getEntityManager().persist(franco);
+			EntityManagerHelper.getEntityManager().persist(martin);
+			EntityManagerHelper.getEntityManager().persist(oscar);
+			EntityManagerHelper.getEntityManager().persist(fabian);
+			EntityManagerHelper.getEntityManager().persist(pablo);
+			EntityManagerHelper.getEntityManager().persist(jose);
+			EntityManagerHelper.getEntityManager().persist(marcelo);
+			EntityManagerHelper.getEntityManager().persist(tomas);
+			EntityManagerHelper.getEntityManager().persist(cristian);
+			EntityManagerHelper.getEntityManager().persist(enrique);
+			EntityManagerHelper.getEntityManager().persist(marcos);
+			EntityManagerHelper.getEntityManager().persist(federico);
+			EntityManagerHelper.getEntityManager().persist(miguel);
+			EntityManagerHelper.getEntityManager().persist(alejandro);
+			EntityManagerHelper.getEntityManager().persist(fernando);
+			EntityManagerHelper.getEntityManager().persist(roberto);
+			EntityManagerHelper.getEntityManager().persist(carlos);
+			EntityManagerHelper.commit();
+		}
 	}
 	
 	
