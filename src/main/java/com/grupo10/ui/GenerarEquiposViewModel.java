@@ -44,9 +44,7 @@ public class GenerarEquiposViewModel {
 		}
 	};
 	
-	public GenerarEquiposViewModel() {
-		partido = HomeJugadores.getInstance().getPartido();
-				
+	public GenerarEquiposViewModel() {				
 		listaCriteriosDivision = new ArrayList<CriterioDivision>();
 		listaCriteriosDivision.add(new ParImpar() {
 			public String toString() {
@@ -80,6 +78,7 @@ public class GenerarEquiposViewModel {
 	}
 
 	public void generarEquipos() {
+		partido = HomeJugadores.getInstance().getPartido();
 		partido.generarJugadores();
 		HomeJugadores.getInstance().getAdmin().generarEquiposTentativos(criterioOrden, criterioDivision);
 		equipo1 = partido.equipo1;

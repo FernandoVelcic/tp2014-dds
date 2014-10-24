@@ -20,6 +20,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.IndexColumn;
 
 @Entity
+
 public class Partido extends PersistentEntity{
 	
 	@Transient

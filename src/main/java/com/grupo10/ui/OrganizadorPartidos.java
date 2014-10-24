@@ -1,5 +1,7 @@
 package com.grupo10.ui;
 
+import com.grupo10.homes.HomeJugadores;
+
 
 /**
  * Correr esta clase con el siguiente argument
@@ -9,6 +11,7 @@ package com.grupo10.ui;
 public class OrganizadorPartidos {
 
 	public static void main(String[] args) {
+		HomeJugadores.getInstance();
 		new HomeView().startApplication();
 	}
 

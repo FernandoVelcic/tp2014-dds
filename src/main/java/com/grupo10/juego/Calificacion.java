@@ -3,6 +3,7 @@ package com.grupo10.juego;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostPersist;
 
 @Entity
 public class Calificacion extends PersistentEntity {
