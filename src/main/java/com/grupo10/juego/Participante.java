@@ -44,7 +44,6 @@ public class Participante extends PersistentEntity implements Observador {
 	//TODO ver como arreglar esto
 	//@Column(nullable = false)
 	//@Type(type="org.joda.time.contrib.hibernate.PersistentLocalDate")
-	@Transient
 	public LocalDate fechaNacimiento = LocalDate.now();
 	@Transient
 	public Modalidad modalidad;
@@ -128,16 +127,13 @@ public class Participante extends PersistentEntity implements Observador {
 		return handicap;
 	}
 	
-	@PrePersist
-	public void setearPromedio(){
-		this.promedio = calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
-	}
 	public Double getPromedio() {
 		return promedio;
 	}
 	
-	public void setPromedio(Double promedio){
-		this.promedio = promedio;
+	@PrePersist
+	public void setPromedio(){
+		this.promedio = calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
 	}
 	
 	public Double getPromedioActual() {

@@ -6,6 +6,7 @@ import java.util.List;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
+import com.grupo10.db.EntityManagerHelper;
 import com.grupo10.homes.HomeJugadores;
 import com.grupo10.juego.Participante;
 
@@ -14,6 +15,7 @@ public class BusquedaJugadoresViewModel implements Serializable{
 	
 	private CriteriosBusqueda criterioBusqueda;
 	private List<Participante> resultados;
+	private List<Participante> participantesBD;
 	private Participante participanteSeleccionado;
 
 	public BusquedaJugadoresViewModel(){
@@ -21,7 +23,8 @@ public class BusquedaJugadoresViewModel implements Serializable{
 	}
 	
 	public void search() {
-		this.resultados = criterioBusqueda.searchJugadores(HomeJugadores.getInstance().getPartido().participantes);
+		participantesBD = EntityManagerHelper.getEntityManager().createQuery("from Participante").getResultList();
+		this.resultados = criterioBusqueda.searchJugadores(participantesBD);
 	}
 
 	public List<Participante> getResultados() {
