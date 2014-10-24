@@ -2,7 +2,7 @@ package com.grupo10.test;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.Before;

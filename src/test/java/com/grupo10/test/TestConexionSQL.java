@@ -1,6 +1,6 @@
 package com.grupo10.test;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 import org.junit.After;
 import org.junit.Before;

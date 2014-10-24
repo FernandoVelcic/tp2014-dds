@@ -1,6 +1,6 @@
 package com.grupo10.juego;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +42,7 @@ public class Participante extends PersistentEntity implements Observador {
 	public String nombre;
 	public String apodo;
 	public Double promedio = 0.0;
-	//TODO ver como arreglar esto
-	//@Column(nullable = false)
-	//@Type(type="org.joda.time.contrib.hibernate.PersistentLocalDate")
+
 	public LocalDate fechaNacimiento = LocalDate.now();
 	@Transient
 	public Modalidad modalidad;

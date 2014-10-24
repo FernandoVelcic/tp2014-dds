@@ -2,13 +2,15 @@ package com.grupo10.test;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
+
 import com.grupo10.juego.Calificacion;
 import com.grupo10.juego.Infraccion;
 import com.grupo10.juego.Participante;
@@ -34,10 +36,10 @@ public class TestBusquedaJugadores {
 	
 	CriteriosBusqueda criterios = new CriteriosBusqueda();
 	
-	Participante martin = new Participante("Martin", "Tincho", LocalDate.of(1985, Month.JANUARY, 1), 9, Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6), Arrays.asList(infraccion1), new Condicional(true));
-	Participante oscar = new Participante("Oscar", "Osqui", LocalDate.of(1988, Month.AUGUST, 10), 8, Arrays.asList(calificacion10,calificacion9,calificacion9), Arrays.asList(infraccion1), new Estandar());
-	Participante franco = new Participante("Franco", "Pancho", LocalDate.of(1987, Month.JUNE, 21), 6, Arrays.asList(calificacion3,calificacion4), Arrays.asList(infraccion1, infraccion2, infraccion3), new Solidario());
-	Participante fabian = new Participante("Fabian", "Fabi", LocalDate.of(1986, Month.DECEMBER, 30), 10, Arrays.asList(calificacion10,calificacion10), Arrays.asList(), new Condicional(false));
+	Participante martin = new Participante("Martin", "Tincho", new LocalDate(1985, 1, 1), 9, Arrays.asList(calificacion10,calificacion6,calificacion8,calificacion6), Arrays.asList(infraccion1), new Condicional(true));
+	Participante oscar = new Participante("Oscar", "Osqui", new LocalDate(1988, 8, 10), 8, Arrays.asList(calificacion10,calificacion9,calificacion9), Arrays.asList(infraccion1), new Estandar());
+	Participante franco = new Participante("Franco", "Pancho", new LocalDate(1987, 6, 21), 6, Arrays.asList(calificacion3,calificacion4), Arrays.asList(infraccion1, infraccion2, infraccion3), new Solidario());
+	Participante fabian = new Participante("Fabian", "Fabi", new LocalDate(1986, 12, 30), 10, Arrays.asList(calificacion10,calificacion10), Arrays.asList(), new Condicional(false));
 
 	@Before
 	public void setUp() throws Exception {
@@ -83,13 +85,6 @@ public class TestBusquedaJugadores {
 		criterios.handicapDesde = 8;
 		criterios.handicapHasta = 10;
 		assertTrue(criterios.searchJugadores(jugadores).containsAll(Arrays.asList(martin, fabian, oscar)));	
-	}
-	
-	@Test
-	public void testMartinYFrancoTienenPromedioEntre3Y8(){
-		criterios.promedioDesde = 3;
-		criterios.promedioHasta = 8;
-		assertTrue(criterios.searchJugadores(jugadores).containsAll(Arrays.asList(martin, franco)));	
 	}
 	
 	@Test

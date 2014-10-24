@@ -1,8 +1,9 @@
 package com.grupo10.ui;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.joda.time.LocalDate;
 import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.juego.Participante;

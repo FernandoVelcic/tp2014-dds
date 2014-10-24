@@ -2,7 +2,7 @@ package com.grupo10.test;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import com.grupo10.excepciones.CalificacionException;

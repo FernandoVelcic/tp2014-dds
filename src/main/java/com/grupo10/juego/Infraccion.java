@@ -1,6 +1,6 @@
 package com.grupo10.juego;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 import org.uqbar.commons.utils.Observable;
 
