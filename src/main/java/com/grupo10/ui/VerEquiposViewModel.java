@@ -22,9 +22,6 @@ public class VerEquiposViewModel {
 	public VerEquiposViewModel(){
 		selectPartido = new ArrayList<Partido>();
 		selectPartido = EntityManagerHelper.getEntityManager().createQuery("from Partido").getResultList();
-		//Esto seria para ver los ids de los partidos, no funciona todavia
-		//selectPartido.forEach(partido -> selectIdPartido.add(partido.getId()));
-		
 	}
 
 	public Partido getPartido() {
@@ -68,10 +65,8 @@ public class VerEquiposViewModel {
 	}
 
 	public void mostrarEquipos() {
-		equipo1 = HomeJugadores.getInstance().recuperarEquipo1(partido);
-		equipo2 = HomeJugadores.getInstance().recuperarEquipo2(partido);
-		
-		
+		equipo1 = partido.equipo1;
+		equipo2 = partido.equipo2;
 	}
 
 }

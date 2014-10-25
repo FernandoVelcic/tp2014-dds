@@ -98,28 +98,8 @@ public class HomeJugadores {
 		marcos.agregarAmigo(martin);
 		marcos.agregarAmigo(carlos);
 		marcos.agregarAmigo(fernando);
-
-		if(EntityManagerHelper.getEntityManager().find(Participante.class, (long)1) == null){
-			EntityManagerHelper.beginTransaction();
-			EntityManagerHelper.getEntityManager().persist(franco);
-			EntityManagerHelper.getEntityManager().persist(martin);
-			EntityManagerHelper.getEntityManager().persist(oscar);
-			EntityManagerHelper.getEntityManager().persist(fabian);
-			EntityManagerHelper.getEntityManager().persist(pablo);
-			EntityManagerHelper.getEntityManager().persist(jose);
-			EntityManagerHelper.getEntityManager().persist(marcelo);
-			EntityManagerHelper.getEntityManager().persist(tomas);
-			EntityManagerHelper.getEntityManager().persist(cristian);
-			EntityManagerHelper.getEntityManager().persist(enrique);
-			EntityManagerHelper.getEntityManager().persist(marcos);
-			EntityManagerHelper.getEntityManager().persist(federico);
-			EntityManagerHelper.getEntityManager().persist(miguel);
-			EntityManagerHelper.getEntityManager().persist(alejandro);
-			EntityManagerHelper.getEntityManager().persist(fernando);
-			EntityManagerHelper.getEntityManager().persist(roberto);
-			EntityManagerHelper.getEntityManager().persist(carlos);
-			EntityManagerHelper.commit();
-		}
+		
+		guardarPartido();
 	}
 	
 	
@@ -138,28 +118,16 @@ public class HomeJugadores {
 	public void setAdmin(Administrador admin) {
 		this.admin = admin;
 	}
-	
-	public List<Participante> recuperarEquipo1(Partido partido) {
-		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido p where p.id = :id").setParameter("id",partido.getId()).getResultList();
-		if(partidos.isEmpty())
-			return null;
-		
-		return partidos.get(0).equipo1;
-	}
-	
-	public List<Participante> recuperarEquipo2(Partido partido) {
-		List<Partido> partidos = EntityManagerHelper.getEntityManager().createQuery("from Partido p where p.id = :id").setParameter("id",partido.getId()).getResultList();
-		if(partidos.isEmpty())
-			return null;
-		
-		return partidos.get(0).equipo2;
-	}
 
 	public void confirmarEquipos() {
 		getAdmin().confirmarEquipos();
+		guardarPartido();
+	}
+	
+	public void guardarPartido()
+	{
 		EntityManagerHelper.beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(partido);
 		EntityManagerHelper.commit();
-		
 	}
 }

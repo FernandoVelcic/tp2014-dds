@@ -19,7 +19,7 @@ import org.joda.time.LocalDate;
 
 public class Partido extends PersistentEntity{
 	
-	@Transient
+	@OneToMany(cascade = {CascadeType.ALL})
 	public List<Participante> participantes = new ArrayList<Participante>();
 	@Transient
 	public List<Participante> jugadores = new ArrayList<Participante>();
@@ -37,16 +37,9 @@ public class Partido extends PersistentEntity{
 	@Transient
 	private List<Observador> observadores = new ArrayList<Observador>();
 
-	private LocalDate fecha;
-
 	public Partido(LocalDate fecha, Administrador admin) {
-		this.fecha = fecha;
 		addObservador(admin);
 		admin.setPartido(this);
-	}
-	
-	protected Partido(){
-		
 	}
 
 	public void inscribirJugador(Participante participante) {

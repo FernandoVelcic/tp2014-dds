@@ -70,7 +70,7 @@ public class CriteriosBusqueda {
 	public void clear() {
 		this.nombre = "";
 		this.apodo = "";
-		this.fecha = "";
+		this.fecha = null;
 		this.handicapDesde = null;
 		this.handicapHasta = null;
 		this.promedioDesde = null;
