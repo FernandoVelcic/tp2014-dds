@@ -3,21 +3,11 @@ package com.grupo10.juego;
 import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-import org.hibernate.annotations.Type;
 import org.uqbar.commons.utils.Observable;
 
 import com.grupo10.excepciones.CalificacionException;
@@ -126,13 +116,12 @@ public class Participante extends PersistentEntity implements Observador {
 		return handicap;
 	}
 	
-	public Double getPromedio() {
-		return promedio;
-	}
-	
-	@PrePersist
 	public void setPromedio(){
 		this.promedio = calificaciones.stream().mapToDouble(c -> c.puntaje).average().orElse(0);
+	}
+	
+	public Double getPromedio() {
+		return promedio;
 	}
 	
 	public Double getPromedioActual() {

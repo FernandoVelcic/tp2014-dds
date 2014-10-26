@@ -1,14 +1,7 @@
 package com.grupo10.homes;
 
 import org.joda.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-
-import org.hibernate.Query;
 
 import com.grupo10.db.EntityManagerHelper;
 import com.grupo10.juego.*;
