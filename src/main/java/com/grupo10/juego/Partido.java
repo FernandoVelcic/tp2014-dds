@@ -37,10 +37,6 @@ public class Partido extends PersistentEntity{
 	@Transient
 	private List<Observador> observadores = new ArrayList<Observador>();
 
-	public Partido(){
-		
-	}
-			
 	public Partido(LocalDate fecha, Administrador admin) {
 		addObservador(admin);
 		admin.setPartido(this);

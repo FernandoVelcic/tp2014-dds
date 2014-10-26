@@ -4,6 +4,7 @@ package com.grupo10.criteriosdivisionequipos;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.grupo10.juego.Participante;
 import com.grupo10.juego.Partido;
